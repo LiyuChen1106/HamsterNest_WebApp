@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  itemid: 1
+  category_id: 1
+  item_name: MyString
+  amount: 1
+  owner: 1
+  status: false
+  loan_date: 2018-10-09
+  expected_return_date: 2018-10-09
+  actual_return_date: 2018-10-09
+
+two:
+  itemid: 1
+  category_id: 1
+  item_name: MyString
+  amount: 1
+  owner: 1
+  status: false
+  loan_date: 2018-10-09
+  expected_return_date: 2018-10-09
+  actual_return_date: 2018-10-09
