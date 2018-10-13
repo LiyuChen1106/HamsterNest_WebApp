@@ -1,0 +1,19 @@
+<h1>Listing account (internal test)</h1>
+ 
+<p>
+  <strong>Email:</strong>
+  <%= @user_account.email %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @user_account.password %>
+</p>
+
+<p>
+  <strong>Salt:</strong>
+  <!--%= @user_account.salt %-->
+</p>
+
+<%= link_to 'Edit', edit_user_account_path(@user_account) %><br>
+<%= link_to 'Back', user_accounts_path %>
