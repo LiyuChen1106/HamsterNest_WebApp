@@ -1,9 +1,18 @@
 Rails.application.routes.draw do
-  get 'welcome/show'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+  # ROOT
+  root 'welcome#index'
+  
+  # Home page
+  get 'welcome', to: 'welcome#index'
+  
+  # Pages
+  get '/:page', to: 'application#show'
+  
+  # Resources
   resources :items
   resources :user_details
-  resources :users
+  resources :user_accounts
   resources :histories
   resources :categories
 
