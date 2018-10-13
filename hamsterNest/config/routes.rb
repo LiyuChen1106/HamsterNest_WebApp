@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'welcome', to: 'welcome#index'
   
   # Pages
-  get '/:page', to: 'application#show'
+  get '/articles/:page', to: 'application#show'
   
   # Resources
   resources :items
@@ -15,6 +15,5 @@ Rails.application.routes.draw do
   resources :user_accounts
   resources :histories
   resources :categories
-
 
 end
