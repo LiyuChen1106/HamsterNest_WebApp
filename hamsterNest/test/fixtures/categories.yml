@@ -3,11 +3,9 @@
 one:
   category_id: 1
   category_name: MyString
-  item_name: MyString
   itemid: 1
 
 two:
   category_id: 1
   category_name: MyString
-  item_name: MyString
   itemid: 1

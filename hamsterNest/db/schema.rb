@@ -10,56 +10,61 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_14_071605) do
+ActiveRecord::Schema.define(version: 2018_10_09_045144) do
 
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
-    t.integer "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "histories", force: :cascade do |t|
     t.integer "item_id"
-    t.integer "borrowers"
+    t.integer "borrower_id"
     t.date "lend_dates"
     t.date "return_dates"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["borrower_id"], name: "index_histories_on_borrower_id"
+    t.index ["item_id"], name: "index_histories_on_item_id"
   end
 
   create_table "items", force: :cascade do |t|
     t.integer "category_id"
     t.string "item_name"
-    t.integer "amount"
     t.integer "owner_id"
     t.boolean "status"
-    t.date "loan_date"
+    t.date "loan_data"
     t.date "expected_return_date"
     t.date "actual_return_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["owner_id"], name: "index_items_on_owner_id"
   end
 
-  create_table "user_accounts", force: :cascade do |t|
-    t.string "email"
+  create_table "user_accounts", primary_key: "email", id: :string, force: :cascade do |t|
     t.string "password"
     t.string "salt"
+    t.integer "username_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["username_id"], name: "index_user_accounts_on_username_id"
   end
 
-  create_table "user_details", force: :cascade do |t|
+  create_table "user_details", primary_key: "username", id: :string, force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.date "birthday"
     t.integer "lend_rating"
     t.integer "borrow_rating"
-    t.string "item_list"
+    t.integer "items_list_id"
     t.string "available_items"
-    t.string "friends"
+    t.integer "friends_list_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["friends_list_id"], name: "index_user_details_on_friends_list_id"
+    t.index ["items_list_id"], name: "index_user_details_on_items_list_id"
   end
 
 end

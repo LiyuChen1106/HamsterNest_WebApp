@@ -1,10 +1,10 @@
 class CreateHistories < ActiveRecord::Migration[5.2]
   def change
     create_table :histories do |t|
-      t.integer :itemid
-      t.integer :borrowers
-      t.date :lend_dates
-      t.date :return_dates
+      t.references :item, foreign_key: true
+      t.references :borrower, references: :user_details
+      t.date :lend_date
+      t.date :return_date
 
       t.timestamps
     end
