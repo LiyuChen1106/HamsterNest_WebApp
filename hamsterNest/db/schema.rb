@@ -10,19 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_12_175107) do
+ActiveRecord::Schema.define(version: 2018_10_14_071605) do
 
   create_table "categories", force: :cascade do |t|
-    t.integer "category_id"
     t.string "category_name"
-    t.string "item_name"
-    t.integer "itemid"
+    t.integer "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "histories", force: :cascade do |t|
-    t.integer "itemid"
+    t.integer "item_id"
     t.integer "borrowers"
     t.date "lend_dates"
     t.date "return_dates"
@@ -31,11 +29,10 @@ ActiveRecord::Schema.define(version: 2018_10_12_175107) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "itemid"
     t.integer "category_id"
     t.string "item_name"
     t.integer "amount"
-    t.integer "owner"
+    t.integer "owner_id"
     t.boolean "status"
     t.date "loan_date"
     t.date "expected_return_date"
@@ -45,7 +42,6 @@ ActiveRecord::Schema.define(version: 2018_10_12_175107) do
   end
 
   create_table "user_accounts", force: :cascade do |t|
-    t.integer "userid"
     t.string "email"
     t.string "password"
     t.string "salt"
@@ -54,14 +50,12 @@ ActiveRecord::Schema.define(version: 2018_10_12_175107) do
   end
 
   create_table "user_details", force: :cascade do |t|
-    t.integer "userid"
     t.string "first_name"
     t.string "last_name"
     t.date "birthday"
-    t.string "email"
-    t.integer "lend_rate"
-    t.integer "borrow_rate"
-    t.string "item_lists"
+    t.integer "lend_rating"
+    t.integer "borrow_rating"
+    t.string "item_list"
     t.string "available_items"
     t.string "friends"
     t.datetime "created_at", null: false

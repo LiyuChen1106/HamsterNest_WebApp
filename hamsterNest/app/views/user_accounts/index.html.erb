@@ -1,7 +1,7 @@
 <h1>Listing accounts (internal test)</h1>
 <table>
   <tr>
-    <th>userid</th>
+    <th>id<th>
     <th>email</th>
     <th>password</th>
     <th>salt</th>
@@ -10,7 +10,7 @@
  
   <% @user_accounts.each do |user_account| %>
     <tr>
-      <td><%= user_account.userid %></td>
+      <td><%= user_account.id %></td>
       <td><%= user_account.email %></td>
       <td><%= user_account.password %></td>
       <td><!--%= user_account.salt %--></td>
@@ -18,4 +18,5 @@
       <td><%= link_to 'Edit', edit_user_account_path(user_account) %></td>
     </tr>
   <% end %>
+    
 </table>
