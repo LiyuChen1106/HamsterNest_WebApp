@@ -1,0 +1,24 @@
+<h1>Listing user profile (internal test)</h1>
+ 
+<p>
+  <strong>User name:</strong>
+  <%= @user_detail.username %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @user_detail.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @user_detail.last_name %>
+</p>
+
+<p>
+  <strong>Birth:</strong>
+  <%= @user_detail.birthday %>
+</p>
+
+<%= link_to 'Edit', edit_user_detail_path(@user_detail) %><br>
+<%= link_to 'Back', user_details_path %>

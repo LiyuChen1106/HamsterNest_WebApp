@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   resources :user_accounts
   resources :histories
   resources :categories
+  
 
 end

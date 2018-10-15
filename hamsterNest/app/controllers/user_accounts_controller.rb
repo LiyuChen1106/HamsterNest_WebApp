@@ -17,12 +17,12 @@ class UserAccountsController < ApplicationController
   end
   
   def create
-    @user_account = UserAccount.new(params.require(:user_account).permit(:email, :password))
+    @user_account = UserAccount.new(params.require(:user_account).permit(:username_id, :email, :password))
     
     if @user_account.save
       flash[:notice] = "Signup Sucessfully"
       # render to fill up their user information
-      redirect_to :root
+      redirect_to new_user_detail_path#:root
     else
       flash[:alert] = "Problem"
       render new
@@ -41,6 +41,6 @@ class UserAccountsController < ApplicationController
   
   private
     def account_params
-      params.require(:user_account).permit(:email, :password)
+      params.require(:user_account).permit(:username_id, :email, :password)
     end
 end

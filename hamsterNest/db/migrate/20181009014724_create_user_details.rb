@@ -8,7 +8,7 @@ class CreateUserDetails < ActiveRecord::Migration[5.2]
       t.integer :lend_rating
       t.integer :borrow_rating
       t.references :items_list, index: true, foreign_key: { to_table: :items }
-      t.references :friends_list, index: true, foreign_key: { to_table: :user_details }
+      #t.references :friends_list, index: true, foreign_key: { to_table: :user_details }
 
       t.timestamps
     end
