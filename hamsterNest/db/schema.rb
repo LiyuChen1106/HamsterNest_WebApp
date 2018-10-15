@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 2018_10_09_045144) do
   create_table "histories", force: :cascade do |t|
     t.integer "item_id"
     t.integer "borrower_id"
-    t.date "lend_dates"
-    t.date "return_dates"
+    t.date "lend_date"
+    t.date "return_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["borrower_id"], name: "index_histories_on_borrower_id"
@@ -34,9 +34,6 @@ ActiveRecord::Schema.define(version: 2018_10_09_045144) do
     t.string "item_name"
     t.integer "owner_id"
     t.boolean "status"
-    t.date "loan_data"
-    t.date "expected_return_date"
-    t.date "actual_return_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_items_on_category_id"
@@ -59,7 +56,6 @@ ActiveRecord::Schema.define(version: 2018_10_09_045144) do
     t.integer "lend_rating"
     t.integer "borrow_rating"
     t.integer "items_list_id"
-    t.string "available_items"
     t.integer "friends_list_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
