@@ -1,0 +1,24 @@
+<h1>Listing user info (internal test)</h1>
+<table>
+  <tr>
+    <th>username</th>
+    <th>first_name</th>
+    <th>last_name</th>
+    <th>birthday</th>
+    <th></th>
+  </tr>
+ 
+  <% @user_profiles.each do |user_profile| %>
+    <tr>
+      <!--<td><!--%= user_account.username_id %></td>-->
+      <td><%= user_profile.username %></td>
+      <td><%= user_profile.first_name %></td>
+      <td><%= user_profile.last_name %></td>
+      <td><%= user_profile.birthday %></td>
+      <td><!--%= user_account.salt %--></td>
+      <td><%= link_to 'Show', user_profile_path(user_profile) %></td>
+      <td><%= link_to 'Edit', edit_user_profile_path(user_profile) %></td>
+    </tr>
+  <% end %>
+    
+</table>

@@ -10,12 +10,10 @@
  
   <% @user_details.each do |user_detail| %>
     <tr>
-      <!--<td><!--%= user_account.username_id %></td>-->
       <td><%= user_detail.username %></td>
       <td><%= user_detail.first_name %></td>
       <td><%= user_detail.last_name %></td>
       <td><%= user_detail.birthday %></td>
-      <td><!--%= user_account.salt %--></td>
       <td><%= link_to 'Show', user_detail_path(user_detail) %></td>
       <td><%= link_to 'Edit', edit_user_detail_path(user_detail) %></td>
     </tr>

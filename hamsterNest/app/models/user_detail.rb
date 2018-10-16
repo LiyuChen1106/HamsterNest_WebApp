@@ -1,2 +1,0 @@
-class UserDetail < ApplicationRecord
-end
