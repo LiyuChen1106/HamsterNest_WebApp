@@ -1,0 +1,16 @@
+<p>
+  <strong>Item: </strong>
+  <%= @item.item_name %>
+</p>
+
+<p>
+  <strong>Category: </strong>
+  <%= getCategoryName(@item.category_id) %>
+</p>
+
+<p>
+  <strong><%= itemAvaiableMessage(@item.status) %></strong>
+</p>
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>
