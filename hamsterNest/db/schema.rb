@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_09_045144) do
+ActiveRecord::Schema.define(version: 2018_10_16_195155) do
 
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
@@ -40,27 +40,38 @@ ActiveRecord::Schema.define(version: 2018_10_09_045144) do
     t.index ["owner_id"], name: "index_items_on_owner_id"
   end
 
-  create_table "user_accounts", primary_key: "email", id: :string, force: :cascade do |t|
-    t.string "password"
-    t.string "salt"
-    t.integer "username_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["username_id"], name: "index_user_accounts_on_username_id"
-  end
-
-  create_table "user_details", primary_key: "username", id: :string, force: :cascade do |t|
+  create_table "user_profiles", id: false, force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "username", null: false
     t.string "first_name"
     t.string "last_name"
     t.date "birthday"
     t.integer "lend_rating"
     t.integer "borrow_rating"
     t.integer "items_list_id"
-    t.integer "friends_list_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["friends_list_id"], name: "index_user_details_on_friends_list_id"
-    t.index ["items_list_id"], name: "index_user_details_on_items_list_id"
+    t.index ["email"], name: "index_user_profiles_on_email", unique: true
+    t.index ["items_list_id"], name: "index_user_profiles_on_items_list_id"
+    t.index ["username"], name: "index_user_profiles_on_username", unique: true
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "provider"
+    t.string "uid"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

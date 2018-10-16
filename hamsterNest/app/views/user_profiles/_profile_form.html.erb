@@ -19,6 +19,11 @@
     <% end %>
   
     <div class="field">
+      <%= form.label :email, "Email" %><br>
+      <%= form.text_field :email, autofocus: true%>
+    </div>
+  
+    <div class="field">
       <%= form.label :username, "User name" %><br>
       <%= form.text_field :username, autofocus: true%>
     </div>
