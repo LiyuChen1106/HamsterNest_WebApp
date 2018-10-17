@@ -1,14 +1,6 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  
-  def after_sign_in_path_for(resource)
-#    if resource.sign_in_count == 1
-       new_user_profile_path
-#    else
-#       root_path
-#    end
-  end
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
