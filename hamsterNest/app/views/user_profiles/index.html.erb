@@ -1,7 +1,8 @@
 <h1>Listing user info (internal test)</h1>
 <table>
   <tr>
-    <th>email</th>
+    <th>profile_id</th>
+    <th>account_id</th>
     <th>username</th>
     <th>first_name</th>
     <th>last_name</th>
@@ -11,8 +12,8 @@
  
   <% @user_profiles.each do |user_profile| %>
     <tr>
-      <!--<td><!--%= user_account.username_id %></td>-->
-      <td><%= user_profile.email %></td>
+      <td><%= user_profile.id %></td>
+      <td><%= user_profile.account_id %></td>
       <td><%= user_profile.username %></td>
       <td><%= user_profile.first_name %></td>
       <td><%= user_profile.last_name %></td>
@@ -21,6 +22,14 @@
       <td><!--%= link_to 'Show', user_profile_path(user_profile) %--></td>
       <td><!--%= link_to 'Edit', edit_user_profile_path(user_profile) %--></td>
     </tr>
+  <% end %>
+  <br>
+  <br>
+  <% @users = User.all %>
+  <% @users.each do |user| %>
+    <%= user.email %><br/>
+    <%= user.user_profiles_id %><br/>
+    <%= user.encrypted_password %><br/>
   <% end %>
     
 </table>

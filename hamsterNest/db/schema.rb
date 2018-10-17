@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_003134) do
+ActiveRecord::Schema.define(version: 2018_10_17_012144) do
 
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 2018_10_17_003134) do
     t.index ["owner_id"], name: "index_items_on_owner_id"
   end
 
-  create_table "user_profiles", id: false, force: :cascade do |t|
-    t.string "email", default: "", null: false
+  create_table "user_profiles", force: :cascade do |t|
+    t.integer "account_id", null: false
     t.string "username", null: false
     t.string "first_name"
     t.string "last_name"
@@ -51,9 +51,7 @@ ActiveRecord::Schema.define(version: 2018_10_17_003134) do
     t.integer "items_list_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_user_profiles_on_email", unique: true
     t.index ["items_list_id"], name: "index_user_profiles_on_items_list_id"
-    t.index ["username"], name: "index_user_profiles_on_username", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -75,8 +73,10 @@ ActiveRecord::Schema.define(version: 2018_10_17_003134) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.integer "user_profiles_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["user_profiles_id"], name: "index_users_on_user_profiles_id"
   end
 
 end

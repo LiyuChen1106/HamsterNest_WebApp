@@ -1,7 +1,7 @@
 class CreateUserProfiles < ActiveRecord::Migration[5.2]
   def change
-    create_table :user_profiles, id: false do |t|
-      t.string :email, null: false, default: ""
+    create_table :user_profiles do |t|
+      t.integer :account_id, null: false, unique: true
       t.string :username, null: false
       t.string :first_name
       t.string :last_name
@@ -10,11 +10,8 @@ class CreateUserProfiles < ActiveRecord::Migration[5.2]
       t.integer :borrow_rating
       t.references :items_list, index: true, foreign_key: { to_table: :items }
       #t.references :friends_list, index: true, foreign_key: { to_table: :user_profiles }
-
+      
       t.timestamps
     end
-    
-    add_index :user_profiles, :email, unique: true
-    add_index :user_profiles, :username, unique: true
   end
 end

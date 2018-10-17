@@ -18,13 +18,15 @@ class UserProfilesController < ApplicationController
   
   def create
     @user_profile = UserProfile.new(profile_params)
+    @user_profile.auto_fill_username_and_account(current_user)
     
     if @user_profile.save
       flash[:notice] = "Profile added"
       redirect_to :root
     else
-      flash[:alert] = "Problem"
-      render new
+      flash[:alert] = @user_profile.errors.full_messages
+      
+      redirect_to new_user_profile_path
     end
   end
   
@@ -40,6 +42,6 @@ class UserProfilesController < ApplicationController
   
   private
     def profile_params
-      params.require(:user_profile).permit(:email, :username, :first_name, :last_name, :birthday)
+      params.require(:user_profile).permit(:account_id, :username, :first_name, :last_name, :birthday)
     end
 end
