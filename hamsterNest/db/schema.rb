@@ -12,6 +12,19 @@
 
 ActiveRecord::Schema.define(version: 2018_10_17_012144) do
 
+  create_table "borrow_requests", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "user_profile_id", null: false
+    t.boolean "approval", default: false
+    t.date "borrow_date", null: false
+    t.date "return_date", null: false
+    t.string "request_message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_borrow_requests_on_item_id"
+    t.index ["user_profile_id"], name: "index_borrow_requests_on_user_profile_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
     t.datetime "created_at", null: false
