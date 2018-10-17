@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item: one
+  user_profile: one
+  approval: false
+  return_date: 2018-10-16
+  request_message: MyString
+
+two:
+  item: two
+  user_profile: two
+  approval: false
+  return_date: 2018-10-16
+  request_message: MyString

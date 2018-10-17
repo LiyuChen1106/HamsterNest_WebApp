@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_09_045144) do
+ActiveRecord::Schema.define(version: 2018_10_17_011413) do
+
+  create_table "borrow_requests", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "user_profile_id", null: false
+    t.boolean "approval", default: false
+    t.date "borrow_date", null: false
+    t.date "return_date", null: false
+    t.string "request_message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_borrow_requests_on_item_id"
+    t.index ["user_profile_id"], name: "index_borrow_requests_on_user_profile_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
@@ -49,18 +62,20 @@ ActiveRecord::Schema.define(version: 2018_10_09_045144) do
     t.index ["username_id"], name: "index_user_accounts_on_username_id"
   end
 
-  create_table "user_details", primary_key: "username", id: :string, force: :cascade do |t|
+  create_table "user_profiles", id: false, force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "username", null: false
     t.string "first_name"
     t.string "last_name"
     t.date "birthday"
     t.integer "lend_rating"
     t.integer "borrow_rating"
     t.integer "items_list_id"
-    t.integer "friends_list_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["friends_list_id"], name: "index_user_details_on_friends_list_id"
-    t.index ["items_list_id"], name: "index_user_details_on_items_list_id"
+    t.index ["email"], name: "index_user_profiles_on_email", unique: true
+    t.index ["items_list_id"], name: "index_user_profiles_on_items_list_id"
+    t.index ["username"], name: "index_user_profiles_on_username", unique: true
   end
 
 end
