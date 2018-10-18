@@ -1,20 +1,25 @@
 Rails.application.routes.draw do
-  
- 
+
+
   # ROOT
   root 'welcome#index'
-  
+
   # Home page
   get 'welcome', to: 'welcome#index'
-  
+
   # Pages
   get '/articles/:page', to: 'application#show'
-  
+
   # Resources
   resources :items
   resources :user_profiles, :path => "account/profiles"
   resources :histories
   resources :categories
+
+  resources :items do
+  collection { post :search, to: 'items#index' }
+  end
+
   resources :borrow_requests
 #  devise_for :users, skip: [:sessions]
 #  devise_scope :user do
@@ -22,7 +27,7 @@ Rails.application.routes.draw do
 #    post 'signin', to: 'devise/sessions#create', as: :user_session
 #    delete 'signout', to: 'devise/sessions#destroy', as: :destroy_user_session
 #  end
-  
+
   devise_for :users,
   :path => "account",
   :path_names => {
@@ -37,5 +42,5 @@ Rails.application.routes.draw do
     get '/account/edit', to: 'devise/registrations#edit', as: :edit_user_registration
     post '/account', to: 'devise/registrations#create', as: :user_registration
   end
-  
+
 end

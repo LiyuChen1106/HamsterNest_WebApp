@@ -1,7 +1,9 @@
 # todo: add current user as the
 class ItemsController < ApplicationController
+  respond_to :json, :js, :html
   def index
-    @items = Item.all
+    @search = Item.ransack(params[:q])
+    @items = @search.result(distinct: true)
   end
 
   def show
@@ -41,12 +43,9 @@ class ItemsController < ApplicationController
 
     redirect_to items_path
   end
-
-
-
 end
 
 private
 def item_params
-      params.require(:item).permit(:item_name, :category_id, :status)
+      params.require(:item).permit(:item_name, :category_id, :status, :search_text)
     end

@@ -1,12 +1,15 @@
-<h1>All items</h1>
+<%= render "item_search_box" %>
+
+<h1>Items</h1>
 
 <%= link_to 'New item', new_item_path %>
 
 <table>
   <tr>
-    <th>Item Name</th>
-    <th>Category</th>
-    <th>Availale</th>
+    <!-- <th>Item Name</th> -->
+    <th><%= sort_link(@search, :item_name, 'Item Name', default_order: :desc) %></th>
+    <th><%= sort_link(@search, :category_id, 'Category', default_order: :desc) %></th>
+    <th><%= sort_link(@search, :status, 'Availale', default_order: :desc) %></th>
   </tr>
 
   <% @items.each do |item| %>
@@ -14,8 +17,8 @@
       <td><%= item.item_name %></td>
       <td><%= getCategoryName(item.category_id) %></td>
       <td><%= item.status %></td>
-      <td><%= link_to 'Show', item_path(item) %></td>
-      <td><%= link_to 'Edit', edit_item_path(item) %></td>
+      <td><%= link_to 'Show', item_path(item) %>|</td>
+      <td><%= link_to 'Edit', edit_item_path(item) %>|</td>
       <td><%= link_to 'Remove', item_path(item),
               method: :delete,
 	      data: { confirm: 'Are you sure?'} %></td>

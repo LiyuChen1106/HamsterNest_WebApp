@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<% content_for :search do %>
+  <%= search_form_for @search do |f| %>
+    <%= f.search_field :item_name_cont, class: "radius-left expand", placeholder: "Item Name" %>
+    <%= f.submit "Search", class: "radius-right button" %>
+  <% end %>
+<% end %>
+
+
+<button class="btn" type="button" data-toggle="collapse" data-target="#advanced-search">
+  Advanced Search
+</button> <%= link_to "Reset Search", items_path %>
+
+
+
+<div id="advanced-search" class="collapse">
+  <!-- todo: more to add... -->
+  <%= search_form_for @search do |f| %>
+    <%=f.label :item_name_cont, 'Item Name'%>
+    <%=f.text_field :item_name_cont%>
+
+    <%=f.label :status, 'Available'%>
+    <%=f.check_box :status_eq%>
+  <%= f.submit "Search", class: "radius button"%>
+
+  <% end %>
+  </div>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
