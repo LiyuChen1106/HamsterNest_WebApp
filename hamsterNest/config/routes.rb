@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :user_profiles, :path => "account/profiles"
   resources :histories
   resources :categories
-  
+  resources :borrow_requests
 #  devise_for :users, skip: [:sessions]
 #  devise_scope :user do
 #    get 'signin', to: 'devise/sessions#new', as: :new_user_session
