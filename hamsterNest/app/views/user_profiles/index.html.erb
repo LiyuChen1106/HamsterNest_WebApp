@@ -2,7 +2,7 @@
 <table>
   <tr>
     <th>profile_id</th>
-    <th>account_id</th>
+    <th>user_id</th>
     <th>username</th>
     <th>first_name</th>
     <th>last_name</th>
@@ -13,7 +13,7 @@
   <% @user_profiles.each do |user_profile| %>
     <tr>
       <td><%= user_profile.id %></td>
-      <td><%= user_profile.account_id %></td>
+      <td><%= user_profile.user_id %></td>
       <td><%= user_profile.username %></td>
       <td><%= user_profile.first_name %></td>
       <td><%= user_profile.last_name %></td>
@@ -28,7 +28,7 @@
   <% @users = User.all %>
   <% @users.each do |user| %>
     <%= user.email %><br/>
-    <%= user.user_profiles_id %><br/>
+    <%= user.user_profile_id %><br/>
     <%= user.encrypted_password %><br/>
   <% end %>
     

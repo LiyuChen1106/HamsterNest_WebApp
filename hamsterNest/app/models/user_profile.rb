@@ -3,9 +3,9 @@ class UserProfile < ApplicationRecord
   after_save :update_profile_id_in_users
   
   def update_profile_id_in_users
-    @user = User.find(self.account_id)
+    @user = User.find(self.user_id)
     if @user.present?
-      @user.update_attribute(:user_profiles_id, self.id)
+      @user.update_attribute(:user_profile_id, self.id)
     end
   end
   
@@ -14,6 +14,6 @@ class UserProfile < ApplicationRecord
     
     self.username = @new_username
     
-    self.account_id = user.id
+    self.user_id = user.id
   end
 end

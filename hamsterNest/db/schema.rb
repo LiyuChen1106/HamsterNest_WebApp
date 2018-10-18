@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2018_10_17_012144) do
   end
 
   create_table "user_profiles", force: :cascade do |t|
-    t.integer "account_id", null: false
+    t.integer "user_id"
     t.string "username", null: false
     t.string "first_name"
     t.string "last_name"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2018_10_17_012144) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["items_list_id"], name: "index_user_profiles_on_items_list_id"
+    t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -86,10 +87,11 @@ ActiveRecord::Schema.define(version: 2018_10_17_012144) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.integer "user_profiles_id"
+    t.integer "user_profile_id"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["user_profiles_id"], name: "index_users_on_user_profiles_id"
+    t.index ["user_profile_id"], name: "index_users_on_user_profile_id"
   end
 
 end
