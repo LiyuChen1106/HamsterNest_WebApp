@@ -3,9 +3,9 @@ This is a web-based application that helps people who want to borrow something a
 Hamster is good at storing things and its nest is a mysterable space with unknown storage capacity!!
 
 Team:
-Yuxi Cai
-Jinyi Chen
-Liyu Chen
-To Khoi
-Kailun Li
-Kaishan Zhang
+- Yuxi Cai
+- Jinyi Chen
+- Liyu Chen
+- To Khoi
+- Kailun Li
+- Kaishan Zhang
