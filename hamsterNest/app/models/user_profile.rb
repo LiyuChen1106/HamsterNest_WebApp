@@ -1,5 +1,5 @@
 class UserProfile < ApplicationRecord
-  has_one :user, dependent: :destroy
+  belongs_to :user, optional: true
   has_many :items, dependent: :destroy
   has_one :history, dependent: :destroy
   has_many :borrow_requests, dependent: :destroy
