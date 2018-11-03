@@ -2,7 +2,7 @@
 
   <h1>Borrow request information</h1>
   
-  <%= form_with model: @borrow_request, local: true do |form| %>
+  <%= form_with model: @item_borrow_request, local: true do |form| %>
   <!-- check if any error -->
     <% if @borrow_request.errors.any? %>
       <div id="error_explanation">
@@ -26,7 +26,8 @@
     <div class="field">
     <p>
       <%= form.label :item_name, "Item name" %><br>
-      <%= form.label :item_name, @item_name%>
+      <%=@item_name%>
+      <%= @item_id%>
     </p>
 
     <p>

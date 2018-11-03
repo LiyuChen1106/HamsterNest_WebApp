@@ -9,6 +9,9 @@ class BorrowRequestsController < ApplicationController
 
   def new
     @borrow_request = BorrowRequest.new
+    @item_id = params[:item_id]
+    @item = Item.find(@item_id)
+    @item_name = @item.item_name
   end
 
   def edit
@@ -17,10 +20,9 @@ class BorrowRequestsController < ApplicationController
 
   def create
     @borrow_request = BorrowRequest.new(request_params)
-    @item = @borrow_request.item
-    @user = @borrow_request.user
-    @item_name = @item.item_name
-    @user_name = @user_name
+    #@item_name = params[:item_name]
+    @item_id = params[:item_id]
+    @item = Item.find(@item_id)
 
     if @borrow_request.save
       flash[:notice] = "Borrow request created."

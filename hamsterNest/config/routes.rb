@@ -19,8 +19,11 @@ Rails.application.routes.draw do
     collection { post :search, to: "items#index" }
   end
 
-  resources :borrow_requests
+  #resources :borrow_requests
 
+  resources :items do
+    resources :borrow_requests
+  end
   #resources :borrow_requests do
   #  resources :items
   #  resources :user_profiles
