@@ -1,0 +1,66 @@
+<div class = "request_form" >
+
+  <h1>Borrow request information</h1>
+  
+  <%= form_with model: @borrow_request, local: true do |form| %>
+  <!-- check if any error -->
+    <% if @borrow_request.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@borrow_request.errors.count, "error") %> prohibited
+          this request from being sent:
+        </h2>
+        <ul>
+          <% @borrow_request.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <!-- borrow request : item_name, user_name(owner), quantity, lend_date
+                        return_date, request_message
+        item_name, user_name should be autofilled by system
+        other fields should be filled in manually                    
+    -->
+    <div class="field">
+    <p>
+      <%= form.label :item_name, "Item name" %><br>
+      <%= form.label :item_name, @item_name%>
+    </p>
+
+    <p>
+      <%= form.label :owner, "owner" %><br>
+      <%= form.label :user_name, @user_name%>
+    </p>
+  
+    <p>
+      <%= form.label :quantity, "quantity" %><br>
+      <%= form.number_field :quantity%>
+    </p>
+
+    <p>
+      <%= form.label :lend_date, "lend_date" %><br>
+      <%= form.datetime_select :lend_date%>
+    </p>
+
+    <p>
+      <%= form.label :return_date, "return_date" %><br>
+      <%= form.datetime_select :return_date%>
+    </p>
+
+    <p>
+      <%= form.label :request_message, "message" %><br>
+      <%= form.text_field :request_message%>
+    </p>
+    </div>
+
+    <div class="actions">
+      <p>
+        <%= form.submit "Complete my profile"%>
+      </p>
+    </div>
+  
+  <% end %>
+</div>
+
