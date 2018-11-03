@@ -24,33 +24,35 @@
         other fields should be filled in manually                    
     -->
     <div class="field">
+    <p>
       <%= form.label :item_name, "Item name" %><br>
       <%= form.label :item_name, @item_name%>
-    </div>
-  
-    <div class="field">
+    </p>
+
+    <p>
       <%= form.label :owner, "owner" %><br>
       <%= form.label :user_name, @user_name%>
-    </div>
+    </p>
   
-    <div class="field">
-      <%= form.label :, "quantity" %><br>
-      <%= form.number_field :%>
-    </div>
+    <p>
+      <%= form.label :quantity, "quantity" %><br>
+      <%= form.number_field :quantity%>
+    </p>
 
-    <div class="field">
-      <%= form.label :, "" %><br>
-      <%= form.datetime_select :%>
-    </div>
+    <p>
+      <%= form.label :lend_date, "lend_date" %><br>
+      <%= form.datetime_select :lend_date%>
+    </p>
 
-    <div class="field">
-      <%= form.label :, "" %><br>
-      <%= form.datetime_select :%>
-    </div>
+    <p>
+      <%= form.label :return_date, "return_date" %><br>
+      <%= form.datetime_select :return_date%>
+    </p>
 
-    <div class="field">
-      <%= form.label :, "" %><br>
-      <%= form.datetime_select :%>
+    <p>
+      <%= form.label :request_message, "message" %><br>
+      <%= form.text_field :request_message%>
+    </p>
     </div>
 
     <div class="actions">

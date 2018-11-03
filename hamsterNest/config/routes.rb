@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   # Pages
   get "/articles/:page", to: "application#show"
-  get ""
+
   # Resources
   resources :items
   resources :user_profiles, :path => "account/profiles"
@@ -20,12 +20,11 @@ Rails.application.routes.draw do
   end
 
   resources :borrow_requests
-=begin
-  resources :borrow_requests do
-    resources :items
-    resources :user_profiles
-  end
-=end
+
+  #resources :borrow_requests do
+  #  resources :items
+  #  resources :user_profiles
+  #end
   #  devise_for :users, skip: [:sessions]
   #  devise_scope :user do
   #    get 'signin', to: 'devise/sessions#new', as: :new_user_session
