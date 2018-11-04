@@ -22,12 +22,8 @@ Rails.application.routes.draw do
   #resources :borrow_requests
 
   resources :items do
-    resources :borrow_requests
+    resources :borrow_request
   end
-  #resources :borrow_requests do
-  #  resources :items
-  #  resources :user_profiles
-  #end
   #  devise_for :users, skip: [:sessions]
   #  devise_scope :user do
   #    get 'signin', to: 'devise/sessions#new', as: :new_user_session

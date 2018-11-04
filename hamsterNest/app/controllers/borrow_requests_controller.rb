@@ -20,8 +20,7 @@ class BorrowRequestsController < ApplicationController
 
   def create
     @borrow_request = BorrowRequest.new(request_params)
-    #@item_name = params[:item_name]
-    @item_id = params[:item_id]
+    @item_id = @borrow_request.item_id
     @item = Item.find(@item_id)
 
     if @borrow_request.save
@@ -54,6 +53,6 @@ class BorrowRequestsController < ApplicationController
   private
 
   def request_params
-    params.require(:borrow_request).permit(:approval, :borrow_date, :return_date, :request_message)
+    params.require(:borrow_request).permit(:item_id, :approval, :borrow_date, :return_date, :request_message)
   end
 end
