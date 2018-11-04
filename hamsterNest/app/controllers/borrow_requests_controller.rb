@@ -22,6 +22,7 @@ class BorrowRequestsController < ApplicationController
     @borrow_request = BorrowRequest.new(request_params)
     @item_id = @borrow_request.item_id
     @item = Item.find(@item_id)
+    @borrow_request = @item.create_borrow_request(request_params)
 
     if @borrow_request.save
       flash[:notice] = "Borrow request created."
