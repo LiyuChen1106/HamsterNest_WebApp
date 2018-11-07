@@ -4,7 +4,7 @@ module ItemsHelper
   end
 
   def getCategoryName(id)
-    #@category = Category.find(id)
-    #@category.category_name
+    @category = Category.find(id)
+    @category.category_name
   end
 end
