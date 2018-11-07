@@ -45,12 +45,12 @@ ActiveRecord::Schema.define(version: 2018_10_17_012144) do
   create_table "items", force: :cascade do |t|
     t.integer "category_id"
     t.string "item_name"
-    t.integer "owner_id"
+    t.integer "user_profile_id"
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_items_on_category_id"
-    t.index ["owner_id"], name: "index_items_on_owner_id"
+    t.index ["user_profile_id"], name: "index_items_on_user_profile_id"
   end
 
   create_table "user_profiles", force: :cascade do |t|
@@ -61,10 +61,8 @@ ActiveRecord::Schema.define(version: 2018_10_17_012144) do
     t.date "birthday"
     t.integer "lend_rating"
     t.integer "borrow_rating"
-    t.integer "items_list_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["items_list_id"], name: "index_user_profiles_on_items_list_id"
     t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 

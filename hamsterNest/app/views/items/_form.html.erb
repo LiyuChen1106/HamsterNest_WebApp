@@ -1,14 +1,14 @@
 
-<%= form_with model: @item, local: true do |form| %>
+<%= form_with(model: [ @user_profile, @user_profile.items.build ], local: true) do |form| %>
 
-  <% if @item.errors.any? %>
+  <% if @user_profile.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@item.errors.count, "error") %> prohibited
+        <%= pluralize(@user_profile.errors.count, "error") %> prohibited
         this item from being saved:
       </h2>
       <ul>
-        <% @item.errors.full_messages.each do |msg| %>
+        <% @user_profile.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>

@@ -2,7 +2,7 @@
 
 <h1>Items</h1>
 
-<%= link_to 'New item', new_item_path %>
+<%= link_to 'New item', new_user_profile_item_path() %>
 
 <table>
   <tr>
@@ -11,8 +11,8 @@
     <th><%= sort_link(@search, :category_id, 'Category', default_order: :desc) %></th>
     <th><%= sort_link(@search, :status, 'Availale', default_order: :desc) %></th>
   </tr>
-
-  <% @items.each do |item| %>
+  
+  <% @user_profile.items.each do |item| %>
     <tr>
       <td><%= item.item_name %></td>
       <td><%= getCategoryName(item.category_id) %></td>

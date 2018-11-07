@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   resources :histories
   resources :categories
 
+  resources :user_profiles do
+    resources :items
+  end
+
   resources :items do
     collection { post :search, to: "items#index" }
   end
@@ -24,10 +28,6 @@ Rails.application.routes.draw do
   resources :items do
     resources :borrow_requests
   end
-  #resources :borrow_requests do
-  #  resources :items
-  #  resources :user_profiles
-  #end
   #  devise_for :users, skip: [:sessions]
   #  devise_scope :user do
   #    get 'signin', to: 'devise/sessions#new', as: :new_user_session
