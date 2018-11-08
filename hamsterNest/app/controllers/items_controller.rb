@@ -5,11 +5,18 @@ class ItemsController < ApplicationController
   def index
     @search = Item.ransack(params[:q])
     @search_items = @search.result(distinct: true)
-    @user_profile = UserProfile.find(params[:user_profile_id])
+    @unlogin=params[:user_profile_id].nil?
+    if params[:user_profile_id].nil?
+      @items=Item.all
+    else
+      @user_profile = UserProfile.find(params[:user_profile_id])
     #@items = @user_profile.items
+    end
   end
 
   def show
+    @unlogin=params[:user_profile_id].nil?
+
     @item = Item.find(params[:id])
   end
 
@@ -31,6 +38,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @user_profile = UserProfile.find(params[:user_profile_id]) 
     @item = Item.find(params[:id])
   end
 
@@ -46,9 +54,9 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-
+    @user_profile = @item.user_profile
     if @item.update(item_params)
-      redirect_to @item
+      redirect_to user_profile_item_path(:user_profile_id=>@user_profile.id)
     else
       render "edit"
     end
@@ -58,7 +66,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @item.destroy
 
-    redirect_to items_path
+    redirect_to user_profile_items_path
   end
 end
 

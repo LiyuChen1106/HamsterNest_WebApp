@@ -1,9 +1,9 @@
 <%= render "item_search_box" %>
 
 <h1>Items</h1>
-
-<%= link_to 'New item', new_user_profile_item_path() %>
-
+<% if !@unlogin%>
+  <%= link_to 'New item', new_user_profile_item_path() %>
+<% end %>
 <table>
   <tr>
     <!-- <th>Item Name</th> -->
@@ -11,17 +11,27 @@
     <th><%= sort_link(@search, :category_id, 'Category', default_order: :desc) %></th>
     <th><%= sort_link(@search, :status, 'Availale', default_order: :desc) %></th>
   </tr>
-  
+ <% if @unlogin %>
+  <% @items.each do |item| %>
+    <tr>
+    <td><%= item.item_name %></td>
+    <td><%= getCategoryName(item.category_id) %></td>
+    <td><%= item.status %></td>
+    <td><%= link_to 'Show', item_path(item) %></td>
+    </tr>
+  <% end %>
+<% else %>
   <% @user_profile.items.each do |item| %>
     <tr>
       <td><%= item.item_name %></td>
       <td><%= getCategoryName(item.category_id) %></td>
       <td><%= item.status %></td>
-      <td><%= link_to 'Show', item_path(item) %>|</td>
-      <td><%= link_to 'Edit', edit_item_path(item) %>|</td>
-      <td><%= link_to 'Remove', item_path(item),
+      <td><%= link_to 'Show', user_profile_item_path(:id=>item.id) %>|</td>
+      <td><%= link_to 'Edit', edit_user_profile_item_path(:id=>item.id) %>|</td>
+      <td><%= link_to 'Remove', user_profile_item_path(:id=>item.id),
               method: :delete,
 	      data: { confirm: 'Are you sure?'} %></td>
     </tr>
   <% end %>
+<% end %>
 </table>

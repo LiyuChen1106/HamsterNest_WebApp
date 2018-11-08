@@ -1,10 +1,24 @@
 class BorrowRequestsController < ApplicationController
   def index
+    # test: show all
     @borrow_requests = BorrowRequest.all
+    @item_id = params[:item_id]
+    @item = Item.find(@item_id)
+    @item_name = @item.item_name
+    @borrow_request = @item.borrow_request
+
   end
 
   def show
     @borrow_request = BorrowRequest.find(params[:id])
+        # test: show all requests
+    @item_id = params[:item_id]
+    @item = Item.find(@item_id)
+    @item_name = @item.item_name
+    #@borrow_requests = @item.borrow_request
+
+
+    ##@user_profile = UserProfile.find(@borrow_request.)
   end
 
   def new
