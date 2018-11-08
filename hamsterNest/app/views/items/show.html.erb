@@ -2,7 +2,7 @@
   <strong>Item: </strong>
   <%= @item.item_name %>
 </p>
-
+<p><%=@id%></p>
 <p>
   <strong>Category: </strong>
   <%= getCategoryName(@item.category_id) %>
@@ -13,5 +13,5 @@
 </p>
 
 <%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Borrow', new_item_borrow_request_path(:item_id=>@item.id)%>
+<%= link_to 'Borrow', new_item_borrow_request_path(:item_id=>@item.id)%> |
 <%= link_to 'Back', items_path %>
