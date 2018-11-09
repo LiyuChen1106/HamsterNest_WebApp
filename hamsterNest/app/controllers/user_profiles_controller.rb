@@ -39,6 +39,12 @@ class UserProfilesController < ApplicationController
     end
   end
 
+  #items that I lent to others
+  def lend_to_others
+    @user_profile = UserProfile.find(current_user.id)
+    @items = @user_profile.items
+  end
+
   #items that I borrowed from others
   def borrow_from_others
     @user_profile = UserProfile.find(current_user.id)

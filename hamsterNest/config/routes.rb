@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :histories
   resources :categories
 
+  get 'lend_to_others', to: 'user_profiles#lend_to_others'
+  
   resources :user_profiles do
     resources :items
   end

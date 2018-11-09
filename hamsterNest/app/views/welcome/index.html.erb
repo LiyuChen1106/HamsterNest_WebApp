@@ -2,6 +2,7 @@
   <h1>Welcome!!!!<%=@user_name%></h1>
   <%= link_to "View my profile", user_profile_path(current_user.user_profile_id) %><br>
   <%= link_to "Edit my profile", edit_user_profile_path(current_user.user_profile_id) %><br>
+  <%= link_to "Lend List", lend_to_others_path %><br>
   <%= link_to "My items", user_profile_items_path(:user_profile_id =>current_user.user_profile_id)%><br>
   <%= link_to "All items", items_path()%><br>
   <%= link_to "Lend to others", borrow_from_others_path()%><br>
