@@ -38,7 +38,13 @@ class UserProfilesController < ApplicationController
   	else
     	render 'edit'
   	end
-	end
+  end
+  
+  def lend_to_others
+  
+    @user_profile=UserProfile.find(current_user.id)
+    @items=@user_profile.items
+  end
   
   private
     def profile_params
