@@ -10,11 +10,13 @@ class BorrowRequestsController < ApplicationController
 
   def show
     @borrow_request = BorrowRequest.find(params[:id])
+    @item = Item.find(params[:item_id])
+    @borrower = @borrow_request.user_profile
     # test: show all requests
-    @item_id = params[:item_id]
-    @item = Item.find(@item_id)
-    @item_name = @item.item_name
-    #@borrow_requests = @item.borrow_request
+    #@item_id = params[:item_id]
+    #@item = Item.find(@item_id)
+    #@item_name = @item.item_name
+    #@borrow_request = @item.borrow_request
 
     ##@user_profile = UserProfile.find(@borrow_request.)
   end
@@ -22,6 +24,8 @@ class BorrowRequestsController < ApplicationController
   def new
     @item_id = params[:item_id]
     @item = Item.find(@item_id)
+    @owner = @item.user_profile
+    @user_name = @owner.username
     @item_name = @item.item_name
     @owner = @item.user_profile
     @owner_name = @owner.username
@@ -33,19 +37,16 @@ class BorrowRequestsController < ApplicationController
   end
 
   def create
-    #@item_name = params[:item_name]
-    @item_id = params[:item_id]
-    @item = Item.find(@item_id)
-    @attributes = request_params
-    puts @attributes
-    @attributes[:user_profile_id] = current_user.id
-    puts @attributes
-    @borrow_request = @item.create_borrow_request(@attributes)
+    @item = Item.find(params[:item_id])
+    @attr = request_params
+    @attr[:user_profile_id] = current_user.id
+    @borrow_request = @item.create_borrow_request(@attr)
 
     if @borrow_request.save
       flash[:notice] = "Borrow request created."
-      redirect_to @borrow_request
+      redirect_to item_path(@item)
     else
+      flash[:notice] = "Error occured! "
       flash[:alert] = @borrow_request.errors.full_messages
       redirect_to item_path(@item)
     end

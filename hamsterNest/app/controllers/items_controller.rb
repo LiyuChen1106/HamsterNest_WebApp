@@ -18,6 +18,7 @@ class ItemsController < ApplicationController
     @unlogin=params[:user_profile_id].nil?
 
     @item = Item.find(params[:id])
+    @borrow_request=@item.borrow_request
   end
 
   def create

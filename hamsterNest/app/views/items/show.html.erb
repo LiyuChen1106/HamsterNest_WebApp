@@ -18,7 +18,10 @@
   <%= link_to 'Borrow', new_item_borrow_request_path(:item_id=>@item.id)%> | 
   <%= link_to 'Back', items_path %>
 <% else %>
+<%= link_to 'Borrow', new_item_borrow_request_path(:item_id=>@item.id)%> | 
   <%= link_to 'Edit', edit_user_profile_item_path %> |
-  <%= link_to 'RequestList', item_borrow_request_path(:item_id=>@item.id)%> |
+  <% if !(@borrow_request.nil?)%>
+    <%= link_to 'RequestList', item_borrow_request_path(:item_id=>@item.id,:id=>@borrow_request.id)%> |
+  <% end %>
   <%= link_to 'Back', user_profile_items_path %> 
 <% end %>
