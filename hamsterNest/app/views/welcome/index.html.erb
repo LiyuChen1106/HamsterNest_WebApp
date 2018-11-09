@@ -5,7 +5,7 @@
   <%= link_to "Lend List", lend_to_others_path %><br>
   <%= link_to "My items", user_profile_items_path(:user_profile_id =>current_user.user_profile_id)%><br>
   <%= link_to "All items", items_path()%><br>
-  <%= link_to "Lend to others", borrow_from_others_path()%><br>
+  <%= link_to "Borrow list", borrow_from_others_path()%><br>
   <%= link_to "Log Out", destroy_user_session_path, method: :delete %><br>
 <% else %>
   <h1>Hello!!!!HamsterNest</h1>
