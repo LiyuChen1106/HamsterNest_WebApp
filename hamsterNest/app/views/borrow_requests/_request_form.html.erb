@@ -4,14 +4,14 @@
   
   <%= form_with(model: [ @item, @item.build_borrow_request ], local: true) do |form| %>
   <!-- check if any error -->
-    <% if @borrow_request.errors.any? %>
+    <% if @item.errors.any? %>
       <div id="error_explanation">
         <h2>
-          <%= pluralize(@borrow_request.errors.count, "error") %> prohibited
+          <%= pluralize(@item.errors.count, "error") %> prohibited
           this request from being sent:
         </h2>
         <ul>
-          <% @borrow_request.errors.full_messages.each do |msg| %>
+          <% @item.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
           <% end %>
         </ul>
@@ -31,7 +31,7 @@
 
     <p>
       <%= form.label :owner, "owner" %><br>
-      <%= form.label :user_name, @user_name%>
+      <%= form.label :user_name, @owner_name%>
     </p>
   
     <p>
@@ -40,8 +40,8 @@
     </p>
 
     <p>
-      <%= form.label :lend_date, "lend_date" %><br>
-      <%= form.date_select :lend_date%>
+      <%= form.label :borrow_date, "borrow_date" %><br>
+      <%= form.date_select :borrow_date%>
     </p>
 
     <p>
