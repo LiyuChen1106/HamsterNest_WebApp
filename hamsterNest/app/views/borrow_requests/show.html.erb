@@ -1,0 +1,20 @@
+<h1>Listing borrow request (internal test)</h1>
+ 
+<p>
+  <strong>Item name:</strong>
+  <%= @item.item_name %>
+</p>
+
+
+<p>
+  <strong>Return date:</strong>
+  <%= @borrow_request.return_date%>
+</p>
+<p>
+  <strong>Borrower:</strong>
+  <%= @borrower.username%>
+</p>
+
+<!--%= link_to 'Edit', edit_item_borrow_request_path(@borrow_request) %--><br>
+<%= link_to 'Back', user_profile_item_path(:user_profile_id=>current_user.id, :item_id=>@item.id) %>
+
