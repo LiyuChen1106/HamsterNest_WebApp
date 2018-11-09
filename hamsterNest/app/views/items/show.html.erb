@@ -1,8 +1,11 @@
 <p>
+  <strong>Owner: </strong>
+  <%= @item.user_profile.username %>
+</p>
+<p>
   <strong>Item: </strong>
   <%= @item.item_name %>
 </p>
-<p><%=@id%></p>
 <p>
   <strong>Category: </strong>
   <%= getCategoryName(@item.category_id) %>

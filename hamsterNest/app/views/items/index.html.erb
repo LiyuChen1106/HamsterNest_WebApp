@@ -9,6 +9,7 @@
     <!-- <th>Item Name</th> -->
     <th><%= sort_link(@search, :item_name, 'Item Name', default_order: :desc) %></th>
     <th><%= sort_link(@search, :category_id, 'Category', default_order: :desc) %></th>
+    <th><%= sort_link(@search, :quantity, 'Quantity', default_order: :desc) %></th>
     <th><%= sort_link(@search, :status, 'Availale', default_order: :desc) %></th>
   </tr>
  <% if @unlogin %>
@@ -16,6 +17,7 @@
     <tr>
     <td><%= item.item_name %></td>
     <td><%= getCategoryName(item.category_id) %></td>
+    <td><%= item.quantity %></td>
     <td><%= item.status %></td>
     <td><%= link_to 'Show', item_path(item) %></td>
     </tr>
@@ -25,6 +27,7 @@
     <tr>
       <td><%= item.item_name %></td>
       <td><%= getCategoryName(item.category_id) %></td>
+      <td><%= item.quantity %></td>
       <td><%= item.status %></td>
       <td><%= link_to 'Show', user_profile_item_path(:id=>item.id) %>|</td>
       <td><%= link_to 'Edit', edit_user_profile_item_path(:id=>item.id) %>|</td>

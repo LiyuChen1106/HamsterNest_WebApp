@@ -26,6 +26,11 @@
   </p>
 
   <p>
+    <%= form.label :quantity, "Quantity" %><br>
+    <%= form.number_field :quantity%>
+  </p>
+
+  <p>
     <%= form.label :status, "Item is currently available" %><br>
     <%= form.check_box :status %>
   </p>

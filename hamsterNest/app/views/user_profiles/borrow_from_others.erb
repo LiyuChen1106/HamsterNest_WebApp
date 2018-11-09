@@ -3,6 +3,10 @@
 <% @borrow_requests.each do |borrow_request| %>
 <table>
 <tr>
+    <td>item_name</td>
+    <td>category</td>
+</tr>
+<tr>
     <td><%= borrow_request.item.item_name %></td>
     <td><%= getCategoryName(borrow_request.item.category_id) %></td>
     <td><%= borrow_request.item.status %></td>
