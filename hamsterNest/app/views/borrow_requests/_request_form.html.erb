@@ -4,7 +4,19 @@
   
   <%= form_with(model: [ @item, @item.build_borrow_request ], local: true) do |form| %>
   <!-- check if any error -->
-
+  <% if @item.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@item.errors.count, "error") %> prohibited
+      this request from being sent:
+    </h2>
+    <ul>
+      <% @item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
     
     <!-- borrow request : item_name, user_name(owner), quantity, lend_date
                         return_date, request_message
