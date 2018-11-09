@@ -5,7 +5,3 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-@user_profile = UserProfile.find(1)
-@user_profile.items.create(:item_name => "watermelon", :category_id => "1")
-ß

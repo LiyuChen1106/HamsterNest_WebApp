@@ -1,0 +1,14 @@
+<h2><%=@user_name%></h2>
+<h1>Items borrowed from others</h1>
+<% @borrow_requests.each do |borrow_request| %>
+<table>
+<tr>
+    <td><%= borrow_request.item.item_name %></td>
+    <td><%= getCategoryName(borrow_request.item.category_id) %></td>
+    <td><%= borrow_request.item.status %></td>
+    <td><%= link_to 'Show', item_path(borrow_request.item) %></td>
+</tr>
+</table>
+<% end %>
+
+<%= link_to 'Back to Home page', welcome_path %>

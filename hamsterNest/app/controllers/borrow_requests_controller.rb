@@ -73,6 +73,6 @@ class BorrowRequestsController < ApplicationController
   private
 
   def request_params
-    params.require(:borrow_request).permit(approval, :borrow_date, :return_date, :request_message)
+    params.require(:borrow_request).permit(:approval, :borrow_date, :return_date, :request_message)
   end
 end
