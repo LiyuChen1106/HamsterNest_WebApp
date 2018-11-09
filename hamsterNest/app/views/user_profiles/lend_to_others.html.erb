@@ -1,21 +1,22 @@
 <h1>borrow requests</h1>
 
 <% if @user_profile.nil? %>
-    <p>hhhh</p>
+    <p>please login</p>
 <% end %>
 
 <table>
 <% @items.each do |item| %>
- 
+ <% if !(item.borrow_request.nil?) %>
     <tr>
         <td><%= item.item_name %></td>
         <td><%= getCategoryName(item.category_id) %></td>
         <% if item.status %>
         <td>Available</td>
         <% end %>
+        
         <td><%= item.borrow_request.return_date %></td>       
         <td><%= link_to 'Show', item_borrow_request_path(:item_id=>item.id, :id=>item.borrow_request.id) %></td>
     </tr>
- 
+  <% end %>
   <% end %>
 </table>
