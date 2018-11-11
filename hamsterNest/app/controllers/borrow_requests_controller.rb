@@ -29,7 +29,14 @@ class BorrowRequestsController < ApplicationController
     @item_name = @item.item_name
     @owner = @item.user_profile
     @owner_name = @owner.username
-    @borrower_id = current_user.user_profile_id
+    @borrower_id = current_user.id
+    if !(@item.borrow_request.nil?)
+      flash[:notice] = "someone else has borrowed this item"
+      if @borrower_id == @item.borrow_request.user_profile_id
+      flash[:notice] = "You have borrowed this item please check your request list"
+      redirect_to item_path(@item)
+      end
+    end
   end
 
   def edit
@@ -48,7 +55,8 @@ class BorrowRequestsController < ApplicationController
     else
       flash[:notice] = "Error occured! "
       flash[:alert] = @borrow_request.errors.full_messages
-      redirect_to item_path(@item)
+      #redirect_to item_path(@item)
+      render "new"
     end
   end
 
@@ -67,7 +75,7 @@ class BorrowRequestsController < ApplicationController
     @borrow_request = BorrowRequest.find(params[:id])
     @borrow_request.destroy
 
-    redirect_to borrow_requests_path
+    redirect_to welcome_path
   end
 
   private
