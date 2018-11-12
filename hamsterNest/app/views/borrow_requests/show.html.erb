@@ -4,8 +4,10 @@
   <strong>Item name:</strong>
   <%= @item.item_name %>
 </p>
-
-
+<p>
+  <strong>Item quantity:</strong>
+  <%= @item.quantity %>
+</p>
 <p>
   <strong>Return date:</strong>
   <%= @borrow_request.return_date%>
@@ -20,4 +22,6 @@
 </p>
 <!--%= link_to 'Edit', edit_item_borrow_request_path(@borrow_request) %--><br>
 <%= link_to 'Back', user_profile_item_path(:user_profile_id=>current_user.id, :item_id=>@item.id) %>
+<%= link_to 'Accept', edit_user_profile_item_path(:user_profile_id=>current_user.id, :item_id=>@item.id) %>
+<%= link_to 'Reject', edit_user_profile_item_path(:user_profile_id=>current_user.id, :item_id=>@item.id) %>
 

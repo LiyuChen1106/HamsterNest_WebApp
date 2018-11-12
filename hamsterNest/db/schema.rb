@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_09_203029) do
+ActiveRecord::Schema.define(version: 2018_11_09_220223) do
 
   create_table "borrow_requests", force: :cascade do |t|
     t.integer "item_id", null: false
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2018_11_09_203029) do
     t.datetime "updated_at", null: false
     t.boolean "return_status", default: false
     t.integer "quantity", default: 1
+    t.boolean "read_status", default: false
     t.index ["item_id"], name: "index_borrow_requests_on_item_id"
     t.index ["user_profile_id"], name: "index_borrow_requests_on_user_profile_id"
   end

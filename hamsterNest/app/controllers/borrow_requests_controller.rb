@@ -10,8 +10,10 @@ class BorrowRequestsController < ApplicationController
 
   def show
     @borrow_request = BorrowRequest.find(params[:id])
+    @borrow_request.write_attribute(:read_status, params[:read_status])
     @item = Item.find(params[:item_id])
     @borrower = @borrow_request.user_profile
+
     # test: show all requests
     #@item_id = params[:item_id]
     #@item = Item.find(@item_id)

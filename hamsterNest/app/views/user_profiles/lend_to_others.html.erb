@@ -4,12 +4,36 @@
     <p>please login</p>
 <% end %>
 
-<table>
+<h2>Not Read</h2>
 <% @items.each do |item| %>
- <% if !(item.borrow_request.nil?) %>
+<% if !(item.borrow_request.nil?) %>
+<% if item.borrow_request.read_status==false %>
+<table>
     <tr>
         <td><%= item.item_name %></td>
         <td><%= getCategoryName(item.category_id) %></td>
+        <td><%= item.quantity %></td>
+        <% if item.status %>
+        <td>Available</td>
+        <% end %>
+        
+        <td><%= item.borrow_request.return_date %></td>       
+        <td><%= link_to 'Show', item_borrow_request_path(:item_id=>item.id, :id=>item.borrow_request.id, :read_status=>true) %></td>
+    </tr>
+</table>
+<% end %>
+<% end %>
+<% end %>
+
+<h2>Read</h2>
+<% @items.each do |item| %>
+<% if !(item.borrow_request.nil?) %>
+<% if item.borrow_request.read_status==true %>
+<table>
+    <tr>
+        <td><%= item.item_name %></td>
+        <td><%= getCategoryName(item.category_id) %></td>
+        <td><%= item.quantity %></td>
         <% if item.status %>
         <td>Available</td>
         <% end %>
@@ -17,6 +41,11 @@
         <td><%= item.borrow_request.return_date %></td>       
         <td><%= link_to 'Show', item_borrow_request_path(:item_id=>item.id, :id=>item.borrow_request.id) %></td>
     </tr>
-  <% end %>
-  <% end %>
 </table>
+<% end %>
+<% end %>
+<% end %>
+
+
+<br>
+<%= link_to 'Back to Home page', welcome_path %>
