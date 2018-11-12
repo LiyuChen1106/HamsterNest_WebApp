@@ -1,4 +1,4 @@
-<%= render "item_search_box" %>
+<%= render "top_banner" %>
 
 <h1>Items</h1>
 <% if !@unlogin%>
@@ -12,7 +12,7 @@
     <th><%= sort_link(@search, :status, 'Availale', default_order: :desc) %></th>
   </tr>
  <% if @unlogin %>
-  <% @items.each do |item| %>
+  <% @search_items.each do |item| %>
     <tr>
     <td><%= item.item_name %></td>
     <td><%= getCategoryName(item.category_id) %></td>
@@ -21,7 +21,7 @@
     </tr>
   <% end %>
 <% else %>
-  <% @user_profile.items.each do |item| %>
+  <% @search_items.each do |item| %>
     <tr>
       <td><%= item.item_name %></td>
       <td><%= getCategoryName(item.category_id) %></td>
