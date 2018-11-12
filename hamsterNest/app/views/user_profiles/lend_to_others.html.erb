@@ -40,6 +40,9 @@
         
         <td><%= item.borrow_request.return_date %></td>       
         <td><%= link_to 'Show', item_borrow_request_path(:item_id=>item.id, :id=>item.borrow_request.id) %></td>
+        <td><%= link_to 'Remove', item_borrow_request_path(:item_id=>item.id, :id=>item.borrow_request.id),
+        method: :delete,
+    data: { confirm: 'Are you sure?'} %></td>
     </tr>
 </table>
 <% end %>
