@@ -5,7 +5,8 @@
 <% end %>
 <table>
 <% @items.each do |item| %>
- <% if !(item.borrow_request.nil?) %>
+<% if !(item.borrow_requests.nil?) %>
+    <% item.borrow_requests.each do |request| %>
     <tr>
         <td><%= item.item_name %></td>
         <td><%= getCategoryName(item.category_id) %></td>
@@ -13,12 +14,17 @@
         <td>Available</td>
         <% end %>
         
-        <td><%= item.borrow_request.return_date %></td>       
-        <td><%= link_to 'Show', item_borrow_request_path(:item_id=>item.id, :id=>item.borrow_request.id) %></td>
-        <td><%= link_to 'Remove', item_borrow_request_path(:item_id=>item.id, :id=>item.borrow_request.id),
+        <td><%= request.return_date %></td>       
+        <td><%= link_to 'Show Request', item_borrow_request_path(:item_id=>item.id, :id=>request.id) %>|</td>
+        <td><%= link_to 'Show Item', user_profile_item_path(:user_profile_id=>current_user.id, :id=>item.id) %>|</td>
+        
+        <td><%= link_to 'Remove', item_borrow_request_path(:item_id=>item.id, :id=>request.id),
         method: :delete,
-    data: { confirm: 'Are you sure?'} %></td>
+        data: { confirm: 'Are you sure?'} %></td>
     </tr>
-  <% end %>
-  <% end %>
+    <% end %>
+<% end %>
+<% end %>
 </table>
+
+<%= link_to 'Back to Home page', welcome_path %>

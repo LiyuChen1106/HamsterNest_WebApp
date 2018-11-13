@@ -6,7 +6,8 @@
     <td><%= borrow_request.item.item_name %></td>
     <td><%= getCategoryName(borrow_request.item.category_id) %></td>
     <td><%= borrow_request.item.status %></td>
-    <td><%= link_to 'Show', item_path(borrow_request.item) %></td>
+    <td><%= link_to 'Show Request', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id) %> |</td> 
+    <td><%= link_to 'Show Item', user_profile_item_path(:user_profile_id=>current_user.id, :id=>borrow_request.item.id) %></td>
 </tr>
 </table>
 <% end %>
