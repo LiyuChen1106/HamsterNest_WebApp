@@ -84,7 +84,7 @@ class BorrowRequestsController < ApplicationController
     @borrow_request = @item.borrow_requests.find(params[:id])
     @borrow_request.destroy
     flash[:notice] = "Borrow request deleted."
-    redirect_to welcome_path
+    redirect_to root_path
   end
 
   private
