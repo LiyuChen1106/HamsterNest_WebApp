@@ -3,25 +3,31 @@
 <div class="container search_field">
 
 
-  <%= search_form_for @search do |f| %>
-    <%= f.search_field :item_name_cont, class: "radius-left expand", placeholder: "Item Name" %>
-    <%= f.submit "Search", class: "radius-right button" %>
+  <%= search_form_for @search, html: {class: "navbar-form navbar-left"} do |f| %>
+    <%= f.search_field :item_name_cont, class: "form-control mr-sm-2", placeholder: "Search Items" %>
+    <%= f.submit "Search", class: "btn btn-light" %>
   <% end %>
 
 
-  <button class="btn" type="button" data-toggle="collapse" data-target="#advanced-search">
+  <button class="btn btn-outline-warning" type="button" data-toggle="collapse" data-target="#advanced-search">
     Advanced Search
   </button>
-  <%= link_to "Reset Search", items_path %>
 
-  <div id="advanced-search" class="collapse">
+  <div id="advanced-search" class="collapse navbar-form navbar-left">
     <!-- todo: more to add... -->
+
     <%= search_form_for @search do |f| %>
+    <ul class = "navbar-left list-inline">
+      <li class ="list-inline-item">
       <%=f.label :item_name_cont, 'Item Name'%>
       <%=f.text_field :item_name_cont%>
+      </li>
 
+      <li class ="list-inline-item">
       <%=f.label :status, 'Available'%>
       <%=f.check_box :status_eq%>
+      </li>
+      </ul>
       <%= f.submit "Search", class: "radius button"%>
     <% end %>
   </div>

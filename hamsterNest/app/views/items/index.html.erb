@@ -1,6 +1,6 @@
-<%= render "top_banner" %>
 
 <h1>Items</h1>
+<body>
 <% if !@unlogin%>
   <%= link_to 'New item', new_user_profile_item_path() %>
 <% end %>

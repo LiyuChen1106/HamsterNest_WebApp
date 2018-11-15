@@ -1,17 +1,9 @@
 <%- if user_signed_in? %>
   <h1>Welcome!!!!<%=@user_name%></h1>
-  <%= link_to "View my profile", user_profile_path(current_user.user_profile_id) %><br>
-  <%= link_to "Edit my profile", edit_user_profile_path(current_user.user_profile_id) %><br>
-  <%= link_to "Lend List", lend_to_others_path %><br>
-  <%= link_to "My items", user_profile_items_path(:user_profile_id =>current_user.user_profile_id)%><br>
-  <%= link_to "All items", items_path()%><br>
-  <%= link_to "Borrow list", borrow_from_others_path()%><br>
-  <%= link_to "Log Out", destroy_user_session_path, method: :delete %><br>
+  <body>Who doesn't like commercial?</body>
 <% else %>
   <h1>Hello!!!!HamsterNest</h1>
-  <%= link_to 'Create New Account', new_user_registration_path %><br>
-  <%= link_to 'Sign In', new_user_session_path %><br>
+  <body>Commercial</body>
 <% end -%>
 
-
-<%= link_to "About us", "/articles/about" %>
+<footer><%= link_to "About us", "/welcome/about" %></footer>
