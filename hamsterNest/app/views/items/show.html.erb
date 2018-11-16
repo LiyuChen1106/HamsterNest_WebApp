@@ -1,3 +1,4 @@
+<body>
 <p>
   <strong>Owner: </strong>
   <%= @item.user_profile.username %>
@@ -18,15 +19,16 @@
 
 
 <% if @unlogin %>
-  <%= link_to 'Borrow', new_item_borrow_request_path(:item_id=>@item.id)%> | 
+  <%= link_to 'Borrow', new_item_borrow_request_path(:item_id=>@item.id)%> |
   <%= link_to 'Back', items_path %>
 <% else %>
   <%= link_to 'Edit', edit_user_profile_item_path %> |
-  <% if !(@borrow_request.nil?)%>
-    <%= link_to 'RequestList', item_borrow_request_path(:item_id=>@item.id,:id=>@borrow_request.id)%> |
+  <% if !(@borrow_requests.nil?)%>
+    <%= link_to 'RequestList', item_borrow_request_path(:item_id=>@item.id)%> |
   <% end %>
    <td><%= link_to 'Remove', user_profile_item_path(:id=>@item.id),
               method: :delete,
 	      data: { confirm: 'Are you sure?'} %></td> |
-  <%= link_to 'Back', user_profile_items_path %> 
+  <%= link_to 'Back', user_profile_items_path %>
 <% end %>
+</body>

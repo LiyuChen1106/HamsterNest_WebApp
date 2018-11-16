@@ -5,7 +5,7 @@ class BorrowRequestsController < ApplicationController
     @item_id = params[:item_id]
     @item = Item.find(@item_id)
     @item_name = @item.item_name
-    @borrow_request = @item.borrow_request
+    @borrow_request = @item.borrow_requests
   end
 
   def show
@@ -13,7 +13,14 @@ class BorrowRequestsController < ApplicationController
     @borrow_request.update(:read_status => params[:read_status])
     @item = Item.find(params[:item_id])
     @borrower = @borrow_request.user_profile
+<<<<<<< HEAD
 
+=======
+    @I_am_borrower=false
+    if @borrower.id == current_user.id
+      @I_am_borrower=true
+    end
+>>>>>>> 2b015c868906c2136abf752cc753ef07964ba4d4
     # test: show all requests
     #@item_id = params[:item_id]
     #@item = Item.find(@item_id)
@@ -32,24 +39,34 @@ class BorrowRequestsController < ApplicationController
     @owner = @item.user_profile
     @owner_name = @owner.username
     @borrower_id = current_user.id
+<<<<<<< HEAD
     if !(@item.borrow_request.nil?)
       flash[:notice] = "someone else has borrowed this item"
       if @borrower_id == @item.borrow_request.user_profile_id
         flash[:notice] = "You have borrowed this item please check your request list"
         redirect_to item_path(@item)
+=======
+    @item.borrow_requests.each do |request|
+      #flash[:notice] = "someone else has borrowed this item"
+      if @borrower_id == request.user_profile_id
+      flash[:notice] = "You have borrowed this item please check your request list"
+      redirect_to item_path(@item)
+>>>>>>> 2b015c868906c2136abf752cc753ef07964ba4d4
       end
     end
   end
 
   def edit
-    @borrow_request = BorrowRequest.find(params[:id])
+    @item = Item.find(params[:item_id])
+    @borrow_request = @item.borrow_requests.find(params[:id])
+    #@borrow_request = BorrowRequest.find(params[:id])
   end
 
   def create
     @item = Item.find(params[:item_id])
     @attr = request_params
     @attr[:user_profile_id] = current_user.id
-    @borrow_request = @item.create_borrow_request(@attr)
+    @borrow_request = @item.borrow_requests.create(@attr)
 
     if @borrow_request.save
       flash[:notice] = "Borrow request created."
@@ -63,10 +80,12 @@ class BorrowRequestsController < ApplicationController
   end
 
   def update
-    @borrow_request = BorrowRequest.find(params[:id])
+    @item = Item.find(params[:item_id])
+    @borrow_request = @item.borrow_requests.find(params[:id])
+    #@borrow_request = BorrowRequest.find(params[:id])
     if @borrow_request.update(request_params)
       flash[:notice] = "Borrow request updated."
-      redirect_to @borrow_request
+      redirect_to item_borrow_request(:item_id=>@item.id, :id=>@borrow_request.id)
     else
       flash[:alert] = @borrow_request.errors.full_messages
       render "edit"
@@ -74,10 +93,11 @@ class BorrowRequestsController < ApplicationController
   end
 
   def destroy
-    @borrow_request = BorrowRequest.find(params[:id])
+    @item = Item.find(params[:item_id])
+    @borrow_request = @item.borrow_requests.find(params[:id])
     @borrow_request.destroy
-
-    redirect_to welcome_path
+    flash[:notice] = "Borrow request deleted."
+    redirect_to root_path
   end
 
   private

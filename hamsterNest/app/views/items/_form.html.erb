@@ -1,39 +1,44 @@
 
-<%= form_with(model: [ @user_profile, @user_profile.items.build ], local: true) do |form| %>
-
+<%= form_with(model: @item, local: true, class: "form-group") do |form| %>
   <% if @user_profile.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@user_profile.errors.count, "error") %> prohibited
-        this item from being saved:
-      </h2>
-      <ul>
-        <% @user_profile.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@user_profile.errors.count, "error") %> prohibited
+      this item from being saved:
+    </h2>
+    <ul>
+      <% @user_profile.errors.full_messages.each do |msg| %>
+      <li>
+        <%= msg %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
   <% end %>
 
-  <p>
-    <%= form.label :item_name, "Item Name" %><br>
-    <%= form.text_field :item_name %>
-  </p>
+  <div class="form-group">
+    <%= form.label :item_name, "Item Name"%><br>
+    <%= form.text_field :item_name, :class => 'form-text text-muted form-control' %>
+  </div>
 
-  <p>
-    <%= form.label :category_id, "Categories" %><br>
-    <%= form.collection_select :category_id, Category.order(:category_name), :id, :category_name, include_blank: true %>
-  </p>
+  <div class="form-group">
+    <%= form.label :category_id, "Categories"%><br>
+    <%= form.collection_select :category_id, Category.order(:category_name), :id, :category_name,
+    include_blank: true, :class => 'form-control' %>
+  </div>
 
+  <div class="form-group">
   <p>
     <%= form.label :quantity, "Quantity" %><br>
     <%= form.number_field :quantity%>
   </p>
+  </div>
 
-  <p>
-    <%= form.label :status, "Item is currently available" %><br>
+
+  <div class="form-group">
+    <%= form.label :status, "Item is currently available" %>   
     <%= form.check_box :status %>
-  </p>
+  </div>
 
   <p>
     <%= form.submit %>

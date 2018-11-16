@@ -1,30 +1,36 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<% content_for :search do %>
-  <%= search_form_for @search do |f| %>
-    <%= f.search_field :item_name_cont, class: "radius-left expand", placeholder: "Item Name" %>
-    <%= f.submit "Search", class: "radius-right button" %>
+<!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+<div class="container search_field">
+
+
+  <%= search_form_for @search, html: {class: "navbar-form navbar-left"} do |f| %>
+    <%= f.search_field :item_name_cont, class: "form-control mr-sm-2", placeholder: "Search Items" %>
+    <%= f.submit "Search", class: "btn btn-light" %>
   <% end %>
-<% end %>
 
 
-<button class="btn" type="button" data-toggle="collapse" data-target="#advanced-search">
-  Advanced Search
-</button> <%= link_to "Reset Search", items_path %>
+  <button class="btn btn-outline-warning" type="button" data-toggle="collapse" data-target="#advanced-search">
+    Advanced Search
+  </button>
 
+  <div id="advanced-search" class="collapse navbar-form navbar-left">
+    <!-- todo: more to add... -->
 
+    <%= search_form_for @search do |f| %>
+    <ul class = "navbar-left list-inline">
+      <li class ="list-inline-item">
+      <%=f.label :item_name_cont, 'Item Name'%>
+      <%=f.text_field :item_name_cont%>
+      </li>
 
-<div id="advanced-search" class="collapse">
-  <!-- todo: more to add... -->
-  <%= search_form_for @search do |f| %>
-    <%=f.label :item_name_cont, 'Item Name'%>
-    <%=f.text_field :item_name_cont%>
-
-    <%=f.label :status, 'Available'%>
-    <%=f.check_box :status_eq%>
-  <%= f.submit "Search", class: "radius button"%>
-
-  <% end %>
+      <li class ="list-inline-item">
+      <%=f.label :status, 'Available'%>
+      <%=f.check_box :status_eq%>
+      </li>
+      </ul>
+      <%= f.submit "Search", class: "radius button"%>
+    <% end %>
   </div>
+</div>
 
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

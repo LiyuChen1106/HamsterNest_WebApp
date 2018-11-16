@@ -3,14 +3,16 @@ class ItemsController < ApplicationController
   respond_to :json, :js, :html
 
   def index
-    @search = Item.ransack(params[:q])
-    @search_items = @search.result(distinct: true)
     @unlogin = params[:user_profile_id].nil?
-    if params[:user_profile_id].nil?
-      @items = Item.all
-    else
+    @notsearching = params[:q].nil?
+    @search = Item.ransack(params[:q])
+    if !@notsearching
+      @search_items = @search.result(distinct: true)
+    elsif !@unlogin
       @user_profile = UserProfile.find(params[:user_profile_id])
-      #@items = @user_profile.items
+      @search_items = @user_profile.items
+    else
+      @search_items = Item.all
     end
   end
 
@@ -18,7 +20,8 @@ class ItemsController < ApplicationController
     @unlogin = params[:user_profile_id].nil?
 
     @item = Item.find(params[:id])
-    @borrow_request = @item.borrow_request
+    #  @borrow_request = @item.borrow_request
+    @borrow_requests = @item.borrow_requests
   end
 
   def create

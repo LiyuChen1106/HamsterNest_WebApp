@@ -1,6 +1,6 @@
-<%= render "item_search_box" %>
 
 <h1>Items</h1>
+<body>
 <% if !@unlogin%>
   <%= link_to 'New item', new_user_profile_item_path() %>
 <% end %>
@@ -13,7 +13,7 @@
     <th><%= sort_link(@search, :status, 'Availale', default_order: :desc) %></th>
   </tr>
  <% if @unlogin %>
-  <% @items.each do |item| %>
+  <% @search_items.each do |item| %>
     <tr>
     <td><%= item.item_name %></td>
     <td><%= getCategoryName(item.category_id) %></td>
@@ -23,7 +23,7 @@
     </tr>
   <% end %>
 <% else %>
-  <% @user_profile.items.each do |item| %>
+  <% @search_items.each do |item| %>
     <tr>
       <td><%= item.item_name %></td>
       <td><%= getCategoryName(item.category_id) %></td>
@@ -39,4 +39,4 @@
 <% end %>
 </table>
 
-<%= link_to 'Back to Home page', welcome_path %>
+<%= link_to 'Back to Home page', root_path %>

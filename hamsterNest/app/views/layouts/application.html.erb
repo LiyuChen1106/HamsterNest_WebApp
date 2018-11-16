@@ -7,13 +7,14 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= yield(:search) %>
   </head>
 
   <body>
+
+    <%= render "application/top_banner" %>
     <%= yield %>
   </body>
-  
+
   <p class="notice"><%= notice %></p>
   <p class ="alert"><%= alert %></p>
 </html>

@@ -2,7 +2,7 @@
 
   <h1>Borrow request information</h1>
   
-  <%= form_with(model: [ @item, @item.build_borrow_request ], local: true) do |form| %>
+  <%= form_with(model: [ @item, @item.borrow_requests.build ], local: true) do |form| %>
   <!-- check if any error -->
   <% if @item.errors.any? %>
   <div id="error_explanation">
