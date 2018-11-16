@@ -11,7 +11,7 @@ class BorrowRequestsController < ApplicationController
   def show
     @borrow_request = BorrowRequest.find(params[:id])
     #if click show request, read status => true
-    if params[:read_status] == true
+    if params[:read_status] == "true"
       @borrow_request.update(:read_status => params[:read_status])
     end
 

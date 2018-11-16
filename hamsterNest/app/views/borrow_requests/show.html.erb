@@ -22,6 +22,11 @@
 </p>
 
 <% if @I_am_borrower %>
+  <%= link_to 'Cancel Request', item_borrow_request_path(@borrow_request),
+    method: :delete,
+    data: {confirm: 'Are you sure to cancel the request?'} %> 
+
+<% else %>
   <% if @borrow_request.approval.nil? %>
     <%= link_to 'Accpet', item_borrow_request_path(:approval => true)%> | 
     <%= link_to 'Reject', item_borrow_request_path(:approval => false)%> 
@@ -30,15 +35,10 @@
   <% else %>
     <p> Rejected </p>
   <% end %>
-
-<% else %>
-  <%= link_to 'Cancel Request', item_borrow_request_path(@borrow_request),
-    method: :delete,
-    data: {confirm: 'Are you sure to cancel the request?'} %> 
+  
 <br>
 <% end %>
 <br>
-
 <!--%= link_to 'Edit', edit_item_borrow_request_path(@borrow_request) %--><br>
 <!--%= link_to 'Back', user_profile_item_path(:user_profile_id=>current_user.id, :item_id=>@item.id) %-->
 <% if @I_am_borrower %>
