@@ -29,14 +29,8 @@
 <h2>Read</h2>
 <table>
 <% @items.each do |item| %>
-<<<<<<< HEAD
-    <% if !(item.borrow_request.nil?) %>
-    <% if item.borrow_request.read_status==true %>
-    
-=======
 <% if !(item.borrow_requests.nil?) %>
     <% item.borrow_requests.each do |request| %>
->>>>>>> 2b015c868906c2136abf752cc753ef07964ba4d4
     <tr>
         <td><%= item.item_name %></td>
         <td><%= getCategoryName(item.category_id) %></td>
@@ -57,5 +51,5 @@
 <% end %>
 <% end %>
 </table>
-<br>
+<>
 <%= link_to 'Back to Home page', root_path %>

@@ -13,14 +13,10 @@ class BorrowRequestsController < ApplicationController
     @borrow_request.update(:read_status => params[:read_status])
     @item = Item.find(params[:item_id])
     @borrower = @borrow_request.user_profile
-<<<<<<< HEAD
-
-=======
-    @I_am_borrower=false
+    @I_am_borrower = false
     if @borrower.id == current_user.id
-      @I_am_borrower=true
+      @I_am_borrower = true
     end
->>>>>>> 2b015c868906c2136abf752cc753ef07964ba4d4
     # test: show all requests
     #@item_id = params[:item_id]
     #@item = Item.find(@item_id)
@@ -39,19 +35,11 @@ class BorrowRequestsController < ApplicationController
     @owner = @item.user_profile
     @owner_name = @owner.username
     @borrower_id = current_user.id
-<<<<<<< HEAD
-    if !(@item.borrow_request.nil?)
-      flash[:notice] = "someone else has borrowed this item"
-      if @borrower_id == @item.borrow_request.user_profile_id
-        flash[:notice] = "You have borrowed this item please check your request list"
-        redirect_to item_path(@item)
-=======
     @item.borrow_requests.each do |request|
       #flash[:notice] = "someone else has borrowed this item"
       if @borrower_id == request.user_profile_id
-      flash[:notice] = "You have borrowed this item please check your request list"
-      redirect_to item_path(@item)
->>>>>>> 2b015c868906c2136abf752cc753ef07964ba4d4
+        flash[:notice] = "You have borrowed this item please check your request list"
+        redirect_to item_path(@item)
       end
     end
   end
@@ -85,7 +73,7 @@ class BorrowRequestsController < ApplicationController
     #@borrow_request = BorrowRequest.find(params[:id])
     if @borrow_request.update(request_params)
       flash[:notice] = "Borrow request updated."
-      redirect_to item_borrow_request(:item_id=>@item.id, :id=>@borrow_request.id)
+      redirect_to item_borrow_request(:item_id => @item.id, :id => @borrow_request.id)
     else
       flash[:alert] = @borrow_request.errors.full_messages
       render "edit"
