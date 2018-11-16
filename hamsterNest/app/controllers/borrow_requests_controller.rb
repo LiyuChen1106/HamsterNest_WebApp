@@ -47,7 +47,7 @@ class BorrowRequestsController < ApplicationController
       #flash[:notice] = "someone else has borrowed this item"
       if @borrower_id == request.user_profile_id
         flash[:notice] = "You have borrowed this item please check your request list"
-        redirect_to item_path(@item)
+        redirect_to root_path
       end
     end
   end
@@ -64,7 +64,7 @@ class BorrowRequestsController < ApplicationController
 
     if @borrow_request.save
       flash[:notice] = "Borrow request created."
-      redirect_to item_path(@item)
+      redirect_to root_path
     else
       flash[:notice] = "Error occured! "
       flash[:alert] = @borrow_request.errors.full_messages
