@@ -10,7 +10,7 @@ class BorrowRequestsController < ApplicationController
 
   def show
     @borrow_request = BorrowRequest.find(params[:id])
-    @borrow_request.write_attribute(:read_status, params[:read_status])
+    @borrow_request.update(:read_status => params[:read_status])
     @item = Item.find(params[:item_id])
     @borrower = @borrow_request.user_profile
 
@@ -35,8 +35,8 @@ class BorrowRequestsController < ApplicationController
     if !(@item.borrow_request.nil?)
       flash[:notice] = "someone else has borrowed this item"
       if @borrower_id == @item.borrow_request.user_profile_id
-      flash[:notice] = "You have borrowed this item please check your request list"
-      redirect_to item_path(@item)
+        flash[:notice] = "You have borrowed this item please check your request list"
+        redirect_to item_path(@item)
       end
     end
   end
