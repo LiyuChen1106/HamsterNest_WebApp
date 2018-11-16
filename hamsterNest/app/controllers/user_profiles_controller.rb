@@ -31,9 +31,13 @@ class UserProfilesController < ApplicationController
 
   def update
     @user_profile = UserProfile.find(params[:id])
+    @registerInProgress = @user_profile.username == ""
+    @updateResult = @user_profile.update(profile_params)
 
-    if @user_profile.update(profile_params)
+    if @updateResult && !@registerInProgress
       redirect_to @user_profile
+    elsif @updateResult && @registerInProgress
+      redirect_to :root
     else
       render "edit"
     end

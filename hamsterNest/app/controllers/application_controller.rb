@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if current_user.sign_in_count == 1
-      new_user_profile_path
+      edit_user_profile_path(User.find(current_user.id).user_profile.id)
     else
       root_path
     end
