@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_09_220223) do
+ActiveRecord::Schema.define(version: 2018_11_16_205033) do
 
   create_table "borrow_requests", force: :cascade do |t|
     t.integer "item_id", null: false
     t.integer "user_profile_id", null: false
-    t.boolean "approval", default: false
+    t.boolean "approval"
     t.date "borrow_date", null: false
     t.date "return_date", null: false
     t.string "request_message"

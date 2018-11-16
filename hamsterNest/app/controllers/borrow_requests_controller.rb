@@ -10,7 +10,15 @@ class BorrowRequestsController < ApplicationController
 
   def show
     @borrow_request = BorrowRequest.find(params[:id])
-    @borrow_request.update(:read_status => params[:read_status])
+    #if click show request, read status => true
+    if params[:read_status] == true
+      @borrow_request.update(:read_status => params[:read_status])
+    end
+
+    #if click Accept || Reject, update approval
+    if !params[:approval].nil?
+      @borrow_request.update(:approval => params[:approval])
+    end
     @item = Item.find(params[:item_id])
     @borrower = @borrow_request.user_profile
     @I_am_borrower = false
@@ -45,9 +53,7 @@ class BorrowRequestsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:item_id])
-    @borrow_request = @item.borrow_requests.find(params[:id])
-    #@borrow_request = BorrowRequest.find(params[:id])
+    @borrow_request = BorrowRequest.find(params[:id])
   end
 
   def create
@@ -81,8 +87,9 @@ class BorrowRequestsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:item_id])
-    @borrow_request = @item.borrow_requests.find(params[:id])
+    #@item = Item.find(params[:item_id])
+    #@borrow_request = @item.borrow_requests.find(params[:id])
+    @borrow_request = BorrowRequest.find(params[:id])
     @borrow_request.destroy
     flash[:notice] = "Borrow request deleted."
     redirect_to root_path
