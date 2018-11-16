@@ -1,5 +1,5 @@
 
-<%= form_with(model: @item, local: true, class: "form-group") do |form| %>
+<%= form_with(model: [@user_profile, @user_profile.items.build], local: true, class: "form-group") do |form| %>
   <% if @user_profile.errors.any? %>
   <div id="error_explanation">
     <h2>
