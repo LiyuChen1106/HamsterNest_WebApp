@@ -1,13 +1,42 @@
-<body>
-  <div class='row'>
-    <div class='col-10'>
-      <h1>Edit item</h1>
-    </div>
+
+<%= form_with(model: @item, local: true, class: "form-group") do |form| %>
+  <% if @user_profile.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@user_profile.errors.count, "error") %> prohibited
+      this item from being saved:
+    </h2>
+    <ul>
+      <% @user_profile.errors.full_messages.each do |msg| %>
+      <li>
+        <%= msg %>
+      </li>
+      <% end %>
+    </ul>
   </div>
-  <div class='row'>
-    <div class='col-10'>
-      <%= render 'form' %>
-      <%= link_to 'Back', user_profile_items_path %>
-    </div>
+  <% end %>
+
+<div class="form-group">
+    <%= form.label :item_name, "Item Name"%><br>
+    <%= form.text_field :item_name, :class => 'form-text text-muted form-control' %>
   </div>
-</body>
+
+  <div class="form-group">
+    <%= form.label :category_id, "Categories"%><br>
+    <%= form.collection_select :category_id, Category.order(:category_name), :id, :category_name,
+    include_blank: true, :class => 'form-control' %>
+</div>
+
+  <div class="form-group">
+    <%= form.label :status, "Item is currently available" %>   
+    <%= form.check_box :status %>
+  </div>
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>
+<div> 
+<%= link_to 'Back', user_profile_items_path %>
+</div>
