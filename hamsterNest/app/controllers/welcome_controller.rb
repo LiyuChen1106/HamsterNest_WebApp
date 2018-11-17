@@ -6,4 +6,6 @@ class WelcomeController < ApplicationController
       @user_name = @current_user_profile.username
     end
   end
+  def about
+  end
 end
