@@ -24,19 +24,6 @@ class ItemsController < ApplicationController
     @borrow_requests = @item.borrow_requests
   end
 
-  def create
-    @user_profile = UserProfile.find(params[:id])
-    @item = @user_profile.items.create(request_params)
-
-    if @item.save
-      flash[:notice] = "Item created."
-      redirect_to user_profile_path(@user_profile)
-    else
-      flash[:alert] = @item.errors.full_messages
-      render "new"
-    end
-  end
-
   def new
     @user_profile = UserProfile.find(params[:user_profile_id])
   end
