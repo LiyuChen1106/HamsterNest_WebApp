@@ -22,6 +22,14 @@
 </p>
 
 <% if @I_am_borrower %>
+  <% if @borrow_request.return_status == 0 %>
+    <p><%= link_to 'Return Item',  item_borrow_request_path(:item_id=>@item.id, 
+                                    :id=>@borrow_request.id,:return_status => 1)%></p>
+  <% elsif @borrow_request.return_status == 1 %>
+    <strong><p>Waiting for receipt confirm</p></strong>
+  <% elsif @borrow_request.return_status == 2 %>
+    <strong><p>Item Returned</p></strong>
+  <% end %>
   <%= link_to 'Cancel Request', item_borrow_request_path(@borrow_request),
     method: :delete,
     data: {confirm: 'Are you sure to cancel the request?'} %> 
@@ -32,6 +40,13 @@
     <%= link_to 'Reject', item_borrow_request_path(:approval => false)%> 
   <% elsif @borrow_request.approval == true %>
     <p> Appected </p>
+      <!-- if borrower clicks return button, lender view will display a button to confirm delivery-->
+      <% if @borrow_request.return_status == 1 %>
+        <p><%= link_to 'Confirm Delivery',  item_borrow_request_path(:item_id=>@item.id, 
+                                        :id=>@borrow_request.id,:return_status => 2)%></p>
+      <% elsif @borrow_request.return_status == 2 %>
+        <strong><p>Item Returned</p></strong>
+      <% end %>
   <% else %>
     <p> Rejected </p>
   <% end %>
@@ -42,8 +57,8 @@
 <!--%= link_to 'Edit', edit_item_borrow_request_path(@borrow_request) %--><br>
 <!--%= link_to 'Back', user_profile_item_path(:user_profile_id=>current_user.id, :item_id=>@item.id) %-->
 <% if @I_am_borrower %>
-  <%= link_to 'Back to Lend List', lend_to_others_path %><br>
-<% else %>
   <%= link_to 'Back to Borrow List', borrow_from_others_path %><br>
+<% else %>
+  <%= link_to 'Back to Lend List', lend_to_others_path %><br>
 <% end %>
 <%= link_to 'Back to Home Page', root_path %><br>
