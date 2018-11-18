@@ -3,6 +3,13 @@ class UserProfile < ApplicationRecord
   has_many :items, dependent: :destroy
   has_one :history, dependent: :destroy
   has_many :borrow_requests, dependent: :destroy
+  has_attached_file :avatar
+  # Validation for avatar
+  # Validate content type
+  validates_attachment_content_type :avatar, content_type: /\Aimage/
+  # Validate filename
+  validates_attachment_file_name :avatar, matches: [/png\Z/, /jpe?g\Z/]
+
   after_save :update_profile_id_in_users
 
   def update_profile_id_in_users

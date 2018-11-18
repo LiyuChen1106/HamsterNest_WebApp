@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_18_061701) do
+ActiveRecord::Schema.define(version: 2018_11_18_205938) do
 
   create_table "borrow_requests", force: :cascade do |t|
     t.integer "item_id", null: false
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2018_11_18_061701) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "quantity", default: 1
-    t.boolean "return_status", default: false
     t.boolean "read_status", default: false
     t.integer "return_status", default: 0
     t.index ["item_id"], name: "index_borrow_requests_on_item_id"
@@ -55,6 +54,10 @@ ActiveRecord::Schema.define(version: 2018_11_18_061701) do
     t.datetime "updated_at", null: false
     t.integer "quantity", default: 1
     t.integer "left_quantity"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.bigint "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["user_profile_id"], name: "index_items_on_user_profile_id"
   end
@@ -69,6 +72,10 @@ ActiveRecord::Schema.define(version: 2018_11_18_061701) do
     t.integer "borrow_rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.bigint "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
