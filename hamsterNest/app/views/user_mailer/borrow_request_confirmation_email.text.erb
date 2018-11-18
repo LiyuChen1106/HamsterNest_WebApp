@@ -1,0 +1,8 @@
+Hello, <%= @lender.user_profile.first_name %>
+
+
+<%= @borrower.user_profile.username %> is willing to borrow an item from you. Please click on the link to confirm the request.
+
+<%= link_to 'View the borrow request', @url %>
+    
+Please do not reply to this email.

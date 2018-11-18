@@ -1,4 +1,7 @@
 class BorrowRequestsController < ApplicationController
+  
+  before_action :authenticate_user!, only: [:show]
+  
   def index
     # test: show all
     @borrow_requests = BorrowRequest.all
@@ -64,6 +67,9 @@ class BorrowRequestsController < ApplicationController
 
     if @borrow_request.save
       flash[:notice] = "Borrow request created."
+      
+      UserMailer.with(lender: @item.user_profile, borrower: current_user, item: @item, borrow_request: @borrow_request).borrow_request_confirmation_email.deliver_later
+      
       redirect_to root_path
     else
       flash[:notice] = "Error occured! "

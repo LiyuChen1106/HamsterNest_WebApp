@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello, <%= @lender.user_profile.first_name %></h1>
+    <p>
+      <%= @borrower.user_profile.username %> is willing to borrow an item from you. Please click on the link to confirm the request. <br>
+    </p>
+    <%= link_to 'View the borrow request', @url %>
+    
+    <p>Please do not reply to this email.</p>
+  </body>
+</html>
