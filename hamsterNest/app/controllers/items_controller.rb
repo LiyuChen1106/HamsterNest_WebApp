@@ -24,6 +24,19 @@ class ItemsController < ApplicationController
     @borrow_requests = @item.borrow_requests
   end
 
+  def create
+    @user_profile = UserProfile.find(params[:user_profile_id])
+    @item = @user_profile.items.create(item_params)
+
+    if @item.save
+      flash[:notice] = "Item created."
+      redirect_to user_profile_path(@user_profile)
+    else
+      flash[:alert] = @item.errors.full_messages
+      render "new"
+    end
+  end
+
   def new
     @user_profile = UserProfile.find(params[:user_profile_id])
   end
@@ -31,16 +44,6 @@ class ItemsController < ApplicationController
   def edit
     @user_profile = UserProfile.find(params[:user_profile_id])
     @item = Item.find(params[:id])
-  end
-
-  def create
-    @user_profile = UserProfile.find(params[:user_profile_id])
-    @item = @user_profile.items.create(item_params)
-    if @item.save
-      redirect_to user_profile_item_path(:id => @item.id)
-    else
-      render new_user_profile_item_path
-    end
   end
 
   def update

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # Home page
   get "welcome", to: "welcome#index"
 
+  get "welcome/about"
+
   # Pages
   get "borrow_from_others", to: "user_profiles#borrow_from_others"
 
