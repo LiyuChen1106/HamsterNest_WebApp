@@ -25,8 +25,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @user_profile = UserProfile.find(params[:id])
-    @item = @user_profile.items.create(request_params)
+    @user_profile = UserProfile.find(params[:user_profile_id])
+    @item = @user_profile.items.create(item_params)
 
     if @item.save
       flash[:notice] = "Item created."
@@ -44,16 +44,6 @@ class ItemsController < ApplicationController
   def edit
     @user_profile = UserProfile.find(params[:user_profile_id])
     @item = Item.find(params[:id])
-  end
-
-  def create
-    @user_profile = UserProfile.find(params[:user_profile_id])
-    @item = @user_profile.items.create(item_params)
-    if @item.save
-      redirect_to user_profile_item_path(:id => @item.id)
-    else
-      render new_user_profile_item_path
-    end
   end
 
   def update
