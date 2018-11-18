@@ -9,5 +9,5 @@ categories = Category.create([{category_name: "Board Games"},
                               {category_name: "Sports Equipments"},
                               {category_name: "Tools"},
                               {category_name: "Toys"},
-                              {category_name: "Video Games"}
+                              {category_name: "Video Games"},
                               {category_name: "Others"}])

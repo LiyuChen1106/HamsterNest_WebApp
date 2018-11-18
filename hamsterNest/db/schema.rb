@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 2018_11_16_205033) do
     t.string "request_message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "return_status", default: false
     t.integer "quantity", default: 1
+    t.boolean "return_status", default: false
     t.boolean "read_status", default: false
     t.index ["item_id"], name: "index_borrow_requests_on_item_id"
     t.index ["user_profile_id"], name: "index_borrow_requests_on_user_profile_id"
@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 2018_11_16_205033) do
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "left_quantity"
     t.integer "quantity", default: 1
+    t.integer "left_quantity"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["user_profile_id"], name: "index_items_on_user_profile_id"
   end
