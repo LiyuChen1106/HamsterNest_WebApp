@@ -16,11 +16,21 @@ class BorrowRequestsController < ApplicationController
     #if click show request, read status => true
     if params[:read_status] == "true"
       @borrow_request.update(:read_status => params[:read_status])
+      flash[:notice] = "update read_status"
+    end
+
+    if params[:return_status] == "1"
+      @borrow_request.update(:return_status => 1)
+      flash[:notice] = "set return status to 1"
+    elsif params[:return_status] == "2"
+      @borrow_request.update(:return_status => 2)
+      flash[:notice] = "set return status to 2"
     end
 
     #if click Accept || Reject, update approval
     if !params[:approval].nil?
       @borrow_request.update(:approval => params[:approval])
+      flash[:notice] = "You have borrowed this item please check your request list"
     end
     @item = Item.find(params[:item_id])
     @borrower = @borrow_request.user_profile
@@ -28,13 +38,6 @@ class BorrowRequestsController < ApplicationController
     if @borrower.id == current_user.id
       @I_am_borrower = true
     end
-    # test: show all requests
-    #@item_id = params[:item_id]
-    #@item = Item.find(@item_id)
-    #@item_name = @item.item_name
-    #@borrow_request = @item.borrow_request
-
-    ##@user_profile = UserProfile.find(@borrow_request.)
   end
 
   def new
