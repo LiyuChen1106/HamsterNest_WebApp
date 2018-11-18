@@ -1,9 +1,21 @@
 <!-- Navigation -->
-
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
   <div class="container">
     <%- if registerInProgress %>
       <a class="navbar-brand" href="#">Hamster Nest</a>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            My Account
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%= link_to "Add profile", edit_user_profile_path(current_user.id),:class => "dropdown-item" %>
+            <%= link_to "Log Out", destroy_user_session_path, method: :delete, :class => "dropdown-item" %>
+          </div>
+        </li>
+      </ul>
+      </div>
     <%- else %>
       <%= link_to "Hamster Nest", root_path, :class => "navbar-brand", :id => "my-id" %>
     <% end %>
@@ -21,7 +33,6 @@
         <%- if !user_signed_in? && !registerInProgress %>
         <li class="nav-item">
           <%= link_to 'Register', new_user_registration_path, :class => "btn btn-link" %><br>
-
         </li>
         <li class="nav-item">
           <%= link_to 'Sign In', new_user_session_path, :class => "btn btn-light" %><br>
