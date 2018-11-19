@@ -11,7 +11,9 @@
   <strong>Category: </strong>
   <%= getCategoryName(@item.category_id) %>
 </p>
-
+<p>
+  <%= image_tag @item.image %>
+</p>
 <p>
   <strong><%= itemAvaiableMessage(@item.status) %></strong>
 </p>
