@@ -1,4 +1,4 @@
-<h1>borrow requests</h1>
+<h1>Items lend to others</h1>
 
 <% if @user_profile.nil? %>
     <p>please login</p>
@@ -39,6 +39,34 @@
 <% if !(item.borrow_requests.nil?) %>
     <% item.borrow_requests.each do |request| %>
         <% if request.read_status==true %>
+            <tr>
+                <td><%= item.item_name %></td>
+                <td><%= getCategoryName(item.category_id) %></td>
+                <td><%= item.quantity %></td>
+                <% if item.status %>
+                <td>Available</td>
+                <% end %>
+                
+                <td><%= request.return_date %></td>       
+                <td><%= link_to 'Show Request', item_borrow_request_path(:item_id=>item.id, :id=>request.id) %>|</td>
+                <td><%= link_to 'Show Item', user_profile_item_path(:user_profile_id=>current_user.id, :id=>item.id) %>|</td>
+                
+                <td><%= link_to 'Remove', item_borrow_request_path(:item_id=>item.id, :id=>request.id),
+                method: :delete,
+                data: { confirm: 'Are you sure?'} %></td>
+            </tr>
+        <% end %>
+    <% end %>
+<% end %>
+<% end %>
+</table>
+
+<h2>Accepted</h2>
+<table>
+<% @items.each do |item| %>
+<% if !(item.borrow_requests.nil?) %>
+    <% item.borrow_requests.each do |request| %>
+        <% if request.approval %>
             <tr>
                 <td><%= item.item_name %></td>
                 <td><%= getCategoryName(item.category_id) %></td>
