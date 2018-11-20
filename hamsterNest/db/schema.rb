@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 2018_11_19_033319) do
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "quantity", default: 1
     t.integer "left_quantity"
+    t.integer "quantity", default: 1
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["user_profile_id"], name: "index_items_on_user_profile_id"
   end
