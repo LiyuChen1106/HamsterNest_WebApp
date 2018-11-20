@@ -1,17 +1,17 @@
 <h1>Listing user profile (internal test)</h1>
-
+<div class="show_user_profile">
 <p>
-  <strong>User name:</strong>
+  <strong>User Name:</strong>
   <%= @user_profile.username %>
 </p>
 
 <p>
-  <strong>First name:</strong>
+  <strong>First Name:</strong>
   <%= @user_profile.first_name %>
 </p>
 
 <p>
-  <strong>Last name:</strong>
+  <strong>Last Name:</strong>
   <%= @user_profile.last_name %>
 </p>
 
@@ -20,5 +20,8 @@
   <%= @user_profile.birthday %>
 </p>
 
-<%= link_to 'Edit', edit_user_profile_path(@user_profile) %><br>
-<%= link_to 'Back to Home page', root_path %>
+<%= link_to 'Edit', edit_user_profile_path(@user_profile), :class => "btn btn-primary" %><br>
+
+</div>
+
+<!--%= link_to 'Back to Home page', root_path , :class => "btn btn-primary"%-->

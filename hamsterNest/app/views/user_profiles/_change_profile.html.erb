@@ -5,17 +5,17 @@
   <%= form_with model: @user_profile, local: true do |form| %>
 
     <div class="field">
-      <%= form.label :username, "User name" %><br>
+      <%= form.label :username, "User Name" %><br>
       <%= form.text_field :username, autofocus: true%>
     </div>
   
     <div class="field">
-      <%= form.label :first_name, "First name" %><br>
+      <%= form.label :first_name, "First Name" %><br>
       <%= form.text_field :first_name, autofocus: true%>
     </div>
   
     <div class="field">
-      <%= form.label :last_name, "Last name" %><br>
+      <%= form.label :last_name, "Last Name" %><br>
       <%= form.text_field :last_name, autofocus: true%>
     </div>
   
@@ -23,9 +23,9 @@
       <%= form.label :birthday, "Birthday" %><br>
       <%= form.date_select :birthday, :start_year=>1900, :end_year=>Time.now.year%>
     </div>
-
+    
     <div class="actions">
-      <%= form.submit "Change my profile" %>
+      <%= form.submit "Change my profile", :class=>"btn btn-primary"%>
     </div>
   <% end %>
 

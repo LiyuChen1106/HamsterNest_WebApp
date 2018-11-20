@@ -1,16 +1,17 @@
+<div class="log_in_form">
 <h2>Log in</h2>
-
 <%= form_for(resource, as: resource_name, url: new_user_session_path) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <!--%= f.label :email %><br /-->
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Email address"%>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <!--%= f.label :password %><br /-->
+    <%= f.password_field :password, autocomplete: "current-password", placeholder:"Password" %>
   </div>
 
+  
   <% if devise_mapping.rememberable? -%>
     <div class="field">
       <%= f.check_box :remember_me %>
@@ -18,9 +19,14 @@
     </div>
   <% end -%>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class="actions" >
+    <%= f.submit "Log in" , :class=>"btn btn-primary"%>
   </div>
 <% end %>
 
 <%= render "users/shared/links" %>
+</div>
+
+<footer class="copyright text-muted">
+&copy; 2018-2019
+</footer>

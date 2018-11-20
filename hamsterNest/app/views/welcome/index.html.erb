@@ -1,9 +1,27 @@
+<div class="introduction">
 <%- if user_signed_in? %>
   <h1>Welcome!!!!<%=@user_name%></h1>
   <body>Who doesn't like commercial?</body>
 <% else %>
-  <h1>Hello!!!!HamsterNest</h1>
-  <body>Commercial</body>
+  <body>
+  <h3>Borrow from friends and the world around you on HamserNest.</h3>
+  </body>
 <% end -%>
+</div>
 
-<footer><%= link_to "About us", "/welcome/about" %></footer>
+<!--attempt to display flash in a css style.... -->
+<% flash.each do |key, value| %>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <%=value%>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<% end%>
+<!-- attempt failed for now-->
+
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center">
+    <%= link_to "About us", "/welcome/about" %>
+</footer>
+<!-- Footer -->
