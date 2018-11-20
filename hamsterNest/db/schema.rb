@@ -75,10 +75,6 @@ ActiveRecord::Schema.define(version: 2018_11_19_033319) do
     t.datetime "updated_at", null: false
     t.integer "quantity", default: 1
     t.integer "left_quantity"
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.bigint "image_file_size"
-    t.datetime "image_updated_at"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["user_profile_id"], name: "index_items_on_user_profile_id"
   end
@@ -93,10 +89,6 @@ ActiveRecord::Schema.define(version: 2018_11_19_033319) do
     t.integer "borrow_rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "avatar_file_name"
-    t.string "avatar_content_type"
-    t.bigint "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
