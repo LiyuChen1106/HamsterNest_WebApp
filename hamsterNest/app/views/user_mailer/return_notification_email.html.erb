@@ -1,0 +1,13 @@
+<p>Hello <%= @user.first_name %>!</p>
+<p>You have <%= @items.count %> itmes to be returned by today.<p>
+
+<table>
+  <% @items.each do |item| %>
+    <tr>
+    <td><%= item.item_name %></td>
+    <td><%= link_to 'View item', item_path(item) %></td>
+    </tr>
+  <% end %>
+</table>
+  
+<p>Please don't reply to this email.</p>

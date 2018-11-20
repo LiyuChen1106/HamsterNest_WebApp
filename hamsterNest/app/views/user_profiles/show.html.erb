@@ -20,8 +20,11 @@
   <%= @user_profile.birthday %>
 </p>
 
-<%= link_to 'Edit', edit_user_profile_path(@user_profile), :class => "btn btn-primary" %><br>
+<p>
+  <% if @user_profile.avatar.attached? %>
+<%= image_tag @user_profile.avatar.variant(resize: "100x100"), :class => "btn btn-primary" %>
+<% end %>
+</p>
 
-</div>
-
-<!--%= link_to 'Back to Home page', root_path , :class => "btn btn-primary"%-->
+<%= link_to 'Edit', edit_user_profile_path(@user_profile) %><br>
+<!--%= link_to 'Back to Home page', root_path %-->

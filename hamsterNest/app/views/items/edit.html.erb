@@ -1,13 +1,13 @@
 
 <%= form_with(model: @item, local: true, class: "form-group") do |form| %>
-  <% if @user_profile.errors.any? %>
+  <% if @item.errors.any? %>
   <div id="error_explanation">
     <h2>
-      <%= pluralize(@user_profile.errors.count, "error") %> prohibited
+      <%= pluralize(@item.errors.count, "error") %> prohibited
       this item from being saved:
     </h2>
     <ul>
-      <% @user_profile.errors.full_messages.each do |msg| %>
+      <% @item.errors.full_messages.each do |msg| %>
       <li>
         <%= msg %>
       </li>
@@ -28,7 +28,15 @@
 </div>
 
   <div class="form-group">
-    <%= form.label :status, "Item is currently available" %>   
+  <%= form.file_field :image %>
+
+  <% if @item.image.attached? %>
+    <%= image_tag @item.image.variant(resize: "100x100") %>
+  <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :status, "Item is currently available" %>
     <%= form.check_box :status %>
   </div>
 
@@ -37,6 +45,6 @@
   </p>
 
 <% end %>
-<div> 
+<div>
 <%= link_to 'Back', user_profile_items_path %>
 </div>

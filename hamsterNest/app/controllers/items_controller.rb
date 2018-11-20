@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
 
     if @item.save
       flash[:notice] = "Item created."
-      redirect_to user_profile_path(@user_profile)
+      redirect_to user_profile_items_path(@user_profile)
     else
       flash[:alert] = @item.errors.full_messages
       render "new"
@@ -67,5 +67,5 @@ end
 private
 
 def item_params
-  params.require(:item).permit(:item_name, :category_id, :quantity, :status, :search_text)
+  params.require(:item).permit(:item_name, :category_id, :quantity, :status, :search_text, :image)
 end
