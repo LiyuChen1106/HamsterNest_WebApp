@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello, <%= @borrower.user_profile.first_name %></h1>
+    <p>
+      Unfortunately, your borrow request on <%= link_to @item_name, @url %> has been rejected by the owner. Please check out other similar items on our website. <br>
+    </p>
+    
+    <p>Please do not reply to this email.</p>
+  </body>
+</html>
