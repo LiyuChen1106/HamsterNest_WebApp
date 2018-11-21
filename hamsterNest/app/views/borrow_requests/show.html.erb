@@ -24,7 +24,7 @@
 <% if @I_am_borrower %>
   <% if @borrow_request.return_status == 0 %>
     <p><%= link_to 'Return Item',  item_borrow_request_path(:item_id=>@item.id, 
-                                    :id=>@borrow_request.id,:return_status => 1)%></p>
+                                    :id=>@borrow_request.id,:return_status => 1), :method=> :put%></p>
   <% elsif @borrow_request.return_status == 1 %>
     <strong><p>Waiting for receipt confirm</p></strong>
   <% elsif @borrow_request.return_status == 2 %>
@@ -36,14 +36,14 @@
 
 <% else %>
   <% if @borrow_request.approval.nil? %>
-    <%= link_to 'Accpet', item_borrow_request_path(:approval => true)%> | 
-    <%= link_to 'Reject', item_borrow_request_path(:approval => false)%> 
+    <%= link_to 'Accpet', item_borrow_request_path(:approval => true), :method=> :put%> | 
+    <%= link_to 'Reject', item_borrow_request_path(:approval => false), :method=> :put%> 
   <% elsif @borrow_request.approval == true %>
     <p> Appected </p>
       <!-- if borrower clicks return button, lender view will display a button to confirm delivery-->
       <% if @borrow_request.return_status == 1 %>
         <p><%= link_to 'Confirm Delivery',  item_borrow_request_path(:item_id=>@item.id, 
-                                        :id=>@borrow_request.id,:return_status => 2)%></p>
+                                        :id=>@borrow_request.id,:return_status => 2), :method=> :put%></p>
       <% elsif @borrow_request.return_status == 2 %>
         <strong><p>Item Returned</p></strong>
       <% end %>

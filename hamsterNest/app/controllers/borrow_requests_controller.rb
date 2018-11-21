@@ -14,24 +14,24 @@ class BorrowRequestsController < ApplicationController
   def show
     @borrow_request = BorrowRequest.find(params[:id])
     #if click show request, read status => true
-    if params[:read_status] == "true"
-      @borrow_request.update(:read_status => params[:read_status])
-      flash[:notice] = "update read_status"
-    end
+#    if params[:read_status] == "true"
+#      @borrow_request.update(:read_status => params[:read_status])
+#      flash[:notice] = "update read_status"
+#    end
+#
+#    if params[:return_status] == "1"
+#      @borrow_request.update(:return_status => 1)
+#      flash[:notice] = "set return status to 1"
+#    elsif params[:return_status] == "2"
+#      @borrow_request.update(:return_status => 2)
+#      flash[:notice] = "set return status to 2"
+#    end
 
-    if params[:return_status] == "1"
-      @borrow_request.update(:return_status => 1)
-      flash[:notice] = "set return status to 1"
-    elsif params[:return_status] == "2"
-      @borrow_request.update(:return_status => 2)
-      flash[:notice] = "set return status to 2"
-    end
-
-    #if click Accept || Reject, update approval
-    if !params[:approval].nil?
-      @borrow_request.update(:approval => params[:approval])
-      flash[:notice] = "You have borrowed this item please check your request list"
-    end
+#    #if click Accept || Reject, update approval
+#    if !params[:approval].nil?
+#      @borrow_request.update(:approval => params[:approval])
+#      flash[:notice] = "You have borrowed this item please check your request list"
+#    end
     @item = Item.find(params[:item_id])
     @borrower = @borrow_request.user_profile
     @I_am_borrower = false
@@ -71,7 +71,7 @@ class BorrowRequestsController < ApplicationController
     if @borrow_request.save
       flash[:notice] = "Borrow request created."
       
-      UserMailer.with(lender: @item.user_profile, borrower: current_user, item: @item, borrow_request: @borrow_request).borrow_request_confirmation_email.deliver_later
+      UserMailer.with(lender: @item.user_profile.user, borrower: current_user, item: @item, borrow_request: @borrow_request).borrow_request_confirmation_email.deliver_later
       
       redirect_to root_path
     else
@@ -85,14 +85,48 @@ class BorrowRequestsController < ApplicationController
   def update
     @item = Item.find(params[:item_id])
     @borrow_request = @item.borrow_requests.find(params[:id])
-    #@borrow_request = BorrowRequest.find(params[:id])
-    if @borrow_request.update(request_params)
-      flash[:notice] = "Borrow request updated."
-      redirect_to item_borrow_request(:item_id => @item.id, :id => @borrow_request.id)
-    else
-      flash[:alert] = @borrow_request.errors.full_messages
-      render "edit"
+    @borrower = @borrow_request.user_profile.user
+    
+    #if click Accept || Reject, update approval
+    if !params[:approval].nil?
+      @borrow_request.update_attribute(:approval, params[:approval])
+      
+      if @borrow_request.approval == true
+        flash[:notice] = "You have approved this request"
+        UserMailer.with(lender: current_user, borrower: @borrower, item: @item, borrow_request: self).borrow_request_approved_email.deliver
+      elsif @borrow_request.approval == false
+        flash[:notice] = "You have rejected this request"
+        UserMailer.with(lender: current_user, borrower: @borrower, item: @item, borrow_request: self).borrow_request_rejected_email.deliver
+      end
     end
+    
+    # Update the return status
+    if !params[:return_status].nil?
+      @borrow_request.update_attribute(:return_status, params[:return_status])
+      
+      if @borrow_request.return_status == "1"
+        flash[:notice] = "set return status to 1"
+      elsif @borrow_request.return_status == "2"
+        flash[:notice] = "set return status to 2"
+      end
+    end
+    
+    if !params[:read_status].nil? && params[:read_status] == "true"
+      @borrow_request.update(:read_status => params[:read_status])
+      flash[:notice] = "update read_status"
+    end
+    
+    # return to item page
+    redirect_to item_borrow_request_path(:item_id=>@item.id, :id=>@borrow_request.id)
+    
+#    if @borrow_request.update(request_params)
+#      flash[:notice] = "Borrow request updated."
+#      redirect_to item_borrow_request(:item_id => @item.id, :id => @borrow_request.id)
+#    else
+#      flash[:alert] = @borrow_request.errors.full_messages
+#      render "edit"
+#    end
+    
   end
 
   def destroy
