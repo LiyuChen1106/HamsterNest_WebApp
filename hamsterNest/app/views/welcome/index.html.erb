@@ -20,8 +20,30 @@
 <% end%>
 <!-- attempt failed for now-->
 
-<!-- Footer -->
-<footer class="container-fluid bg-4 text-center">
+<div class="footer">
+
+<div class="column1">
     <%= link_to "About us", "/welcome/about" %>
-</footer>
-<!-- Footer -->
+</div>
+
+<div class="column1">
+<!-- link to twitter -->
+<p><a href="https://twitter.com/HamsterNest?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @HamsterNest</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<!-- link to facebook -->
+<p>
+<%=link_to href="https://www.facebook.com/hamsternest.page", target: "_blank" do %>
+  <%= image_tag ("facebook_icon.png"), class: "social-icon"%>
+<% end %>
+</p>
+
+<!-- link to instagram -->
+<p>
+<%=link_to href="https://www.instagram.com/hamsternestofficial", target: "_blank" do %>
+  <%= image_tag ("instagram_icon.jpeg"), class: "social-icon"%>
+<% end %>
+</p>
+
+</div>
+
+</div>
