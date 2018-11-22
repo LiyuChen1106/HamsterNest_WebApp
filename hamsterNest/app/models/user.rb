@@ -11,6 +11,10 @@ class User < ApplicationRecord
 
   # ... and add some code for that callback.
   def create_user_profile_entry
-    UserProfile.create([{ user_id: self.id, username: ""}])
+    @email_name = self.email[/[^@]+/]
+    @email_name.gsub!(".","")
+    @new_username = "#{@email_name}#{rand(1000)}"
+    
+    UserProfile.create([{ user_id: self.id, username: @new_username}])
   end
 end
