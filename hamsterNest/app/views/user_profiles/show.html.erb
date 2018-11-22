@@ -22,9 +22,9 @@
 
 <p>
   <% if @user_profile.avatar.attached? %>
-<%= image_tag @user_profile.avatar.variant(resize: "100x100"), :class => "btn btn-primary" %>
-<% end %>
+    <%= image_tag @user_profile.avatar.variant(resize: "100x100") %>
+  <% end %>
 </p>
 
-<%= link_to 'Edit', edit_user_profile_path(@user_profile) %><br>
+<%= link_to 'Edit', edit_user_profile_path(@user_profile), :class => "btn btn-primary"%><br>
 <!--%= link_to 'Back to Home page', root_path %-->
