@@ -7,6 +7,10 @@
     <th>first_name</th>
     <th>last_name</th>
     <th>birthday</th>
+    <th>street_address</th>
+    <th>city</th>
+    <th>province</th>
+    <th>postal_code</th>
     <th></th>
   </tr>
  
@@ -18,6 +22,12 @@
       <td><%= user_profile.first_name %></td>
       <td><%= user_profile.last_name %></td>
       <td><%= user_profile.birthday %></td>
+      <%if !user_profile.address.nil?%>
+        <td><%= user_profile.address['street_address'] %></td>
+        <td><%= user_profile.address['city'] %></td>
+        <td><%= user_profile.address['province_id'] %></td>
+        <td><%= user_profile.address['postal_code'] %></td>
+      <%end%>
       <td><!--%= user_account.salt %--></td>
       <td><!--%= link_to 'Show', user_profile_path(user_profile) %--></td>
       <td><!--%= link_to 'Edit', edit_user_profile_path(user_profile) %--></td>

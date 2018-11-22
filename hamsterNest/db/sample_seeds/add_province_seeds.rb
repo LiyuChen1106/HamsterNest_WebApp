@@ -1,0 +1,13 @@
+provinces = Province.create([{province: "Ontario"},
+            {province: "British Columbia"},
+            {province: "Quebec"},
+            {province: "Alberta"},
+            {province: "Saskatchewan"},
+            {province: "Manitoba"},
+            {province: "Yukon"},
+            {province: "New Brunswick"},
+            {province: "Newfoundland"},
+            {province: "Nova Scotia"},
+            {province: "Nunavut"},
+            {province: "Northwest Territories"},
+            {province: "Prince Edward Island"}])

@@ -32,6 +32,32 @@
       <%= form.label :birthday, "Birthday" %><br>
       <%= form.date_select :birthday, :start_year=>1900, :end_year=>Time.now.year%>
     </div>
+  
+    <!-- #### ADDRESS FIELD STARTS HERE #### -->
+    <div class="fields">
+      <%=form.fields_for :address do |a| %>
+
+      <div class="field">
+        <%= a.label :street_address, "Street address" %><br>
+        <%= a.text_field :street_address, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= a.label :city, "City" %><br>
+        <%= a.text_field :city, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= a.label :province_id, "Provinces"%><br>
+        <%= a.collection_select :province_id, Province.order(:province), :id, :province, :selected => '1', :class => 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= a.label :postal_code, "Postal Code" %><br>
+        <%= a.text_field :postal_code, autofocus: true %>
+      </div>
+    <%end%>
+    <!-- #### ADDRESS FIELD ENDS HERE #### -->
 
     <div class="actions">
       <p>

@@ -25,6 +25,13 @@
 <%= image_tag @user_profile.avatar.variant(resize: "100x100"), :class => "btn btn-primary" %>
 <% end %>
 </p>
+  
+<p>
+  <strong>Address:</strong><br>
+  <%= @user_profile.address['street_address'] %><br>
+  <%= @user_profile.address['city'] %>, <%= getProvinceName(@user_profile.address['province_id']) %><br>
+  <%= @user_profile.address['postal_code'] %><br>
+</p>
 
 <%= link_to 'Edit', edit_user_profile_path(@user_profile) %><br>
 <!--%= link_to 'Back to Home page', root_path %-->

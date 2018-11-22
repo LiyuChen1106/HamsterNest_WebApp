@@ -20,7 +20,9 @@ class UserProfile < ApplicationRecord
   end
 
   def auto_fill_username_and_account(user)
-    @new_username = "#{self.first_name.downcase}#{self.last_name.downcase}#{rand(1000)}"
+    @email_name = user.email[/[^@]+/]
+    @email_name.gsub!(".","")
+    @new_username = "#{@email_name}#{rand(1000)}"
 
     self.username = @new_username
 

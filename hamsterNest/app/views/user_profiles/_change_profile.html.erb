@@ -1,6 +1,6 @@
 <div class = "change_profile_form" >
 
-  <h2>Change profile</h2>
+  <h2>Your Profile</h2>
 
   <%= form_with model: @user_profile, local: true do |form| %>
 
@@ -31,9 +31,35 @@
       <%= image_tag @user_profile.avatar.variant(resize: "100x100") %>
     <% end %>
     </div>
+  
+    <!-- #### ADDRESS FIELD STARTS HERE #### -->
+    <div class="fields">
+      <%=form.fields_for :address do |a| %>
+        <div class="field">
+          <%= a.label :street_address, "Street address" %><br>
+          <%= a.text_field :street_address, autofocus: true %>
+        </div>
+
+        <div class="field">
+          <%= a.label :city, "City" %><br>
+          <%= a.text_field :city, autofocus: true %>
+        </div>
+
+        <div class="field">
+          <%= a.label :province_id, "Provinces"%><br>
+          <%= a.collection_select :province_id, Province.order(:province), :id, :province, :selected => '1', :class => 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= a.label :postal_code, "Postal Code" %><br>
+          <%= a.text_field :postal_code, autofocus: true %>
+        </div>
+      <%end%>
+    </div>
+    <!-- #### ADDRESS FIELD ENDS HERE #### -->
 
     <div class="actions">
-      <%= form.submit "Change my profile", :class=>"btn btn-primary"%>
+      <%= form.submit "Submit", :class=>"btn btn-primary"%>
     </div>
   <% end %>
 
