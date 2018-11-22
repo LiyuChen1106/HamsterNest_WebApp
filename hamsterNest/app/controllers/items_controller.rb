@@ -22,6 +22,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     #  @borrow_request = @item.borrow_request
     @borrow_requests = @item.borrow_requests
+    @owner=UserProfile.find(@item.user_profile.id)
   end
 
   def create

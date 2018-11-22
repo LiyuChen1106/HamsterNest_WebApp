@@ -25,7 +25,9 @@
 
 
 <% if @unlogin %>
-  <%= link_to 'Borrow', new_item_borrow_request_path(:item_id=>@item.id)%> |
+  <% if current_user.id == @owner %>
+    <%= link_to 'Borrow', new_item_borrow_request_path(:item_id=>@item.id)%> |
+  <% end %>
   <%= link_to 'Back', items_path %>
 <% else %>
   <%= link_to 'Edit', edit_user_profile_item_path %> |
