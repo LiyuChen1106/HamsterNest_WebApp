@@ -41,3 +41,7 @@ h1 {
 
 
 .navbar-custom { background-color: #406566 !important; }
+
+input[type=text] {
+    color: black !important;
+}
