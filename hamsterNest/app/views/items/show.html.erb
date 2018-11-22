@@ -25,7 +25,7 @@
 
 
 <% if @unlogin %>
-  <% if current_user.id == @owner %>
+  <% if current_user.id != @owner.id %>
     <%= link_to 'Borrow', new_item_borrow_request_path(:item_id=>@item.id)%> |
   <% end %>
   <%= link_to 'Back', items_path %>
