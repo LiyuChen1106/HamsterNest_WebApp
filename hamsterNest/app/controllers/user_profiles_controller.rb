@@ -44,7 +44,7 @@ class UserProfilesController < ApplicationController
       redirect_to :root
     else
     
-      flash[:alert] = @user_profile.errors.full_messages.map(&:inspect).join("\n").gsub!('"', '')
+      flash[:error] = @user_profile.errors.full_messages.map(&:inspect).join("\n").gsub!('"', '')
       render "edit"
     end
   end

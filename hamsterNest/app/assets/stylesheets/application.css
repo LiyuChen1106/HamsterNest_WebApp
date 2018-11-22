@@ -58,3 +58,27 @@ input[type=text] {
   @extend .control-group;
   @extend .error;
  }
+
+/*
+ * Error style
+*/
+
+.alert-error {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+    width:40%;
+ }
+/*
+.alert-alert {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+    width:40%;
+ }*/
+.alert-danger {
+  width:40%;
+  margin-left: 100px;
+}

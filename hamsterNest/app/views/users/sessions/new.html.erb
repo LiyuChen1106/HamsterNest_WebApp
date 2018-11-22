@@ -1,6 +1,8 @@
 <div class="log_in_form">
+<!--<%= devise_flash!%>-->
 <h2>Log in</h2>
 <%= form_for(resource, as: resource_name, url: new_user_session_path) do |f| %>
+
   <div class="field">
     <!--%= f.label :email %><br /-->
     <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Email address"%>
@@ -28,5 +30,5 @@
 </div>
 
 <footer class="copyright text-muted">
-&copy; 2018-2019
+&copy; HamsterNest 2018-2019
 </footer>
