@@ -16,16 +16,21 @@
   </div>
   <% end %>
 
-<div class="form-group">
+  <div class="form-group">
     <%= form.label :item_name, "Item Name"%><br>
     <%= form.text_field :item_name, :class => 'form-text text-muted form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description, "Item Description"%><br>
+    <%= form.text_area :description, :class => 'form-text text-muted form-control' %>
   </div>
 
   <div class="form-group">
     <%= form.label :category_id, "Categories"%><br>
     <%= form.collection_select :category_id, Category.order(:category_name), :id, :category_name,
     include_blank: true, :class => 'form-control' %>
-</div>
+  </div>
 
   <div class="form-group">
   <%= form.file_field :image %>

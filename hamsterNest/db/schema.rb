@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_22_010825) do
+ActiveRecord::Schema.define(version: 2018_11_22_031240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2018_11_22_010825) do
     t.datetime "updated_at", null: false
     t.integer "left_quantity"
     t.integer "quantity", default: 1
+    t.string "description"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["user_profile_id"], name: "index_items_on_user_profile_id"
   end
