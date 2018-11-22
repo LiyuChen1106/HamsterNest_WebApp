@@ -17,7 +17,7 @@ class UserProfilesController < ApplicationController
 
   def create
     @user_profile = UserProfile.new(profile_params)
-    @user_profile.auto_fill_username_and_account(current_user)
+#    @user_profile.auto_fill_username_and_account(current_user)
 
     if @user_profile.save
       flash[:notice] = "Profile added"
@@ -25,20 +25,26 @@ class UserProfilesController < ApplicationController
     else
       flash[:alert] = @user_profile.errors.full_messages
 
-      redirect_to new_user_profile_path
+      render "new"
     end
   end
 
   def update
     @user_profile = UserProfile.find(params[:id])
-    @registerInProgress = @user_profile.username == ""
+    @registerInProgress = @user_profile.birthday.nil?
     @updateResult = @user_profile.update(profile_params)
 
     if @updateResult && !@registerInProgress
+      @user_profile.errors.clear
+      flash[:notice] = "Profile updated"
       redirect_to @user_profile
     elsif @updateResult && @registerInProgress
+      @user_profile.errors.clear
+      flash[:notice] = "Profile added"
       redirect_to :root
     else
+    
+      flash[:alert] = @user_profile.errors.full_messages.map(&:inspect).join("\n").gsub!('"', '')
       render "edit"
     end
   end

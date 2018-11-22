@@ -3,7 +3,7 @@
   <h2>Your Profile</h2>
 
   <%= form_with model: @user_profile, local: true do |form| %>
-
+  
     <div class="field">
       <%= form.label :username, "User Name" %><br>
       <%= form.text_field :username, autofocus: true%>
@@ -34,7 +34,7 @@
   
     <!-- #### ADDRESS FIELD STARTS HERE #### -->
     <div class="fields">
-      <%=form.fields_for :address do |a| %>
+      <%=form.fields_for :address, OpenStruct.new(@user_profile.address) do |a| %>
         <div class="field">
           <%= a.label :street_address, "Street address" %><br>
           <%= a.text_field :street_address, autofocus: true %>

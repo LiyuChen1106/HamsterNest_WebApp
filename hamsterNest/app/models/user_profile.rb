@@ -9,6 +9,10 @@ class UserProfile < ApplicationRecord
   # validates_attachment_content_type :avatar, content_type: /\Aimage/
   # # Validate filename
   # validates_attachment_file_name :avatar, matches: [/png\Z/, /jpe?g\Z/]
+  
+  # validate postal code must exist
+  validates :username, presence: {message: "must exist"}
+  validate :postal_code_valid?
 
   after_save :update_profile_id_in_users
 
@@ -18,14 +22,16 @@ class UserProfile < ApplicationRecord
       @user.update_attribute(:user_profile_id, self.id)
     end
   end
-
-  def auto_fill_username_and_account(user)
-    @email_name = user.email[/[^@]+/]
-    @email_name.gsub!(".","")
-    @new_username = "#{@email_name}#{rand(1000)}"
-
-    self.username = @new_username
-
-    self.user_id = user.id
+  
+  def postal_code_valid?
+    if self.address.nil?
+      return
+    end
+    
+    if self.address['postal_code'] == ""
+      self.errors.add(:postal_code, "can not be empty")
+    elsif (self.address['postal_code'] =~ /\A[abceghjklmnprstvxyABCEGHJKLMNPRSTVXY]{1}\d{1}[a-zA-Z]{1}[ -]?\d{1}[a-zA-Z]{1}\d{1}\z/).nil?
+      self.errors.add(:postal_code, "invalid!")
+    end
   end
 end
