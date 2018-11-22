@@ -10,11 +10,10 @@
   </head>
 
   <body>
-
     <%= render "application/top_banner" %>
+    <%= flash_messages %>
     <%= yield %>
   </body>
 
-  <p class="notice"><%= notice %></p>
-  <p class ="alert"><%= alert %></p>
+
 </html>

@@ -1,21 +1,5 @@
 
 <%= form_with(model: [@user_profile, @user_profile.items.build], local: true, class: "form-group") do |form| %>
-  <% if @user_profile.errors.any? %>
-  <div id="error_explanation">
-    <h2>
-      <%= pluralize(@user_profile.errors.count, "error") %> prohibited
-      this item from being saved:
-    </h2>
-    <ul>
-      <% @user_profile.errors.full_messages.each do |msg| %>
-      <li>
-        <%= msg %>
-      </li>
-      <% end %>
-    </ul>
-  </div>
-  <% end %>
-
   <div class="form-group">
     <%= form.label :item_name, "Item Name"%><br>
     <%= form.text_field :item_name, :class => 'form-text text-muted form-control' %>
