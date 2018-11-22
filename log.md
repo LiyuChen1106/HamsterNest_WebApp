@@ -1,5 +1,10 @@
 # release logs
 
+Nov 21,2019 commit id:f799cd9d8cf3a36f2f8c2666766cf4c91f711e2f
+author : Jinyi Chen
+1. simple frontend of user, user_profile
+    register page, login page, user profile page
+
 Nov 18,2019 commit id:068e1abfa1517c40398a22738e231c0baee2bbe0
 author : Jinyi Chen
 1. return system is on, 
