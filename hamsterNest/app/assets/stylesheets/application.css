@@ -31,36 +31,76 @@
     float: center;
     padding: 30px;
 }
-h1 {
-  text-align: center;
+
+input[type=text] {
+    color: black !important;
 }
 .nav-item{
   resize: both;
   min-width: 120px;
 }
 
-
 .navbar-custom {
   background-color: #406566 !important;
-  position:fixed;
+  min-height: 70px !important;
   top:0;
   left:0;
+  width: 100%;
 }
 
-input[type=text] {
-    color: black !important;
+.container {
+  width: 100%;
+}
+
+#hamster-nest {
+  left:20%;
+  position:relative;
+}
+
+#navi-hide {
+  right:5%;
+  position:relative;
+}
+
+#navbarResponsive {
+  right:5%;
+  position:relative;
+}
+
+#search-box {
+  display: block;
+  float: left;
+  overflow:hidden;
+  position:relative;
+  width: 70%;
+}
+
+/* #advanced-search-span {
+  position:relative;
+} */
+
+#top-banner {
+  top:0;
+  overflow:visible;
+  position:relative;
+  width: 100%;
 }
 
 #main-body {
+  overflow: hidden;
   position:relative;
-  top:80px;
+  width: 100%;
+}
+
+#footer {
   padding: 0;
   overflow: hidden;
-  position:absolute;
+  position:relative;
   width: 100%;
 }
 .alert {
   position:absolute;
+  top:0px;
   width: 100%;
   opacity:0.6 !important;
 }
