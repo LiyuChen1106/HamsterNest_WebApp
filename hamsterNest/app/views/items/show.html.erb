@@ -1,7 +1,7 @@
 <body>
 <p>
   <strong>Owner: </strong>
-  <%= @item.user_profile.username %>
+  <%= link_to @item.user_profile.username, user_profile_path(@item.user_profile.id) %>
 </p>
 <p>
   <strong>Item: </strong>
