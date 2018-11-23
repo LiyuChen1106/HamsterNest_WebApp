@@ -12,7 +12,9 @@ class UserProfile < ApplicationRecord
   
   # validate postal code must exist
   validates :username, presence: {message: "must exist"}
-  validate :postal_code_valid?
+  validate :address_exists?
+  geocoded_by :address
+  after_validation :geocode
 
   after_save :update_profile_id_in_users
 
@@ -23,14 +25,20 @@ class UserProfile < ApplicationRecord
     end
   end
   
-  def postal_code_valid?
+  def address_exists?
     if self.address.nil?
       return
     end
     
-    if self.address['postal_code'] == ""
-      self.errors.add(:postal_code, "can not be empty")
-    elsif (self.address['postal_code'] =~ /\A[abceghjklmnprstvxyABCEGHJKLMNPRSTVXY]{1}\d{1}[a-zA-Z]{1}[ -]?\d{1}[a-zA-Z]{1}\d{1}\z/).nil?
+    if self.address['street_address'] == ""
+      self.errors.add(:street_address, "can not be empty")
+    end
+    
+    if self.address['city'] == ""
+      self.errors.add(:city, "can not be empty")
+    end
+    
+    if (self.address['postal_code'] =~ /\A[abceghjklmnprstvxyABCEGHJKLMNPRSTVXY]{1}\d{1}[a-zA-Z]{1}[ -]?\d{1}[a-zA-Z]{1}\d{1}\z/).nil?
       self.errors.add(:postal_code, "invalid!")
     end
   end
