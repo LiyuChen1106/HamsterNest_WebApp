@@ -19,18 +19,18 @@
   <div class="form-group">
   <p>
     <%= form.label :quantity, "Quantity" %><br>
-    <%= form.number_field :quantity%>
+    <%= form.number_field :quantity, :class => 'form-control'%>
   </p>
   </div>
 
   <div class="form-group">
     <%= form.label :image, "Item Image" %>
-    <%= form.file_field :image %>
+    <%= form.file_field :image, :class => 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= form.label :status, "Item is currently available" %>
-    <%= form.check_box :status, {checked: true} %>
+    <%= form.check_box :status, {checked: true}, :class => 'form-control' %>
   </div>
 
   <p>

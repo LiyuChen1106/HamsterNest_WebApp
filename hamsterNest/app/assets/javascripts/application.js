@@ -19,3 +19,15 @@
 //= require bootstrap-sprockets
 //= require_tree .
 //= require gmaps/google
+
+$(function(){
+   var flashDurationInSeconds = 3;
+   var flashContainerId = 'flash-messages';
+
+   function removeFlashMessages() {
+     $('#' + flashContainerId + ".alert-success").remove();
+     $('#' + flashContainerId + ".alert-info").remove();
+   }
+
+   setTimeout(removeFlashMessages, flashDurationInSeconds * 1000);
+})

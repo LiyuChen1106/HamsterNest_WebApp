@@ -1,8 +1,9 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
-  <div class="container">
+
     <%- if registerInProgress %>
-      <a class="navbar-brand" href="#">Hamster Nest</a>
+      <div class="navbar-brand float-left" href="#">Hamster Nest</div>
       <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
@@ -17,16 +18,22 @@
       </ul>
       </div>
     <%- else %>
-      <%= link_to "Hamster Nest", root_path, :class => "navbar-brand", :id => "my-id" %>
+      <%= link_to root_path do %>
+        <div id="hamster-nest" class="navbar-brand">Hamster Nest</div>
+      <% end %>
     <% end %>
 
     <%- if user_signed_in? && !registerInProgress %>
     <%= render "items/item_search_box" %>
+    <% else %>
+    <div class="container search_field" id="search-box">
+    </div>
+    <% end %>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <button id="navi-hide" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <% end %>
+
 
     <div class="float-right" id="navbarResponsive">
       <ul class="navbar-nav">
@@ -63,5 +70,5 @@
         <% end %>
       </ul>
     </div>
-  </div>
+
 </nav>

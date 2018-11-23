@@ -1,21 +1,17 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-<div class="container search_field">
-
-
+<div class="container search_field" id="search-box">
   <%= search_form_for @search, html: {class: "navbar-form navbar-left"} do |f| %>
     <%= f.search_field :item_name_or_description_cont, class: "form-control mr-sm-2", placeholder: "Search Items" %>
     <%= f.submit "Search", class: "btn btn-light" %>
   <% end %>
 
-
+  <span id="advanced-search-span">
   <button class="btn btn-outline-warning" type="button" data-toggle="collapse" data-target="#advanced-search">
     Advanced Search
   </button>
 
   <div id="advanced-search" class="collapse navbar-form navbar-left">
-    <!-- todo: more to add... -->
-
     <%= search_form_for @search do |f| %>
     <ul class = "navbar-left list-inline">
       <li class ="list-inline-item">
@@ -36,6 +32,7 @@
       <%= f.submit "Search", class: "radius button"%>
     <% end %>
   </div>
+  </span>
 </div>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

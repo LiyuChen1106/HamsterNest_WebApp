@@ -10,9 +10,16 @@
   </head>
 
   <body>
-    <%= render "application/top_banner" %>
-    <%= flash_messages %>
-    <%= yield %>
+    <div id="top-banner">
+      <%= render "application/top_banner" %>
+    </div>
+    <div id="main-body">
+      <%= flash_messages %>
+      <%= yield %>
+    </div>
+    <div id="footer">
+    
+    </div>
   </body>
 
 
