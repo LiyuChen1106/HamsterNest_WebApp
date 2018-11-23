@@ -6,8 +6,8 @@ class BorrowRatingController < ApplicationController
     end
     def update
         @borrow_person=UserProfile.find(params[:id])
-        @b_rating=@borrow_person[:borrow_rating]
-        @b_people=@borrow_person[:bpeople]
+        @b_rating=@borrow_person.borrow_rating
+        @b_people=@borrow_person.bpeople
         @b_people=@b_people+1
         @b_rating=(@b_rating+params[:rating])/@bpeople
         :borrow_rating => @b_rating

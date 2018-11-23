@@ -1,4 +1,4 @@
-class BorrowRatingController < ApplicationController
+class LendRatingController < ApplicationController
 
 
     def edit
@@ -6,8 +6,8 @@ class BorrowRatingController < ApplicationController
     end
     def update
         @lend_person=UserProfile.find(params[:id])
-        @l_rating=@lend_person[:borrow_rating]
-        @l_people=@lend_person[:bpeople]
+        @l_rating=@lend_person.borrow_rating
+        @l_people=@lend_person.bpeople
         @l_people=@l_people+1
         @l_rating=(@l_rating+params[:rating])/@bpeople
         :borrow_rating => @l_rating
