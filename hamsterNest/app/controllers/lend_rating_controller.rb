@@ -1,5 +1,5 @@
 class LendRatingController < ApplicationController
-
+    before_action :authenticate_user
 
     def edit
         @lend_person=UserProfile.find(params[:id])

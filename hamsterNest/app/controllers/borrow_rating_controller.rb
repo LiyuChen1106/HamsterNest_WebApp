@@ -1,12 +1,12 @@
 class BorrowRatingController < ApplicationController
-
+    before_action :authenticate_user
 
     def edit
         @borrow_person=UserProfile.find(params[:id])
     end
     def update
         @borrow_person=UserProfile.find(params[:id])
-        @b_rating=@borrow_person.borrow_rating
+        @b_rating=@borrow_sperson.borrow_rating
         @b_people=@borrow_person.bpeople
         @b_people=@b_people+1
         @b_rating=(@b_rating+params[:rating])/@bpeople
