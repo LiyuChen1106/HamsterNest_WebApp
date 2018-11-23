@@ -18,3 +18,15 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(function(){
+   var flashDurationInSeconds = 3;
+   var flashContainerId = 'flash-messages';
+
+   function removeFlashMessages() {
+     $('#' + flashContainerId + ".alert-success").remove();
+     $('#' + flashContainerId + ".alert-info").remove();
+   }
+
+   setTimeout(removeFlashMessages, flashDurationInSeconds * 1000);
+})

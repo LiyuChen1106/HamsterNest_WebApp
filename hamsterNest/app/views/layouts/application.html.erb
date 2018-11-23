@@ -11,8 +11,10 @@
 
   <body>
     <%= render "application/top_banner" %>
-    <%= flash_messages %>
-    <%= yield %>
+    <div id="main-body">
+      <%= flash_messages %>
+      <%= yield %>
+    </div>
   </body>
 
 

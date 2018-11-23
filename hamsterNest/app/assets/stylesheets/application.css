@@ -40,18 +40,29 @@ h1 {
 }
 
 
-.navbar-custom { background-color: #406566 !important; }
+.navbar-custom {
+  background-color: #406566 !important;
+  position:fixed;
+  top:0;
+  left:0;
+}
 
 input[type=text] {
     color: black !important;
 }
 
-#error_explanation {
-  color: #f00;
-  ul {
-    list-style: none;
-    margin: 0 0 18px 0;
-  }
+#main-body {
+  position:relative;
+  top:80px;
+  padding: 0;
+  overflow: hidden;
+  position:absolute;
+  width: 100%;
+}
+.alert {
+  position:absolute;
+  width: 100%;
+  opacity:0.6 !important;
 }
 
 .field_with_errors {
@@ -70,14 +81,7 @@ input[type=text] {
     text-align: left;
     width:40%;
  }
-/*
-.alert-alert {
-    background-color: #f2dede;
-    border-color: #eed3d7;
-    color: #b94a48;
-    text-align: left;
-    width:40%;
- }*/
+
 .alert-danger {
   width:40%;
   margin-left: 100px;
