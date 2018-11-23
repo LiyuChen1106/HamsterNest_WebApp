@@ -55,6 +55,10 @@ gem 'mini_magick'
 # storage for production
 gem 'aws-sdk-s3', require: false
 
+# Google map and Geocoder
+gem 'gmaps4rails'
+gem 'geocoder'
+
 # table_print
 gem 'table_print'
 
