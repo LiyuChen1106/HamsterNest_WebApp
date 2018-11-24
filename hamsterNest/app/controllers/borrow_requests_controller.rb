@@ -92,6 +92,7 @@ class BorrowRequestsController < ApplicationController
 
       if @borrow_request.approval == true
         flash[:notice] = "You have approved this request"
+        @borrow_request.item.update_attribute(:status, false)
         UserMailer.with(lender: current_user, borrower: @borrower, item: @item, borrow_request: self).borrow_request_approved_email.deliver
       elsif @borrow_request.approval == false
         flash[:notice] = "You have rejected this request"
