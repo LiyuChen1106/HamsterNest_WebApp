@@ -8,11 +8,11 @@ body { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAA
     padding-bottom: 100px;
     padding-left: 40px;
 }
-//make the orginal flash do not display
-//instead, use new method defined in html.erb to display flash message
-.notice{
-    display: none;
+
+.contact_page{
+    padding-left: 160px;
 }
+
 .footer{
     margin-top:100px;
     margin-left: 60%;
