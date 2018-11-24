@@ -2,7 +2,6 @@ class Item < ApplicationRecord
   # relations
   belongs_to :user_profile
   belongs_to :category
-  has_one :history, dependent: :destroy
   has_many :borrow_requests, dependent: :destroy
   has_one_attached :image
 
@@ -10,7 +9,7 @@ class Item < ApplicationRecord
   validates :description, length: {maximum: 200}
   validates :item_name, presence: true,
                         length: {maximum: 20}
-  validates :quantity, numericality: { only_integer: true, greater_than: 0 }
+  validates :quantity, numericality: {only_integer: true, greater_than: 0}
 
   # Validation for image
   # Validate content type
@@ -29,8 +28,8 @@ class Item < ApplicationRecord
   end
 
   def set_default_image
-     if !self.image.attached?
-         self.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default_item.jpg')), filename: 'default_item.jpg', content_type: 'image/jpg')
-     end
+    if !self.image.attached?
+      self.image.attach(io: File.open(Rails.root.join("app", "assets", "images", "default_item.jpg")), filename: "default_item.jpg", content_type: "image/jpg")
+    end
   end
 end

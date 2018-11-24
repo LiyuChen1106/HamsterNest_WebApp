@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     #  @borrow_request = @item.borrow_request
     @borrow_requests = @item.borrow_requests
-    @owner=UserProfile.find(@item.user_profile.id)
+    @owner = UserProfile.find(@item.user_profile.id)
   end
 
   def create
@@ -72,5 +72,5 @@ private
 
 def item_params
   params.require(:item).permit(:item_name, :category_id, :quantity, :status,
-    :search_text, :image, :description)
+                               :search_text, :image, :description)
 end
