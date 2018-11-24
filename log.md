@@ -4,7 +4,7 @@ author : Jinyi Chen
 1. admin account
     3 roles: 
         superadmin -> the big boss
-        supervisor -> can manage user, 
+        supervisor -> can read all, 
         user       -> normal perople
     
     use db to set superadmin:
