@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
     @search = Item.ransack(params[:q])
     if !@notsearching
       @search_items = @search.result(distinct: true)
+      @search_words = params[:q][:item_name_or_description_cont]
     elsif !@unlogin
       @user_profile = UserProfile.find(params[:user_profile_id])
       @search_items = @user_profile.items

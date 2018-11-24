@@ -2,6 +2,13 @@ class WelcomeController < ApplicationController
   skip_before_action :authenticate_user!, :only => [:index]
 
   def index
+    d = Time.now
+    puts "timee=================="
+    puts d.class
+    a = d.to_s(:db)
+    puts a
+    puts a.class
+
     if user_signed_in?
       @current_user = User.find(current_user.id)
       @current_user_profile = @current_user.user_profile

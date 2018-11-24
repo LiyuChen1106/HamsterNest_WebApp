@@ -26,6 +26,7 @@ handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
 });  
 </script>
 -->
+
 <h1>Items</h1>
 <body>
 <% if !@unlogin%>
@@ -65,5 +66,11 @@ handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
   <% end %>
 <% end %>
 </table>
+
+
+<% if @search_items.empty? %>
+<a href= "https://www.amazon.ca/s/field-keywords=<%=@search_words%>"> Try to look for <strong><%=@search_words%></strong> on Amazon</a>
+<br>
+<% end %>
 
 <%= link_to 'Back to Home page', root_path %>
