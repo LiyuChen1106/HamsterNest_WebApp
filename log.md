@@ -1,4 +1,14 @@
 # release logs
+
+Nov 24,2019 commit id:commit 6d5b4b7ef6a6f504e97093260dce6b0804638c81
+author : Jinyi Chen
+1. rop model, controller, view of history
+    rails d model history
+    rails d controller histories
+
+    if not work, rails generate migration DropHistory
+        drop_table :histories
+
 Nov 21,2019 commit id:6a62e2d3554f546ac4aac5c9aa660b2cb22c4e75
 author : Jinyi Chen
 1. add link to social pages in the home page
