@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "welcome", to: "welcome#index"
 
   get "welcome/about"
+  get "welcome/contact_us"
 
   # Pages
   get "borrow_from_others", to: "user_profiles#borrow_from_others"
