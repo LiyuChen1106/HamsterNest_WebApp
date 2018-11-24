@@ -50,6 +50,9 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'bootstrap'
 
+# gon library for javascript
+gem 'gon'
+
 # resize images
 gem 'mini_magick'
 

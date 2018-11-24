@@ -48,13 +48,27 @@ class BorrowRequestsController < ApplicationController
     @owner = @item.user_profile
     @owner_name = @owner.username
     @borrower_id = current_user.id
-    @item.borrow_requests.each do |request|
-      #flash[:notice] = "someone else has borrowed this item"
-      if @borrower_id == request.user_profile_id
-        flash[:notice] = "You have borrowed this item please check your request list"
-        redirect_to root_path
+    @start_date = 0
+    @max_start=0
+    if @item.status==false
+      @item.borrow_requests.each do |request|
+        if request.approval
+          @max_start = (request.return_date.to_date-Time.now.to_date).to_i + 1
+          if @max_start > @start_date
+            @start_date=@max_start
+          end
+        end
       end
     end
+    @item.borrow_requests.each do |request|
+      #flash[:notice] = "someone else has borrowed this item"
+      
+      if @borrower_id == request.user_profile_id
+        flash[:notice] = "You have already borrowed this item please check your request list"
+        redirect_to item_path(@item)
+      end
+    end
+
   end
 
   def edit
