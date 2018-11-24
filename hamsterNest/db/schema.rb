@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_23_031425) do
+ActiveRecord::Schema.define(version: 2018_11_24_181147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -59,15 +59,15 @@ ActiveRecord::Schema.define(version: 2018_11_23_031425) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "histories", force: :cascade do |t|
-    t.integer "item_id"
-    t.integer "borrower_id"
-    t.date "lend_date"
-    t.date "return_date"
+  create_table "comments", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "user_profile_id", null: false
+    t.date "comment_date", null: false
+    t.string "comment_message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["borrower_id"], name: "index_histories_on_borrower_id"
-    t.index ["item_id"], name: "index_histories_on_item_id"
+    t.index ["item_id"], name: "index_comments_on_item_id"
+    t.index ["user_profile_id"], name: "index_comments_on_user_profile_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -103,6 +103,8 @@ ActiveRecord::Schema.define(version: 2018_11_23_031425) do
     t.hstore "address"
     t.float "latitude"
     t.float "longitude"
+    t.integer "lpeople", default: 0
+    t.integer "bpeople", default: 0
     t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
@@ -132,4 +134,6 @@ ActiveRecord::Schema.define(version: 2018_11_23_031425) do
     t.index ["user_profile_id"], name: "index_users_on_user_profile_id"
   end
 
+  add_foreign_key "comments", "items"
+  add_foreign_key "comments", "user_profiles"
 end
