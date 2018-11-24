@@ -7,8 +7,10 @@ class WelcomeController < ApplicationController
       @current_user_profile = @current_user.user_profile
       @user_name = @current_user_profile.username
 
-      if current_user.superadmin_role? || current_user.supervisor_role?
+      if current_user.superadmin_role?
         redirect_to rails_admin_path
+      elsif current_user.supervisor_role?
+        redirect_to "/admin/user"
       end
     end
   end

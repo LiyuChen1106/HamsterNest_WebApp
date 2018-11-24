@@ -10,7 +10,9 @@ class Ability
       can :access, :rails_admin
       can :dashboard
     elsif user.supervisor_role?
-      can :manage, User
+      can :read, :all
+      can :access, :rails_admin
+      can :dashboard
     end
     #
     # The first argument to `can` is the action you are giving the user
