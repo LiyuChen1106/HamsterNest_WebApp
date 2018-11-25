@@ -59,20 +59,21 @@
       <%= form.number_field :quantity%>
     </p>
 
-    <p>
-      <%= form.label :borrow_date, "borrow_date" %><br>
-      <%= form.text_field :borrow_date, "id" => 'repicker'%>
-    
-    </p>
+    <table>
+    <tr>
+      <td><%= form.label :borrow_date, "borrow_date" %></td>
+      <td><%= form.label :return_date, "return_date" %></td>
+      </tr>
+      <tr>
+      <td><%= form.text_field :borrow_date, "id" => 'repicker'%></td>
+      <td><%= form.text_field :return_date, "id" => 'datepicker'%></td>
+      </tr>
+    </table>
 
-    <p>
-      <%= form.label :return_date, "return_date" %><br>
-      <%= form.text_field :return_date, "id" => 'datepicker'%>
-    </p>
-
+ 
     <p>
       <%= form.label :request_message, "message" %><br>
-      <%= form.text_field :request_message%>
+      <%= form.text_area :request_message%>
     </p>
     </div>
 
