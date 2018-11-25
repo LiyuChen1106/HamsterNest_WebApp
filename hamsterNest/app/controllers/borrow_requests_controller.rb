@@ -32,6 +32,7 @@ class BorrowRequestsController < ApplicationController
     #      flash[:notice] = "You have borrowed this item please check your request list"
     #    end
     @item = Item.find(params[:item_id])
+    @owner = @item.user_profile
     @borrower = @borrow_request.user_profile
     @I_am_borrower = false
     if @borrower.id == current_user.id
