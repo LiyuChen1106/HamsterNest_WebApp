@@ -1,0 +1,70 @@
+<footer class="page-footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-lg-4 footer-about wow fadeInUp">
+          <p>
+            Borrow from your friends and the world around you.
+          </p>
+          <p>
+            <%= link_to "About us", "/welcome/about" %>
+            </p>
+            <p>
+            <%= link_to "Contact Us", "/welcome/contact_us" %>
+          </p>
+          <h3>Contact</h3>
+          <p><i class="fas fa-map-marker-alt"></i> V27 King's College Cir, Toronto, ON M5S 3H7</p>
+          <p><i class="fas fa-phone"></i> Phone: (416) 978-2011</p>
+          <p><i class="fas fa-envelope"></i> Email: <a href="mailto:hamster@nest.com">hamster@nest.com</a></p>
+        </div>
+        <div class="col-md-4 col-lg-4 offset-lg-1">
+
+        </div>
+        <div class="col-md-4 col-lg-3 footer-social wow fadeInDown">
+          <h3>Follow us</h3>
+          <p>
+            <!-- link to twitter -->
+            <p><a href="https://twitter.com/HamsterNest?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @HamsterNest</a>
+              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </p>
+
+            <!-- link to facebook -->
+            <p>
+              <%=link_to href="https://www.facebook.com/hamsternest.page", target: "_blank" do %>
+              <%= image_tag ("facebook_icon.png"), class: "social-icon"%>
+              <% end %>
+              HamsterNest Page
+            </p>
+
+            <!-- link to instagram -->
+            <p>
+              <%=link_to href="https://www.instagram.com/hamsternestofficial", target: "_blank" do %>
+              <%= image_tag ("instagram_icon.jpeg"), class: "social-icon"%>
+              <% end %>
+              Hamsternestofficial
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 footer-copyright">
+          <p>&copy; HamsterNest 2018-2019</p>
+        </div>
+        <div class="col-md-7 footer-menu">
+          <nav class="navbar navbar-dark navbar-expand-md">
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link scroll-link text-muted" href="#top-content">Top</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
