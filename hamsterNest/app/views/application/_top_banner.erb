@@ -48,6 +48,9 @@
 
         <%- if user_signed_in? && !registerInProgress %>
         <li class="nav-item dropdown">
+          <%= link_to 'New item', new_user_profile_item_path(current_user.id), class: "btn btn-info"  %>
+        </li>
+        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             My Lists
           </a>
