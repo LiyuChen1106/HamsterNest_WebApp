@@ -15,7 +15,7 @@
   var latlon = <%=raw @current_latlon.to_json %>
 </script>
 
-<% if @unlogin %>
+<% if @unlogin && !@search_items.empty? %>
   <div class="container-fluid">
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
