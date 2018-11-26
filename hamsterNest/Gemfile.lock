@@ -315,6 +315,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  font-awesome-rails
   geocoder
   gmaps4rails
   gon

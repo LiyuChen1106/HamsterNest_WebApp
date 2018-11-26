@@ -1,10 +1,110 @@
-<div class="introduction">
 <%- if user_signed_in? %>
-  <h1>Welcome!!!!<%=@user_name%></h1>
-  <body>Who doesn't like commercial?</body>
-<% else %>
-  <body>
-  <h3>Borrow from friends and the world around you on HamserNest.</h3>
-  </body>
-<% end -%>
+<!-- Top content -->
+<div class="top-content-login">
+  <div class="inner-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2 text">
+          <h1 class="wow fadeInLeftBig">Welcome back, my friend <%=@user_name%></h1>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<% else %>
+<!-- Top content -->
+<div class="top-content">
+  <div class="inner-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2 text">
+          <h1 class="wow fadeInLeftBig">What is HamsterNest</h1>
+          <div class="description wow fadeInUp">
+            <br /><br /><br />
+            <p>
+              This is a web-based application that connects people who wants to borrow something and
+              who wants to lend out their stuff. Hamster is good at storing
+              things and its nest is a mysterable space with unknown storage capacity!!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Section 1 -->
+<div class="section-1-container section-container">
+  <div class="container">
+    <div class="row">
+      <div class="col section-1 section-description wow fadeIn">
+        <h2>Borrow from friends and the world around you on HamserNest.</h2>
+        <div class="divider-1 wow fadeInUp"><span></span></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 section-1-box wow fadeInUp">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="section-1-box-icon">
+              <i>
+                <%=fa_icon "camera-retro"%></i>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <h3>See before Action</h3>
+            <p>HamsterNest supports pictures in various formats to better assist your borrowing.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 section-1-box wow fadeInDown">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="section-1-box-icon">
+              <i>
+                <%=fa_icon "user"%></i>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <h3>Make Connection</h3>
+            <p>Connect with your friends on HamsterNest to see what are available.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 section-1-box wow fadeInUp">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="section-1-box-icon">
+              <i>
+                <%=fa_icon "globe"%></i>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <h3>Location support</h3>
+            <p>View items available near-by on HamsterNest.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section-container">
+  <div class="container">
+    <div class="col section-3 section-description wow fadeIn">
+      <h2>What are you waiting for?</h2>
+      <div class="divider-1 wow fadeInUp"><span></span></div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 offset-md-2 register-prompt">
+        <div class="description wow fadeInUp">
+          <%= link_to new_user_registration_path do %>
+          <%= image_tag('register-now1.png',width: 200) %>
+          <% end %>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end -%>

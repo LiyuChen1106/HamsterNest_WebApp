@@ -56,6 +56,9 @@ gem 'gon'
 # resize images
 gem 'mini_magick'
 
+# fa icons
+gem "font-awesome-rails"
+
 # storage for production
 gem 'aws-sdk-s3', require: false
 
