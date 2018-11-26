@@ -6,6 +6,21 @@ class ItemsController < ApplicationController
     @unlogin = params[:user_profile_id].nil?
     @notsearching = params[:q].nil?
     @search = Item.ransack(params[:q])
+    #TODO: where should we put it
+    #check and update status for all the items..
+    @all_items = Item.all
+    @all_items.each do |status_item|
+      status_item.borrow_requests.each do |request|
+        if request.approval == true
+          #check if any accepted items lend out today
+          if request.borrow_date.to_date==Time.now.to_date
+            request.item.update_attribute(:status, false)
+          end
+        end
+      end
+    end
+    #TODO
+
     if !@notsearching
       @search_items = @search.result(distinct: true)
       @search_words = params[:q][:item_name_or_description_cont]
