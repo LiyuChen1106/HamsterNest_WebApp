@@ -1,0 +1,12 @@
+<p>
+  <strong>Item: </strong>
+  <%= link_to @item.item_name, item_path(@item.id) %>
+</p>
+<p>
+  <strong>Status: </strong>
+  <%= @status %>
+</p>
+<p>
+  <strong>Category: </strong>
+  <%= getCategoryName(@item.category_id) %>
+</p>

@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  # For test for Gmap
+#  resources :gmap
+  
   # ROOT
   root "welcome#index"
 

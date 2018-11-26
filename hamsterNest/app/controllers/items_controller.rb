@@ -15,6 +15,9 @@ class ItemsController < ApplicationController
     else
       @search_items = Item.all
     end
+    
+    @markers = load_markers(@search_items)
+    @current_latlon = {:lat => current_user.user_profile.latitude, :lng => current_user.user_profile.longitude}
   end
 
   def show
@@ -67,11 +70,34 @@ class ItemsController < ApplicationController
 
     redirect_to user_profile_items_path
   end
-end
+  
+  def load_markers(search_items)  
+   @load_markers = Gmaps4rails.build_markers(search_items.all) do |item, marker|  
+      
+    @item = item
+    @user_profile = @item.user_profile
 
-private
+    marker.lat @user_profile.latitude  
+    marker.lng @user_profile.longitude 
 
-def item_params
-  params.require(:item).permit(:item_name, :category_id, :quantity, :status,
-                               :search_text, :image, :description)
+    @status = @item.status
+    @category = @item.category_id
+
+    if @status == true
+      @status = "Available"  
+    else  
+      @status = "Currently unavailable"  
+    end  
+
+    marker.infowindow render_to_string(:partial => "/gmap/template", :locals => {:item => @item, :status => @status})  
+    end
+  end
+
+  private
+
+  def item_params
+    params.require(:item).permit(:item_name, :category_id, :quantity, :status,
+                                 :search_text, :image, :description)
+  end
+    
 end
