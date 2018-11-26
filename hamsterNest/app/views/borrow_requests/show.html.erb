@@ -9,8 +9,8 @@
   <%= @item.quantity %>
 </p>
 <p>
-  <strong>Return date:</strong>
-  <%= @borrow_request.return_date%>
+  <strong>Borrow period:</strong>
+  <%=@borrow_request.borrow_date%> to <%= @borrow_request.return_date%> 
 </p>
 <p>
   <strong>Lender:</strong>
@@ -34,7 +34,7 @@
   <% elsif @borrow_request.return_status == 2 %>
     <strong><p>Item Returned</p></strong>
   <% end %>
-  <% if @borrow_request.approval.nil? %>
+  <% if !((@borrow_request.approval) && (@borrow_request.borrow_date.to_date<Time.now.to_date))%>
     <%= link_to 'Cancel Request', item_borrow_request_path(@borrow_request),
     method: :delete,
     data: {confirm: 'Are you sure to cancel the request?'} %>
