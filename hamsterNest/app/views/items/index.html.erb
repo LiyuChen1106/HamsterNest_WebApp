@@ -29,12 +29,11 @@ handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
 
 
 <div class="container-fluid" style="">
-  <h1>Items</h1><br>
   <div class="row">
     <div class='col-1'>
     </div>
     <div class='col-8'>
-      <ul class="nav">
+      <ul class="nav-footer">
         <li class="nav-item">
           <%= sort_link(@search, :item_name, 'Item Name', default_order: :desc, class:"nav-link") %>
         </li>

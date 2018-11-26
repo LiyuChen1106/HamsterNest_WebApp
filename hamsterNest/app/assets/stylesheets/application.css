@@ -38,7 +38,12 @@ input[type=text] {
 }
 .nav-item{
   resize: both;
-  min-width: 120px;
+  min-width: 130px;
+  text-align: center;
+}
+
+.nav-footer{
+  color:black;
 }
 
 .navbar-custom {
@@ -49,7 +54,9 @@ input[type=text] {
   margin-bottom: 0px !important;
   width: 100%;
 }
-
+.nav-footer {
+  color:#000;
+}
 .container {
   width: 100%;
 }
@@ -137,53 +144,23 @@ input[type=text] {
   width:40%;
   margin-left: 100px;
 }
-.fa {
-    color: #000;
-    text-shadow: 1px 1px 1px #ccc;
-    font-size: 70px;
-    float: right;
-
-}
 
 .section-container { margin: 0 auto; padding-bottom: 80px; }
 .section-description p { margin-top: 20px; padding: 0 120px; }
 .section-description { margin-top: 60px; padding-bottom: 10px; }
 
-/***** Top content *****/
-
-.inner-bg { padding: 210px 0; }
-.top-content {
-  background:url('session1-3.jpg') no-repeat center top #FFF;
-  background-size: 100% 100%;
-  margin-left: 0px;
-}
-.top-content .text { color: #000; }
-.top-content .text h1 { margin-top: 25px; color: #000; }
-.top-content .description { margin: 10px 0 100px 0; }
-.top-content .description p { opacity: 1; }
-
-.top-content-login {
-  background:url('session1-2.jpg') no-repeat center top #FFF;
-  background-size: 100% 100%;
-  margin-left: 0px;
-  margin-bottom: 0px;
-}
-.top-content-login h1 { margin-bottom: 79px; color: #fff; }
-
-/***** Section 1 *****/
-
-.section-1-box { padding-top: 30px; text-align: left; }
-
-.section-1-box h3 { margin-top: 0; padding: 0 0 10px 0; }
-
-/***** Register now *****/
-.register-prompt {
-  text-align: center;
-}
-.section-3 {
-  text-align: center;
-}
-
 h1 {
   text-align: center;
+}
+
+.fa {
+    color: #000;
+    text-shadow: 1px 1px 1px #ccc;
+    font-size: 70px;
+    float: right;
+}
+
+.footer-icon {
+    font-size: 25px;
+    float: left;
 }
