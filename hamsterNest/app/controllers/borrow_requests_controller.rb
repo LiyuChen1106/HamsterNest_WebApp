@@ -53,8 +53,10 @@ class BorrowRequestsController < ApplicationController
     @max_start=0
     if @item.status==false
       @item.borrow_requests.each do |request|
-        if request.approval
-          @max_start = (request.return_date.to_date-Time.now.to_date).to_i + 1
+        if request.approval 
+          if (Time.now.to_date < request.return_date.to_date)
+            @max_start = (request.return_date.to_date-Time.now.to_date).to_i + 1
+          end
           if @max_start > @start_date
             @start_date=@max_start
           end
@@ -107,7 +109,9 @@ class BorrowRequestsController < ApplicationController
 
       if @borrow_request.approval == true
         flash[:notice] = "You have approved this request"
-        @borrow_request.item.update_attribute(:status, false)
+        if request.return_date.to_date == Time.now.to_date
+          @borrow_request.item.update_attribute(:status, false)
+        end
         UserMailer.with(lender: current_user, borrower: @borrower, item: @item, borrow_request: self).borrow_request_approved_email.deliver
       elsif @borrow_request.approval == false
         flash[:notice] = "You have rejected this request"
@@ -120,9 +124,11 @@ class BorrowRequestsController < ApplicationController
       @borrow_request.update_attribute(:return_status, params[:return_status])
 
       if @borrow_request.return_status == "1"
-        flash[:notice] = "set return status to 1"
+        flash[:notice] = "set return status as returned(1)"
       elsif @borrow_request.return_status == "2"
-        flash[:notice] = "set return status to 2"
+        flash[:notice] = "set return status as received (2)"
+        @borrow_request.item.update_attribute(:status, true)
+        @borrow_request.update_attribute(:actual_return_date, Time.now.to_date)
       end
     end
 

@@ -6,16 +6,10 @@
           <p>
             Borrow from your friends and the world around you.
           </p>
-          <p>
-            <%= link_to "About us", "/welcome/about" %>
-            </p>
-            <p>
-            <%= link_to "Contact Us", "/welcome/contact_us" %>
-          </p>
           <h3>Contact</h3>
-          <p><i class="fas fa-map-marker-alt"></i> V27 King's College Cir, Toronto, ON M5S 3H7</p>
-          <p><i class="fas fa-phone"></i> Phone: (416) 978-2011</p>
-          <p><i class="fas fa-envelope"></i> Email: <a href="mailto:hamster@nest.com">hamster@nest.com</a></p>
+          <p><i><%=fa_icon "map-marker", class:"footer-icon"%></i>&nbsp&nbsp&nbsp&nbsp27 King's College Cir, Toronto, ON M5S 3H7</p>
+          <p><i><%=fa_icon "phone", class:"footer-icon"%></i>&nbsp&nbspPhone: (416) 978-2011</p>
+          <p><i><%=fa_icon "envelope", class:"footer-icon"%></i>&nbspEmail: <a href="mailto:hamster@nest.com">hamster@nest.com</a></p>
         </div>
         <div class="col-md-4 col-lg-4 offset-lg-1">
 
@@ -43,6 +37,7 @@
               <% end %>
               Hamsternestofficial
             </p>
+
         </div>
       </div>
     </div>
@@ -54,11 +49,23 @@
           <p>&copy; HamsterNest 2018-2019</p>
         </div>
         <div class="col-md-7 footer-menu">
-          <nav class="navbar navbar-dark navbar-expand-md">
+          <nav class="navbar navbar-light navbar-expand-md">
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <a class="nav-link scroll-link text-muted" href="#top-content">Top</a>
+                <li class="nav-item nav-item-footer">
+                  <a class="nav-link scroll-link" href="#top-content">Top</a>
+                </li>
+                <li class="nav-item nav-item-footer">
+                  <a><%= link_to "    About us    ", "/welcome/about", class:"nav-link scroll-link" %></a>
+                </li>
+                <li class="nav-item nav-item-footer">
+                  <a><%= link_to "Terms of Service", "/welcome/terms_of_service", class:"nav-link scroll-link" %></a>
+                </li>
+                <li class="nav-item nav-item-footer">
+                  <a><%= link_to " Privacy Policy ", "/welcome/privacy_policy", class:"nav-link scroll-link" %></a>
+                </li>
+                <li class="nav-item nav-item-footer">
+                  <a><%= link_to "     FAQ       ", "/welcome/faq", class:"nav-link scroll-link" %></a>
                 </li>
               </ul>
             </div>
