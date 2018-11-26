@@ -1,9 +1,16 @@
 <%- if user_signed_in? %>
-<h1>Welcome!!!!
-  <%=@user_name%>
-</h1>
-
-<body>Who doesn't like commercial?</body>
+<!-- Top content -->
+<div class="top-content-login">
+  <div class="inner-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2 text">
+          <h1 class="wow fadeInLeftBig">Welcome back, my friend <%=@user_name%></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <% else %>
 <!-- Top content -->
 <div class="top-content">
@@ -22,10 +29,8 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
-
 </div>
 
 <!-- Section 1 -->

@@ -162,6 +162,14 @@ input[type=text] {
 .top-content .description { margin: 10px 0 100px 0; }
 .top-content .description p { opacity: 1; }
 
+.top-content-login {
+  background:url('session1-2.jpg') no-repeat center top #FFF;
+  background-size: 100% 100%;
+  margin-left: 0px;
+  margin-bottom: 0px;
+}
+.top-content-login h1 { margin-bottom: 79px; color: #fff; }
+
 /***** Section 1 *****/
 
 .section-1-box { padding-top: 30px; text-align: left; }
