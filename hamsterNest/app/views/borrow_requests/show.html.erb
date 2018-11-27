@@ -1,4 +1,4 @@
-<h1>Listing borrow request (internal test)</h1>
+<h2>Request Details</h2>
  
 <p>
   <strong>Item name:</strong>
@@ -9,8 +9,12 @@
   <%= @item.quantity %>
 </p>
 <p>
-  <strong>Return date:</strong>
-  <%= @borrow_request.return_date%>
+  <strong>Borrow period:</strong>
+  <%=@borrow_request.borrow_date%> to <%= @borrow_request.return_date%> 
+</p>
+<p>
+  <strong>Lender:</strong>
+  <%= @owner.username%>
 </p>
 <p>
   <strong>Borrower:</strong>
@@ -26,13 +30,19 @@
     <p><%= link_to 'Return Item',  item_borrow_request_path(:item_id=>@item.id, 
                                     :id=>@borrow_request.id,:return_status => 1), :method=> :put%></p>
   <% elsif @borrow_request.return_status == 1 %>
-    <strong><p>Waiting for receipt confirm</p></strong>
+    <strong><p>
+    Waiting for 
+    <%= @owner.username %>
+    receipt confirm
+    </p></strong>
   <% elsif @borrow_request.return_status == 2 %>
     <strong><p>Item Returned</p></strong>
   <% end %>
-  <%= link_to 'Cancel Request', item_borrow_request_path(@borrow_request),
+  <% if !((@borrow_request.approval) && (@borrow_request.borrow_date.to_date<Time.now.to_date))%>
+    <%= link_to 'Cancel Request', item_borrow_request_path(@borrow_request),
     method: :delete,
-    data: {confirm: 'Are you sure to cancel the request?'} %> 
+    data: {confirm: 'Are you sure to cancel the request?'} %>
+  <%end%>
 
 <% else %>
   <% if @borrow_request.approval.nil? %>

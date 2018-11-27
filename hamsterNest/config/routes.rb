@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  # For test for Gmap
+#  resources :gmap
+  
   # ROOT
   root "welcome#index"
 
@@ -7,6 +11,10 @@ Rails.application.routes.draw do
   get "welcome", to: "welcome#index"
 
   get "welcome/about"
+  get "welcome/contact_us"
+  get "welcome/terms_of_service"
+  get "welcome/privacy_policy"
+  get "welcome/faq"
 
   # Pages
   get "borrow_from_others", to: "user_profiles#borrow_from_others"
@@ -14,10 +22,10 @@ Rails.application.routes.draw do
   # Resources
   resources :items
   resources :user_profiles, :path => "account/profiles"
-  resources :histories
   resources :categories
 
   get "lend_to_others", to: "user_profiles#lend_to_others"
+  get "lend_rating", to: "user_profiles#lend_rating"
 
   resources :user_profiles do
     resources :items

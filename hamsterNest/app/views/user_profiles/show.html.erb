@@ -1,37 +1,48 @@
-<h1>Listing user profile (internal test)</h1>
 <div class="show_user_profile">
-<p>
-  <strong>User Name:</strong>
-  <%= @user_profile.username %>
-</p>
+  <h1>Profile</h1>
+  <p>
+    <strong>Username:</strong>
+    <%= @user_profile.username %>
+  </p>
 
-<p>
-  <strong>First Name:</strong>
-  <%= @user_profile.first_name %>
-</p>
-
-<p>
-  <strong>Last Name:</strong>
-  <%= @user_profile.last_name %>
-</p>
-
-<p>
-  <strong>Birth:</strong>
-  <%= @user_profile.birthday %>
-</p>
-
-<p>
-  <% if @user_profile.avatar.attached? %>
-    <%= image_tag @user_profile.avatar.variant(resize: "100x100") %>
-  <% end %>
-</p>
+  <% @isMyProfile = (current_user.user_profile == @user_profile) %>
+  <% @isNameComplete = (@user_profile.first_name != "" || @user_profile.last_name != "") %>
+  <p>
+    <% if @isMyProfile || (!@isMyProfile && @isNameComplete) %>
+      <strong>Full name:</strong>
+      <%= "#{@user_profile.first_name} #{@user_profile.last_name}"%>
+    <% end %>
+  </p>
   
-<p>
-  <strong>Address:</strong><br>
-  <%= @user_profile.address['street_address'] %><br>
-  <%= @user_profile.address['city'] %>, <%= getProvinceName(@user_profile.address['province_id']) %><br>
-  <%= @user_profile.address['postal_code'] %><br>
-</p>
+  <p>
+    <% if !@isMyProfile %>
+      <strong>Email</strong>
+      <%= mail_to @user_profile.user.email%>
+    <% end %>
+  </p>
 
-<%= link_to 'Edit', edit_user_profile_path(@user_profile), :class => "btn btn-primary"%><br>
-<!--%= link_to 'Back to Home page', root_path %-->
+  <!--
+  <p>
+    <strong>Birth:</strong>
+    <%= @user_profile.birthday %>
+  </p>
+  -->
+
+  <p>
+    <% if @user_profile.avatar.attached? %>
+      <%= image_tag @user_profile.avatar.variant(resize: "100x100") %>
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Address:</strong><br>
+    <%= @user_profile.address['street_address'] %><br>
+    <%= @user_profile.address['city'] %>, <%= getProvinceName(@user_profile.address['province_id']) %><br>
+    <%= @user_profile.address['postal_code'] %><br>
+  </p>
+
+  <% if @isMyProfile %>
+    <%= link_to 'Edit', edit_user_profile_path(@user_profile), :class => "btn btn-primary"%><br>
+  <% end %>
+  <!--%= link_to 'Back to Home page', root_path %-->
+</div>

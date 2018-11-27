@@ -3,27 +3,85 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAxMC8yOS8xMiKqq3kAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzVxteM2AAABHklEQVRIib2Vyw6EIAxFW5idr///Qx9sfG3pLEyJ3tAwi5EmBqRo7vHawiEEERHS6x7MTMxMVv6+z3tPMUYSkfTM/R0fEaG2bbMv+Gc4nZzn+dN4HAcREa3r+hi3bcuu68jLskhVIlW073tWaYlQ9+F9IpqmSfq+fwskhdO/AwmUTJXrOuaRQNeRkOd5lq7rXmS5InmERKoER/QMvUAPlZDHcZRhGN4CSeGY+aHMqgcks5RrHv/eeh455x5KrMq2yHQdibDO6ncG/KZWL7M8xDyS1/MIO0NJqdULLS81X6/X6aR0nqBSJcPeZnlZrzN477NKURn2Nus8sjzmEII0TfMiyxUuxphVWjpJkbx0btUnshRihVv70Bv8ItXq6Asoi/ZiCbU6YgAAAABJRU5ErkJggg==);}
 
-.introduction{
-    padding-top: 20px;
-    padding-bottom: 100px;
-    padding-left: 40px;
-}
-//make the orginal flash do not display
-//instead, use new method defined in html.erb to display flash message
-.notice{
-    display: none;
-}
-.footer{
-    margin-top:100px;
-    margin-left: 60%;
-}
-.column1{
-    float: left;
-    padding: 15px;   
-    position: relative;
-    left:30px;
-}
+
 .social-icon{
     width: 40px;
     height: 40px;
+}
+
+/***** Top content *****/
+
+.inner-bg { padding: 210px 0; }
+.top-content {
+  background:url('session1-3.jpg') no-repeat center top #FFF;
+  background-size: 100% 100%;
+  margin-left: 0px;
+}
+.top-content .text { color: #000; }
+.top-content .text h1 { margin-top: 25px; color: #000; }
+.top-content .description { margin: 10px 0 100px 0; }
+.top-content .description p { opacity: 1; }
+
+.top-content-login {
+  background:url('session1-2.jpg') no-repeat center top #FFF;
+  background-size: 100% 100%;
+  margin-left: 0px;
+  margin-bottom: 0px;
+}
+.top-content-login h1 { margin-bottom: 79px; color: #fff; }
+
+/***** Section 1 *****/
+
+.section-1-box { padding-top: 30px; text-align: left; }
+
+.section-1-box h3 { margin-top: 0; padding: 0 0 10px 0; }
+
+/***** Register now *****/
+.register-prompt {
+  text-align: center;
+}
+.section-3 {
+  text-align: center;
+}
+
+/***** FAQ *****/
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+.faqHeader {
+    font-size: 27px;
+    margin: 20px;
+}
+
+.panel-heading [data-toggle="collapse"]:after {
+    font-family: 'FontAwesome';
+    content: "\f078"; /* "play" icon */
+    float: right;
+    color: #F58723;
+    font-size: 18px;
+    line-height: 22px;
+    /* rotate "play" icon from > (right arrow) to down arrow */
+/*    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg); */
+}
+
+.panel-heading [data-toggle="collapse"].collapsed:after {
+    /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+/*    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg); */
+    color: #454444;
+}
+
+/* ------- FAQ end --------- */
+
+/* ------- privacy policy, terms of service, about page --------- */
+.policy,.terms_of_service,.about_page{
+  margin: 40px;
+}
+.about_page{
+  font-size: 16px;
 }

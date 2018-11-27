@@ -1,7 +1,7 @@
-<body>
+
 <p>
   <strong>Owner: </strong>
-  <%= @item.user_profile.username %>
+  <%= link_to @item.user_profile.username, user_profile_path(@item.user_profile.id) %>
 </p>
 <p>
   <strong>Item: </strong>
@@ -39,4 +39,3 @@
 	      data: { confirm: 'Are you sure?'} %></td> |
   <%= link_to 'Back', user_profile_items_path %>
 <% end %>
-</body>

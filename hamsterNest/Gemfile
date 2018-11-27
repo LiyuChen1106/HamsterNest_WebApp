@@ -47,16 +47,33 @@ gem 'ransack'
 
 # JQuery and Bootstrap
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'bootstrap'
+
+# gon library for javascript
+gem 'gon'
 
 # resize images
 gem 'mini_magick'
 
+# fa icons
+gem "font-awesome-rails"
+
 # storage for production
 gem 'aws-sdk-s3', require: false
 
+# Google map and Geocoder
+gem 'gmaps4rails'
+gem 'geocoder'
+
 # table_print
 gem 'table_print'
+
+#admin
+gem 'rails_admin', '~> 1.3'
+
+#use CanCanCan gem to restrict access to some parts of app for users with specific roles
+gem 'cancancan'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -78,6 +95,9 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  # add cucumber for behaviral driven development testing
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

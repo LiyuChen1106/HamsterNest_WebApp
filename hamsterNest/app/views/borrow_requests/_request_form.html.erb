@@ -1,7 +1,7 @@
 <div class = "request_form" >
 
   <h1>Borrow request information</h1>
-  
+
   <%= form_with(model: [ @item, @item.borrow_requests.build ], local: true) do |form| %>
   <!-- check if any error -->
   <% if @item.errors.any? %>
@@ -40,18 +40,18 @@
     </p>
 
     <p>
-      <%= form.label :borrow_date, "borrow_date" %><br>
-      <%= form.date_select :borrow_date, :start_year=>Time.now.year, :end_year=>Time.now.year+1%>
+      <%= form.label :borrow_date, "borrow_date" %>
+      <%= form.date_select :borrow_date, :start_year=>Time.now.year, :end_year =>Time.now.year+1%>
     </p>
-
     <p>
-      <%= form.label :return_date, "return_date" %><br>
-      <%= form.date_select :return_date, :start_year=>Time.now.year, :end_year=>Time.now.year+1%>
+      <%= form.label :return_date, "return_date" %>
+      <%= form.date_select :return_date,  :start_year=>Time.now.year, :end_year =>Time.now.year+1%>
     </p>
 
+ 
     <p>
       <%= form.label :request_message, "message" %><br>
-      <%= form.text_field :request_message%>
+      <%= form.text_area :request_message%>
     </p>
     </div>
 

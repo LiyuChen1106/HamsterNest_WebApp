@@ -11,6 +11,8 @@
     <th>city</th>
     <th>province</th>
     <th>postal_code</th>
+    <th>latitude</th>
+    <th>longitude</th>
     <th></th>
   </tr>
  
@@ -28,6 +30,8 @@
         <td><%= user_profile.address['province_id'] %></td>
         <td><%= user_profile.address['postal_code'] %></td>
       <%end%>
+      <td><%= user_profile.latitude %></td>
+      <td><%= user_profile.longitude %></td>
       <td><!--%= user_account.salt %--></td>
       <td><!--%= link_to 'Show', user_profile_path(user_profile) %--></td>
       <td><!--%= link_to 'Edit', edit_user_profile_path(user_profile) %--></td>

@@ -1,37 +1,43 @@
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-<!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-<div class="container search_field" id="search-box">
-  <%= search_form_for @search, html: {class: "navbar-form navbar-left"} do |f| %>
-    <%= f.search_field :item_name_or_description_cont, class: "form-control mr-sm-2", placeholder: "Search Items" %>
-    <%= f.submit "Search", class: "btn btn-light" %>
+<div class="search_field-custom" id="search-box">
+  <%= search_form_for @search, html: {class: ""} do |f| %>
+  <div class="row search-row">
+    <div class="search-text">
+      <%= f.search_field :item_name_or_description_cont, class: "form-control", placeholder: "Search Items" %>
+    </div><br />
+    <div class="search-submit">
+      <%= f.submit "Search", class: "btn btn-light" %>
+    </div>
+  </div>
   <% end %>
 
   <span id="advanced-search-span">
-  <button class="btn btn-outline-warning" type="button" data-toggle="collapse" data-target="#advanced-search">
-    Advanced Search
-  </button>
+    <div>
+      <button class="btn-sm btn-outline-warning advanced-search-button" type="button" data-toggle="collapse" data-target="#advanced-search">
+        Advanced Search
+      </button>
+    </div>
 
-  <div id="advanced-search" class="collapse navbar-form navbar-left">
-    <%= search_form_for @search do |f| %>
-    <ul class = "navbar-left list-inline">
-      <li class ="list-inline-item">
-      <%=f.label :item_name_cont, 'Item Name'%>
-      <%=f.text_field :item_name_cont%>
-      </li>
+    <div id="advanced-search" class="collapse navbar-form navbar-left">
+      <%= search_form_for @search do |f| %>
+      <ul class="navbar-left list-inline">
+        <li class="list-inline-item">
+          <%=f.label :item_name_cont, 'Item Name'%>
+          <%=f.text_field :item_name_cont%>
+        </li>
 
-      <li class ="list-inline-item">
-      <%=f.label :description_cont, 'Item Description'%>
-      <%=f.text_field :description_cont, class:"text"%>
-      </li>
+        <li class="list-inline-item">
+          <%=f.label :description_cont, 'Item Description'%>
+          <%=f.text_field :description_cont, class:"text"%>
+        </li>
 
-      <li class ="list-inline-item">
-      <%=f.label :status, 'Available'%>
-      <%=f.check_box :status_eq%>
-      </li>
+        <li class="list-inline-item">
+          <%=f.label :status, 'Available'%>
+          <%=f.check_box :status_eq%>
+        </li>
       </ul>
       <%= f.submit "Search", class: "radius button"%>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
   </span>
 </div>
 

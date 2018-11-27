@@ -6,3 +6,76 @@
 .list-inline-item {
   color: #FFFFFF;
 }
+
+.nav {
+    padding:20px;
+    margin-left: 10%;
+}
+
+.nav li a {
+    margin:5px;
+    padding: 15px 50px;
+    font-size:16px;
+}
+
+.Portfolio {
+    position: relative;
+    margin: 5px;
+    border: 2px solid #406566;
+    float: left;
+    width: 180px;
+    border-radius: 5px;
+    box-shadow:0 3px 5px -1px rgba(0,0,0,.2),0 5px 8px 0 rgba(0,0,0,.14),0 1px 14px 0 rgba(0,0,0,.12)
+}
+
+.Portfolio:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+}
+
+.Portfolio img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px
+}
+
+.desc {
+    padding: 5px;
+    text-align: left;
+    font-size: 90%;
+    background:#406566;
+    color:white;
+}
+
+.nav .active {
+    color:#406566;
+}
+
+.container-fluid {
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+
+.search-text {
+  width: 50%;
+  overflow: visible;
+  margin-left: 15px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.search-submit {
+  width: 10%;
+}
+
+.search-row {
+  width: 100%;
+}
+
+form {
+  overflow: visible;
+}
+
+#advanced-search-span {
+  font-size: 13px;
+}

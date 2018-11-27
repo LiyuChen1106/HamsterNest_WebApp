@@ -3,7 +3,7 @@ module SessionsHelper
     if current_user == nil
       false
     else
-    User.find(current_user.id).user_profile.username == ""
+    User.find(current_user.id).user_profile.birthday.nil?
     end
   end
 end

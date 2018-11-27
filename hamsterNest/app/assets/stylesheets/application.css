@@ -10,10 +10,11 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require jquery-ui
  *= require_tree .
  *= require_self
  */
-
+@import "font-awesome";
  .col-1 {width: 8.33%;}
  .col-2 {width: 16.66%;}
  .col-3 {width: 25%;}
@@ -35,9 +36,35 @@
 input[type=text] {
     color: black !important;
 }
+
+.navbar-brand-custom {
+  width: 20%;
+}
+
+.navbar-brand-text {
+  color: white;
+  font-size: 20px;
+}
+
+.navbar-brand-text-only {
+  color: white;
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+.search_field-custom {
+  margin-top: 10px;
+  overflow: visible;
+}
+
 .nav-item{
   resize: both;
-  min-width: 120px;
+  min-width: 130px;
+  text-align: center;
+}
+
+.nav-item-footer{
+  color:black;
 }
 
 .navbar-custom {
@@ -45,11 +72,24 @@ input[type=text] {
   min-height: 70px !important;
   top:0;
   left:0;
+  margin-bottom: 0px !important;
   width: 100%;
 }
 
 .container {
   width: 100%;
+}
+
+.text-form{
+    padding: 100px;
+}
+
+.field{
+    margin-top: 20px;
+}
+
+.actions{
+    margin-top: 30px;
 }
 
 #hamster-nest {
@@ -75,12 +115,11 @@ input[type=text] {
   width: 70%;
 }
 
-/* #advanced-search-span {
-  position:relative;
-} */
-
 #top-banner {
-  top:0;
+  top:0px !important;
+  padding: 0px;
+  box-sizing: border-box;
+  display:block;
   overflow:visible;
   position:relative;
   width: 100%;
@@ -88,21 +127,35 @@ input[type=text] {
 
 #main-body {
   overflow: hidden;
+  padding: 0px;
+  display:block;
   position:relative;
   width: 100%;
+  margin: 0 auto;
 }
 
 #footer {
   padding: 0;
+  padding: 0px;
   overflow: hidden;
+  display:block;
   position:relative;
   width: 100%;
+  background:url('footer.jpg') no-repeat center top #FFF;
+  background-size: 100% 100%;
 }
+
+#section-1-container {
+  width: 100%;
+  background:url('session1.jpg') no-repeat center top #FFF;
+  background-size: 100% 100%;
+}
+
 .alert {
   position:absolute;
   top:0px;
   width: 100%;
-  opacity:0.6 !important;
+  opacity:0.8 !important;
 }
 
 .field_with_errors {
@@ -119,10 +172,25 @@ input[type=text] {
     border-color: #eed3d7;
     color: #b94a48;
     text-align: left;
-    width:40%;
  }
 
-.alert-danger {
-  width:40%;
-  margin-left: 100px;
+.section-container { margin: 0 auto; padding-bottom: 80px; }
+.section-description p { margin-top: 20px; padding: 0 120px; }
+.section-description { margin-top: 60px; padding-bottom: 10px; }
+
+h1 {
+  text-align: center;
 }
+
+.fa {
+    color: #000;
+    text-shadow: 1px 1px 1px #ccc;
+    font-size: 70px;
+    float: right;
+}
+
+.footer-icon {
+    font-size: 25px;
+    float: left;
+}
+body { margin:0px; }
