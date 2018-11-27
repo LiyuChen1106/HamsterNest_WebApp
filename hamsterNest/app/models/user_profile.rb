@@ -14,7 +14,7 @@ class UserProfile < ApplicationRecord
   validate :address_exists?
   geocoded_by :address
   after_validation :geocode
-
+  validates :lend_rating, numericality: { greater_than: 0, less_than: 6 }
   after_save :update_profile_id_in_users
 
   def update_profile_id_in_users

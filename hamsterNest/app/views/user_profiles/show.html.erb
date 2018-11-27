@@ -29,6 +29,16 @@
   -->
 
   <p>
+    <strong>Lend Rating:</strong>
+    <% @user_profile.lend_rating.to_i.times do  %>
+      <span class="glyphicon glyphicon-star"></span>
+     <% end %>
+     <%(5 - @user_profile.lend_rating).to_i.times do %>
+     <span class="glyphicon glyphicon-star-empty"></span>
+     <% end %>
+  </p>
+  
+  <p>
     <% if @user_profile.avatar.attached? %>
       <%= image_tag @user_profile.avatar.variant(resize: "100x100") %>
     <% end %>
