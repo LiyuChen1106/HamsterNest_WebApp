@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2018_11_27_220138) do
     t.boolean "read_status", default: false
     t.integer "return_status", default: 0
     t.date "actual_return_date"
+    t.date "actual_borrow_date"
     t.index ["item_id"], name: "index_borrow_requests_on_item_id"
     t.index ["user_profile_id"], name: "index_borrow_requests_on_user_profile_id"
   end

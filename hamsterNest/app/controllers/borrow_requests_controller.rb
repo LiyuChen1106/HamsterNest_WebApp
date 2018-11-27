@@ -119,8 +119,11 @@ class BorrowRequestsController < ApplicationController
     end
 
     # return to item page
-    redirect_to item_borrow_request_path(:item_id => @item.id, :id => @borrow_request.id)
-
+    if @borrow_request.return_status == 1
+      redirect_to lend_rating_path(:id => @borrow_request.item.user_profile.id)
+    else
+      redirect_to item_borrow_request_path(:item_id => @item.id, :id => @borrow_request.id)
+    end
     #    if @borrow_request.update(request_params)
     #      flash[:notice] = "Borrow request updated."
     #      redirect_to item_borrow_request(:item_id => @item.id, :id => @borrow_request.id)
