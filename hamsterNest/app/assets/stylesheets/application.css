@@ -46,6 +46,12 @@ input[type=text] {
   font-size: 20px;
 }
 
+.navbar-brand-text-only {
+  color: white;
+  font-size: 20px;
+  margin-left: 20px;
+}
+
 .search_field-custom {
   margin-top: 10px;
   overflow: visible;
@@ -166,13 +172,7 @@ input[type=text] {
     border-color: #eed3d7;
     color: #b94a48;
     text-align: left;
-    width:40%;
  }
-
-.alert-danger {
-  width:40%;
-  margin-left: 100px;
-}
 
 .section-container { margin: 0 auto; padding-bottom: 80px; }
 .section-description p { margin-top: 20px; padding: 0 120px; }
