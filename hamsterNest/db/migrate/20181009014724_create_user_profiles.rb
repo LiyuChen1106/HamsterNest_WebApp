@@ -6,8 +6,8 @@ class CreateUserProfiles < ActiveRecord::Migration[5.2]
       t.string :first_name
       t.string :last_name
       t.date :birthday
-      t.integer :lend_rating
-      t.integer :borrow_rating
+      t.integer :lend_rating, default:0
+      t.integer :borrow_rating, default:0
       #t.references :items_list, index: true, foreign_key: {to_table: :items}
       #t.references :friends_list, index: true, foreign_key: { to_table: :user_profiles }
 
