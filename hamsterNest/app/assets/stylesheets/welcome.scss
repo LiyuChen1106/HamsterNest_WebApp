@@ -77,3 +77,11 @@ body { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAA
 }
 
 /* ------- FAQ end --------- */
+
+/* ------- privacy policy, terms of service, about page --------- */
+.policy,.terms_of_service,.about_page{
+  margin: 40px;
+}
+.about_page{
+  font-size: 16px;
+}
