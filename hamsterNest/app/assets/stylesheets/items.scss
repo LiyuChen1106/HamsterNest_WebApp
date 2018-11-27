@@ -9,7 +9,7 @@
 
 .nav {
     padding:20px;
-    margin-left:40%;
+    margin-left: 10%;
 }
 
 .nav li a {
@@ -53,4 +53,29 @@
 .container-fluid {
     margin-top:20px;
     margin-bottom:20px;
+}
+
+
+.search-text {
+  width: 50%;
+  overflow: visible;
+  margin-left: 15px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.search-submit {
+  width: 10%;
+}
+
+.search-row {
+  width: 100%;
+}
+
+form {
+  overflow: visible;
+}
+
+#advanced-search-span {
+  font-size: 13px;
 }

@@ -1,19 +1,20 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
 
+<div class="navbar-brand-custom">
   <%- if registerInProgress %>
-  <div class="navbar-brand float-left" href="#">Hamster Nest</div>
+  <div class="float-left navbar-brand-text" href="#">Hamster Nest</div>
   <%- else %>
   <%= link_to root_path do %>
-  <div id="hamster-nest" class="navbar-brand">Hamster Nest</div>
+  <div id="hamster-nest" class="float-left navbar-brand-text">Hamster Nest</div>
   <% end %>
   <% end %>
+  </div>
 
   <%- if user_signed_in? && !registerInProgress %>
   <%= render "items/item_search_box" %>
   <% else %>
-  <div class="container search_field" id="search-box">
+  <div class="container" id="search-box">
   </div>
   <% end %>
 

@@ -36,6 +36,21 @@
 input[type=text] {
     color: black !important;
 }
+
+.navbar-brand-custom {
+  width: 20%;
+}
+
+.navbar-brand-text {
+  color: white;
+  font-size: 20px;
+}
+
+.search_field-custom {
+  margin-top: 10px;
+  overflow: visible;
+}
+
 .nav-item{
   resize: both;
   min-width: 130px;
@@ -94,12 +109,11 @@ input[type=text] {
   width: 70%;
 }
 
-/* #advanced-search-span {
-  position:relative;
-} */
-
 #top-banner {
-  top:0;
+  top:0px !important;
+  padding: 0px;
+  box-sizing: border-box;
+  display:block;
   overflow:visible;
   position:relative;
   width: 100%;
@@ -107,13 +121,18 @@ input[type=text] {
 
 #main-body {
   overflow: hidden;
+  padding: 0px;
+  display:block;
   position:relative;
   width: 100%;
+  margin: 0 auto;
 }
 
 #footer {
   padding: 0;
+  padding: 0px;
   overflow: hidden;
+  display:block;
   position:relative;
   width: 100%;
   background:url('footer.jpg') no-repeat center top #FFF;
@@ -174,3 +193,4 @@ h1 {
     font-size: 25px;
     float: left;
 }
+body { margin:0px; }
