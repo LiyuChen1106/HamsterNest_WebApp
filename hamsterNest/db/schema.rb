@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_22_031240) do
+ActiveRecord::Schema.define(version: 2018_11_25_221509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2018_11_22_031240) do
     t.integer "quantity", default: 1
     t.boolean "read_status", default: false
     t.integer "return_status", default: 0
+    t.date "actual_return_date"
     t.index ["item_id"], name: "index_borrow_requests_on_item_id"
     t.index ["user_profile_id"], name: "index_borrow_requests_on_user_profile_id"
   end
@@ -59,15 +60,15 @@ ActiveRecord::Schema.define(version: 2018_11_22_031240) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "histories", force: :cascade do |t|
-    t.integer "item_id"
-    t.integer "borrower_id"
-    t.date "lend_date"
-    t.date "return_date"
+  create_table "comments", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "user_profile_id", null: false
+    t.date "comment_date", null: false
+    t.string "comment_message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["borrower_id"], name: "index_histories_on_borrower_id"
-    t.index ["item_id"], name: "index_histories_on_item_id"
+    t.index ["item_id"], name: "index_comments_on_item_id"
+    t.index ["user_profile_id"], name: "index_comments_on_user_profile_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -101,6 +102,10 @@ ActiveRecord::Schema.define(version: 2018_11_22_031240) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.hstore "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.integer "lpeople", default: 0
+    t.integer "bpeople", default: 0
     t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
@@ -124,10 +129,15 @@ ActiveRecord::Schema.define(version: 2018_11_22_031240) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.integer "user_profile_id"
+    t.boolean "superadmin_role", default: false
+    t.boolean "supervisor_role", default: false
+    t.boolean "user_role", default: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["user_profile_id"], name: "index_users_on_user_profile_id"
   end
 
+  add_foreign_key "comments", "items"
+  add_foreign_key "comments", "user_profiles"
 end
