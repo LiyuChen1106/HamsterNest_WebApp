@@ -49,17 +49,17 @@ class BorrowRequestsController < ApplicationController
     @owner = @item.user_profile
     @owner_name = @owner.username
     @borrower_id = current_user.id
-    @start_date = 0
+    @start_date = Date.today
     @end_date = 0
-    @max_start=0
+    @max_start=Date.today
     if @item.status==false
       @item.borrow_requests.each do |request|
-        if request.approval 
-          if (Time.now.to_date < request.return_date.to_date)
-            @max_start = (request.return_date.to_date-Time.now.to_date).to_i + 1
+        if request.approval && request.return_status!=2
+          if Date.today <= request.return_date && Date.today >= request.borrow_date
+            @max_start = request.return_date
           end
           if @max_start > @start_date
-            @start_date=@max_start
+            @start_date=@max_start+1
           end
         end
       end
@@ -137,9 +137,13 @@ class BorrowRequestsController < ApplicationController
       @borrow_request.update(:read_status => params[:read_status])
       flash[:notice] = "update read_status"
     end
-
+    
     # return to item page
-    redirect_to item_borrow_request_path(:item_id => @item.id, :id => @borrow_request.id)
+    if @borrow_request.return_status == 1
+      redirect_to lend_rating_path(:id => @borrow_request.item.user_profile.id)
+    else
+      redirect_to item_borrow_request_path(:item_id => @item.id, :id => @borrow_request.id)
+    end
 
     #    if @borrow_request.update(request_params)
     #      flash[:notice] = "Borrow request updated."
