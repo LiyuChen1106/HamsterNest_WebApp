@@ -3,6 +3,7 @@ class Item < ApplicationRecord
   belongs_to :user_profile
   belongs_to :category
   has_many :borrow_requests, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_one_attached :image
 
   # validations

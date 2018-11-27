@@ -2,6 +2,7 @@ class UserProfile < ApplicationRecord
   belongs_to :user, optional: true
   has_many :items, dependent: :destroy
   has_many :borrow_requests, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_one_attached :avatar
   # Validation for avatar
   # Validate content type
@@ -12,15 +13,29 @@ class UserProfile < ApplicationRecord
   # validate postal code must exist
   validates :username, presence: {message: "must exist"}
   validate :address_exists?
+  validate :rating?
   geocoded_by :address
   after_validation :geocode
-  validates :lend_rating, numericality: { greater_than: 0, less_than: 6 }
+
   after_save :update_profile_id_in_users
 
   def update_profile_id_in_users
     @user = User.find(self.user_id)
     if @user.present?
       @user.update_attribute(:user_profile_id, self.id)
+    end
+  end
+
+  def rating?
+    if self[:lend_rating]==nil
+      return
+    end
+
+    if self[:lend_rating] > 5
+      self.errors.add(:lend_rating,"can not be greater than 5")
+    end
+    if self[:lend_rating] < 0
+      self.errors.add(:lend_rating,"can not be smaller than 0")
     end
   end
 
