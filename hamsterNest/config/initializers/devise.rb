@@ -18,7 +18,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = '"hamsternest.com" <welcome@hamsternest.com>'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -148,7 +148,7 @@ Devise.setup do |config|
   config.confirmation_keys = [:email]
   
   # For testing sending email on local
-  config.mailer_sender = "sender@mail.com"
+  config.mailer_sender = "welcome@hamsternest.com"
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
