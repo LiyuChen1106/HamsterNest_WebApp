@@ -40,16 +40,16 @@
       <%= form.number_field :quantity%>
     </p>
     -->
-
-    <p>
-      <%= form.label :borrow_date, "borrow_date" %>
-      <%= form.date_select :borrow_date, :start_year=>Time.now.year, :end_year =>Time.now.year+1%>
-    </p>
-    <p>
-      <%= form.label :return_date, "return_date" %>
-      <%= form.date_select :return_date,  :start_year=>Time.now.year, :end_year =>Time.now.year+1%>
-    </p>
-
+  <table>
+    <tr>
+      <td><%= form.label :borrow_date, "borrow_date" %></td>
+      <td><%= form.label :return_date, "return_date" %></td>
+    </tr>
+    <tr>
+      <td><%= form.date_field :borrow_date, min: @start_date %></td>
+      <td><%= form.date_field :return_date, min: @start_date %></td>
+    </tr>
+  <table>
  
     <p>
       <%= form.label :request_message, "message" %><br>
