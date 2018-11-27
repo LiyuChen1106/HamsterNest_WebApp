@@ -59,6 +59,10 @@ input[type=text] {
   width: 100%;
 }
 
+.text-form{
+    padding: 100px;
+}
+
 #hamster-nest {
   left:20%;
   position:relative;
