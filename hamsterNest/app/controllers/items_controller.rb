@@ -27,10 +27,12 @@ class ItemsController < ApplicationController
     elsif !@unlogin
       @user_profile = UserProfile.find(params[:user_profile_id])
       @search_items = @user_profile.items
+      @search_words = ""
     else
       @search_items = Item.all
+      @search_words = ""
     end
-    
+
     @markers = load_markers(@search_items)
     @current_latlon = {:lat => current_user.user_profile.latitude, :lng => current_user.user_profile.longitude}
   end
@@ -85,26 +87,26 @@ class ItemsController < ApplicationController
 
     redirect_to user_profile_items_path
   end
-  
-  def load_markers(search_items)  
-   @load_markers = Gmaps4rails.build_markers(search_items.all) do |item, marker|  
-      
+
+  def load_markers(search_items)
+   @load_markers = Gmaps4rails.build_markers(search_items.all) do |item, marker|
+
     @item = item
     @user_profile = @item.user_profile
 
-    marker.lat @user_profile.latitude  
-    marker.lng @user_profile.longitude 
+    marker.lat @user_profile.latitude
+    marker.lng @user_profile.longitude
 
     @status = @item.status
     @category = @item.category_id
 
     if @status == true
-      @status = "Available"  
-    else  
-      @status = "Currently unavailable"  
-    end  
+      @status = "Available"
+    else
+      @status = "Currently unavailable"
+    end
 
-    marker.infowindow render_to_string(:partial => "/gmap/template", :locals => {:item => @item, :status => @status})  
+    marker.infowindow render_to_string(:partial => "/gmap/template", :locals => {:item => @item, :status => @status})
     end
   end
 
@@ -114,5 +116,5 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:item_name, :category_id, :quantity, :status,
                                  :search_text, :image, :description)
   end
-    
+
 end
