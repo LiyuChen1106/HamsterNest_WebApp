@@ -16,10 +16,12 @@ class UserProfilesController < ApplicationController
   end
 
   def create
+   
     @user_profile = UserProfile.new(profile_params)
     #    @user_profile.auto_fill_username_and_account(current_user)
 
     if @user_profile.save
+      @user_profile.update(:lend_rating=>0)
       flash[:notice] = "Profile added"
       redirect_to :root
     else
@@ -78,7 +80,7 @@ class UserProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:user_profile).permit(:account_id, :username, :first_name, :last_name, :birthday, :avatar, address: [:street_address, :city, :province_id, :postal_code])
+    params.require(:user_profile).permit(:account_id, :username, :first_name, :last_name, :birthday,:avatar, address: [:street_address, :city, :province_id, :postal_code])
   end
 
   def rate_params
