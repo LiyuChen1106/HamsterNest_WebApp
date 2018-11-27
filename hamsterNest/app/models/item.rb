@@ -10,7 +10,8 @@ class Item < ApplicationRecord
   validates :description, length: {maximum: 200}
   validates :item_name, presence: true,
                         length: {maximum: 20}
-  validates :quantity, numericality: {only_integer: true, greater_than: 0}
+  #no quantity right now
+  #validates :quantity, numericality: {only_integer: true, greater_than: 0}
 
   # Validation for image
   # Validate content type
@@ -20,13 +21,13 @@ class Item < ApplicationRecord
 
   # actions
   before_create :set_default_image
-  after_create :set_left_quantity
+  #after_create :set_left_quantity
 
   private
 
-  def set_left_quantity
-    self.left_quantity = self.quantity
-  end
+  #def set_left_quantity
+  #  self.left_quantity = self.quantity
+  #end
 
   def set_default_image
     if !self.image.attached?

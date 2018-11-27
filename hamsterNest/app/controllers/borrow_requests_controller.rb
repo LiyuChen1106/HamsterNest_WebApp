@@ -12,25 +12,6 @@ class BorrowRequestsController < ApplicationController
 
   def show
     @borrow_request = BorrowRequest.find(params[:id])
-    #if click show request, read status => true
-    #    if params[:read_status] == "true"
-    #      @borrow_request.update(:read_status => params[:read_status])
-    #      flash[:notice] = "update read_status"
-    #    end
-    #
-    #    if params[:return_status] == "1"
-    #      @borrow_request.update(:return_status => 1)
-    #      flash[:notice] = "set return status to 1"
-    #    elsif params[:return_status] == "2"
-    #      @borrow_request.update(:return_status => 2)
-    #      flash[:notice] = "set return status to 2"
-    #    end
-
-    #    #if click Accept || Reject, update approval
-    #    if !params[:approval].nil?
-    #      @borrow_request.update(:approval => params[:approval])
-    #      flash[:notice] = "You have borrowed this item please check your request list"
-    #    end
     @item = Item.find(params[:item_id])
     @owner = @item.user_profile
     @borrower = @borrow_request.user_profile
@@ -66,13 +47,12 @@ class BorrowRequestsController < ApplicationController
     end
     @item.borrow_requests.each do |request|
       #flash[:notice] = "someone else has borrowed this item"
-      
+
       if (@borrower_id == request.user_profile_id && request.return_date.to_date > Time.now.to_date)
         flash[:notice] = "You have already borrowed this item please check your request list"
         redirect_to item_path(@item)
       end
     end
-
   end
 
   def edit
@@ -125,9 +105,9 @@ class BorrowRequestsController < ApplicationController
       @borrow_request.update_attribute(:return_status, params[:return_status])
 
       if @borrow_request.return_status == "1"
-        flash[:notice] = "set return status as returned(1)"
+        #flash[:notice] = "set return status as returned(1)"
       elsif @borrow_request.return_status == "2"
-        flash[:notice] = "set return status as received (2)"
+        #flash[:notice] = "set return status as received (2)"
         @borrow_request.item.update_attribute(:status, true)
         @borrow_request.update_attribute(:actual_return_date, Time.now.to_date)
       end
@@ -139,12 +119,9 @@ class BorrowRequestsController < ApplicationController
     end
     
     # return to item page
-    if @borrow_request.return_status == 1
-      redirect_to lend_rating_path(:id => @borrow_request.item.user_profile.id)
-    else
-      redirect_to item_borrow_request_path(:item_id => @item.id, :id => @borrow_request.id)
-    end
 
+      redirect_to item_borrow_request_path(:item_id => @item.id, :id => @borrow_request.id)
+  
     #    if @borrow_request.update(request_params)
     #      flash[:notice] = "Borrow request updated."
     #      redirect_to item_borrow_request(:item_id => @item.id, :id => @borrow_request.id)
