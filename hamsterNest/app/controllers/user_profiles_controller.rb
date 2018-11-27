@@ -16,12 +16,13 @@ class UserProfilesController < ApplicationController
   end
 
   def create
-   
+    lend_rating=1
     @user_profile = UserProfile.new(profile_params)
     #    @user_profile.auto_fill_username_and_account(current_user)
 
     if @user_profile.save
-      @user_profile.update(:lend_rating=>0)
+      @user_profile.lend_rating=1
+      @user_profile.update(:lend_rating=>1)
       flash[:notice] = "Profile added"
       redirect_to :root
     else
@@ -71,7 +72,7 @@ class UserProfilesController < ApplicationController
     @l_rating = (@l_rating + params[:rating]) / @lpeople
     #:borrow_rating => @l_rating
     #:bpeople => @l_people
-    if @lend_person.update(rate_params)
+    if @lend_person.update(:lend_rating=>@l_rating,:lpeople=>@lpeople)
       redirect_to current_user
     else
       render "edit"
