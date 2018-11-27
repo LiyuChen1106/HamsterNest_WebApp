@@ -140,8 +140,4 @@ ActiveRecord::Schema.define(version: 2018_11_25_221509) do
 
   add_foreign_key "comments", "items"
   add_foreign_key "comments", "user_profiles"
-<<<<<<< HEAD
 end
-=======
-end
->>>>>>> ea9e13c3ee70c4e82cd6347a72112fb95f2d48b2
