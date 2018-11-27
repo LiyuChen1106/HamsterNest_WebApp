@@ -1,14 +1,14 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
 
-<div class="navbar-brand-custom">
-  <%- if registerInProgress %>
-  <div class="float-left navbar-brand-text" href="#">Hamster Nest</div>
-  <%- else %>
-  <%= link_to root_path do %>
-  <div id="hamster-nest" class="float-left navbar-brand-text">Hamster Nest</div>
-  <% end %>
-  <% end %>
+  <div class="navbar-brand-custom">
+    <%- if registerInProgress %>
+    <div class="float-left navbar-brand-text" href="#">Hamster Nest</div>
+    <%- else %>
+    <%= link_to root_path do %>
+    <div id="hamster-nest" class="float-left navbar-brand-text">Hamster Nest</div>
+    <% end %>
+    <% end %>
   </div>
 
   <%- if user_signed_in? && !registerInProgress %>
