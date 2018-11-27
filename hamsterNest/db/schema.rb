@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2018_11_27_212927) do
+=======
+ActiveRecord::Schema.define(version: 2018_11_27_220138) do
+>>>>>>> 6b725c86bf5c996c62a17fc8b4fae609e29757c7
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -98,8 +102,8 @@ ActiveRecord::Schema.define(version: 2018_11_27_212927) do
     t.string "first_name"
     t.string "last_name"
     t.date "birthday"
-    t.integer "lend_rating"
-    t.integer "borrow_rating"
+    t.integer "lend_rating", default: 0
+    t.integer "borrow_rating", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.hstore "address"
