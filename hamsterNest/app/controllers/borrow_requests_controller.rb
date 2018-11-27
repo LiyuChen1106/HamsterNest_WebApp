@@ -50,6 +50,7 @@ class BorrowRequestsController < ApplicationController
     @owner_name = @owner.username
     @borrower_id = current_user.id
     @start_date = 0
+    @end_date = 0
     @max_start=0
     if @item.status==false
       @item.borrow_requests.each do |request|
@@ -66,7 +67,7 @@ class BorrowRequestsController < ApplicationController
     @item.borrow_requests.each do |request|
       #flash[:notice] = "someone else has borrowed this item"
       
-      if @borrower_id == request.user_profile_id
+      if (@borrower_id == request.user_profile_id && request.return_date.to_date > Time.now.to_date)
         flash[:notice] = "You have already borrowed this item please check your request list"
         redirect_to item_path(@item)
       end
@@ -109,7 +110,7 @@ class BorrowRequestsController < ApplicationController
 
       if @borrow_request.approval == true
         flash[:notice] = "You have approved this request"
-        if request.return_date.to_date == Time.now.to_date
+        if @borrow_request.borrow_date.to_date == Time.now.to_date
           @borrow_request.item.update_attribute(:status, false)
         end
         UserMailer.with(lender: current_user, borrower: @borrower, item: @item, borrow_request: self).borrow_request_approved_email.deliver

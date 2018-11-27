@@ -1,27 +1,7 @@
 <div class = "request_form" >
 
   <h1>Borrow request information</h1>
-  <h1>
-  <script>
-    
-    $( function() {
-      var start_date = <%= @start_date%>;
-      $( "#datepicker" ).datepicker({
-        dateFormat: "yy-mm-dd",
-        minDate: start_date,
-    
-        });
-        $( "#repicker" ).datepicker({
-          dateFormat: "yy-mm-dd",
-          minDate: start_date,
-      
-          });
 
-
-    
-    } );
-  </script>
-  </h1>
   <%= form_with(model: [ @item, @item.borrow_requests.build ], local: true) do |form| %>
   <!-- check if any error -->
   <% if @item.errors.any? %>
@@ -59,16 +39,14 @@
       <%= form.number_field :quantity%>
     </p>
 
-    <table>
-    <tr>
-      <td><%= form.label :borrow_date, "borrow_date" %></td>
-      <td><%= form.label :return_date, "return_date" %></td>
-      </tr>
-      <tr>
-      <td><%= form.text_field :borrow_date, "id" => 'repicker'%></td>
-      <td><%= form.text_field :return_date, "id" => 'datepicker'%></td>
-      </tr>
-    </table>
+    <p>
+      <%= form.label :borrow_date, "borrow_date" %>
+      <%= form.date_select :borrow_date, :start_year=>Time.now.year, :end_year =>Time.now.year+1%>
+    </p>
+    <p>
+      <%= form.label :return_date, "return_date" %>
+      <%= form.date_select :return_date,  :start_year=>Time.now.year, :end_year =>Time.now.year+1%>
+    </p>
 
  
     <p>

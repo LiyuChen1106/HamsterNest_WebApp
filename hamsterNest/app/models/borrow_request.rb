@@ -3,7 +3,21 @@ class BorrowRequest < ApplicationRecord
   belongs_to :user_profile
 
   validates :request_message, length: {maximum: 40}
-  
+  validate :borrow_date_cannot_in_past
+  validate :return_date_cannot_less_than_borrow_date
+
+
+  def borrow_date_cannot_in_past
+    if borrow_date.present? && borrow_date<Date.today
+      errors.add(:borrow_date, "can't be in the past")
+    end
+  end
+
+  def return_date_cannot_less_than_borrow_date
+    if return_date.present? && return_date< borrow_date
+      errors.add(:return_date, "can't be in less than borrow date")
+    end
+  end
 #  after_update :send_approval_email
 #  
 #  def send_approval_email
