@@ -14,11 +14,11 @@
 </p>
 <p>
   <strong>Lender:</strong>
-  <%= @owner.username%>
+  <%= link_to @owner.username, user_profile_path(@owner.id) %>
 </p>
 <p>
-  <strong>Borrower:</strong>
-  <%= @borrower.username%>
+  <strong>Borrower: </strong>
+  <%= link_to @borrower.username, user_profile_path(@borrower.id) %>
 </p>
 <p>
   <strong>Message:</strong>
