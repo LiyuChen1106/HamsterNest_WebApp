@@ -3,58 +3,6 @@
   <% form.label :item_name, "item_name" %>
   <%@item_name%>
 
-<<<<<<< HEAD
-  <h1>Borrow request information</h1>
-  <p>
-    <strong>Item </strong>
-    <%= @item.item_name%>
-  </p>
-  <p>
-    <strong>Owner</strong>
-    <%=@owner.username%> 
-  </p>
-  <p>
-    <strong>Not Available Period</strong>
-  </p>
-  <table>
-    <tr>
-      <td><strong>From</strong></td> 
-      <td>| <strong>To</strong></td>
-    </tr>
-    <% @item.borrow_requests.each do |current_req|%>
-      <% if current_req.approval %>
-      <tr>
-        <td><%= current_req.borrow_date %></td> 
-        <td>| <%= current_req.return_date %></td>
-      </tr>
-      <% end %>
-    <% end %>
-  <table>
-
-
-  <%= form_with(model: [ @item, @item.borrow_requests.build ], local: true) do |form| %>
-  <!-- check if any error -->
-  <% if @item.errors.any? %>
-  <div id="error_explanation">
-    <h2>
-      <%= pluralize(@item.errors.count, "error") %> prohibited
-      this request from being sent:
-    </h2>
-    <ul>
-      <% @item.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-    
-    <!-- borrow request : item_name, user_name(owner), quantity, lend_date
-                        return_date, request_message
-        item_name, user_name should be autofilled by system
-        other fields should be filled in manually                    
-    -->
-    <div class="field">
-=======
   <% form.label :owner, "owner" %><br>
   <% form.label :user_name, @owner_name%>
 
@@ -62,7 +10,6 @@
 
   <%= form.label :quantity, "quantity" %>
   <%= form.number_field :quantity%>
->>>>>>> 68835ded33ada1982ae027231b43b0e365bd98b1
 
   <table class="request-table">
     <tr>
@@ -74,17 +21,12 @@
       </td>
     </tr>
     <tr>
-<<<<<<< HEAD
-      <td><%= form.date_field :borrow_date, min: Date.today%></td>
-      <td><%= form.date_field :return_date, min: Date.today %></td>
-=======
       <td>
         <%= form.date_field :borrow_date, min: @start_date %>
       </td>
       <td>
         <%= form.date_field :return_date, min: @start_date %>
       </td>
->>>>>>> 68835ded33ada1982ae027231b43b0e365bd98b1
     </tr>
   </table>
 
