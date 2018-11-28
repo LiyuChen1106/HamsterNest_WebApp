@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   has_one :user_profile
 
+  # validates
+  validates :email, :uniqueness => true
+
   # Register new user profile entry
   after_create :create_user_profile_entry
 
@@ -14,7 +17,7 @@ class User < ApplicationRecord
     @email_name = self.email[/[^@]+/]
     @email_name.gsub!(".","")
     @new_username = "#{@email_name}#{rand(1000)}"
-    
+
     UserProfile.create([{ user_id: self.id, username: @new_username}])
   end
 end

@@ -1,5 +1,9 @@
-<div class = "request_form" >
+<div class="request_form">
+  <%= form_with(model: [ @item, @item.borrow_requests.build ], local: true) do |form| %>
+  <% form.label :item_name, "item_name" %>
+  <%@item_name%>
 
+<<<<<<< HEAD
   <h1>Borrow request information</h1>
   <p>
     <strong>Item </strong>
@@ -50,36 +54,50 @@
         other fields should be filled in manually                    
     -->
     <div class="field">
+=======
+  <% form.label :owner, "owner" %><br>
+  <% form.label :user_name, @owner_name%>
 
-    <!--no quantity right now
-    <p>
-      <%= form.label :quantity, "quantity" %><br>
-      <%= form.number_field :quantity%>
-    </p>
-    -->
-  <table>
+<p><strong>Send a borrow request now:</strong></p>
+
+  <%= form.label :quantity, "quantity" %>
+  <%= form.number_field :quantity%>
+>>>>>>> 68835ded33ada1982ae027231b43b0e365bd98b1
+
+  <table class="request-table">
     <tr>
-      <td><%= form.label :borrow_date, "borrow_date" %></td>
-      <td><%= form.label :return_date, "return_date" %></td>
+      <td>
+        <%= form.label :borrow_date, "borrow_date" %>
+      </td>
+      <td>
+        <%= form.label :return_date, "return_date" %>
+      </td>
     </tr>
     <tr>
+<<<<<<< HEAD
       <td><%= form.date_field :borrow_date, min: Date.today%></td>
       <td><%= form.date_field :return_date, min: Date.today %></td>
+=======
+      <td>
+        <%= form.date_field :borrow_date, min: @start_date %>
+      </td>
+      <td>
+        <%= form.date_field :return_date, min: @start_date %>
+      </td>
+>>>>>>> 68835ded33ada1982ae027231b43b0e365bd98b1
     </tr>
-  <table>
- 
-    <p>
-      <%= form.label :request_message, "message" %><br>
-      <%= form.text_area :request_message%>
-    </p>
-    </div>
+  </table>
 
-    <div class="actions">
-      <p>
-        <%= form.submit "Send my request"%>
-      </p>
-    </div>
-  
+  <p>
+    <%= form.label :request_message, "message" %><br>
+    <%= form.text_area :request_message%>
+  </p>
+
+  <div class="actions">
+    <p>
+      <%= form.submit "Send my request"%>
+    </p>
+  </div>
+
   <% end %>
 </div>
-
