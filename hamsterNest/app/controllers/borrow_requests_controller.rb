@@ -78,10 +78,14 @@ class BorrowRequestsController < ApplicationController
           end
         end
       end
-    end  
+    end
+    if @borrow_date.nil? || @borrow_date.nil?
+      @attr[:return_date]="1995-01-01"
+      @attr[:borrow_date]="1995-01-01"
+    end
     @borrow_request = @item.borrow_requests.create(@attr)
 
-    if @borrow_request.save
+    if @borrow_request.save 
       flash[:notice] = "Borrow request created."
 
       UserMailer.with(lender: @item.user_profile.user, borrower: current_user, item: @item, borrow_request: @borrow_request).borrow_request_confirmation_email.deliver_later
