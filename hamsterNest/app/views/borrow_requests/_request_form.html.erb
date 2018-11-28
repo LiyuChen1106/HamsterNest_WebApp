@@ -1,68 +1,45 @@
-<div class = "request_form" >
-
-  <h1>Borrow request information</h1>
-
+<div class="request_form">
   <%= form_with(model: [ @item, @item.borrow_requests.build ], local: true) do |form| %>
-  <!-- check if any error -->
-  <% if @item.errors.any? %>
-  <div id="error_explanation">
-    <h2>
-      <%= pluralize(@item.errors.count, "error") %> prohibited
-      this request from being sent:
-    </h2>
-    <ul>
-      <% @item.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
+  <% form.label :item_name, "item_name" %>
+  <%@item_name%>
+
+  <% form.label :owner, "owner" %><br>
+  <% form.label :user_name, @owner_name%>
+
+<p><strong>Send a borrow request now:</strong></p>
+
+  <%= form.label :quantity, "quantity" %>
+  <%= form.number_field :quantity%>
+
+  <table class="request-table">
+    <tr>
+      <td>
+        <%= form.label :borrow_date, "borrow_date" %>
+      </td>
+      <td>
+        <%= form.label :return_date, "return_date" %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= form.date_field :borrow_date, min: @start_date %>
+      </td>
+      <td>
+        <%= form.date_field :return_date, min: @start_date %>
+      </td>
+    </tr>
+  </table>
+
+  <p>
+    <%= form.label :request_message, "message" %><br>
+    <%= form.text_area :request_message%>
+  </p>
+
+  <div class="actions">
+    <p>
+      <%= form.submit "Send my request"%>
+    </p>
   </div>
-<% end %>
-    
-    <!-- borrow request : item_name, user_name(owner), quantity, lend_date
-                        return_date, request_message
-        item_name, user_name should be autofilled by system
-        other fields should be filled in manually                    
-    -->
-    <div class="field">
-    <p>
-      <%= form.label :item_name, "item_name" %><br>
-      <%=@item_name%>
-    </p>
 
-    <p>
-      <%= form.label :owner, "owner" %><br>
-      <%= form.label :user_name, @owner_name%>
-    </p>
-
-    <!--no quantity right now
-    <p>
-      <%= form.label :quantity, "quantity" %><br>
-      <%= form.number_field :quantity%>
-    </p>
-    -->
-  <table>
-    <tr>
-      <td><%= form.label :borrow_date, "borrow_date" %></td>
-      <td><%= form.label :return_date, "return_date" %></td>
-    </tr>
-    <tr>
-      <td><%= form.date_field :borrow_date, min: @start_date %></td>
-      <td><%= form.date_field :return_date, min: @start_date %></td>
-    </tr>
-  <table>
- 
-    <p>
-      <%= form.label :request_message, "message" %><br>
-      <%= form.text_area :request_message%>
-    </p>
-    </div>
-
-    <div class="actions">
-      <p>
-        <%= form.submit "Send my request"%>
-      </p>
-    </div>
-  
   <% end %>
 </div>
-

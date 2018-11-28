@@ -1,41 +1,64 @@
-
-<p>
-  <strong>Owner: </strong>
-  <%= link_to @item.user_profile.username, user_profile_path(@item.user_profile.id) %>
-</p>
-<p>
-  <strong>Item: </strong>
-  <%= @item.item_name %>
-</p>
-<p>
-  <strong>Item Description: </strong>
-  <%= @item.description %>
-</p>
-<p>
-  <strong>Category: </strong>
-  <%= getCategoryName(@item.category_id) %>
-</p>
-<p>
-  <%= image_tag @item.image %>
-</p>
-<p>
-  <strong><%= itemAvaiableMessage(@item.status) %></strong>
-</p>
-
-
-
-<% if @unlogin %>
-  <% if current_user.id != @owner.id %>
-    <%= link_to 'Borrow', new_item_borrow_request_path(:item_id=>@item.id)%> |
-  <% end %>
-  <%= link_to 'Back', items_path %>
-<% else %>
-  <%= link_to 'Edit', edit_user_profile_item_path %> |
-  <% if !(@borrow_requests.nil?)%>
-    <%= link_to 'RequestList', item_borrow_request_path(:item_id=>@item.id)%> |
-  <% end %>
-   <td><%= link_to 'Remove', user_profile_item_path(:id=>@item.id),
-              method: :delete,
-	      data: { confirm: 'Are you sure?'} %></td> |
-  <%= link_to 'Back', user_profile_items_path %>
-<% end %>
+<div class="row">
+  <div class="col-1">
+  </div>
+  <div class="col-10 item-top">
+    <div class="item-go-back">
+      <%= link_to :back do %>
+      <%= fa_icon 'arrow-left', class:"go-back-fa"%>
+      <%= content_tag :span, "Back", class:"go-back-link"%>
+      <% end %>
+    </div>
+    <div class="category-tag">
+      <strong>
+        <%= link_to(getCategoryName(@item.category_id), items_path(q: {category_id: @item.category_id})) %> > </strong>
+    </div>
+    <% if current_user.id == @owner.id %>
+    <div class="owner-action">
+      <% if !(@borrow_requests.nil?)%>
+      <%= link_to 'RequestList', item_borrow_request_path(:item_id=>@item.id), class: "btn btn-info"%>
+      <% end %>
+      <%= link_to 'Edit', edit_user_profile_item_path(current_user.id), class: "btn btn-info" %>
+      <%= link_to 'Remove', user_profile_item_path(current_user.id, :id=>@item.id),
+                  method: :delete,
+    	      data: { confirm: 'Are you sure?'}, class: "btn btn-info" %>
+    </div>
+    <% end %>
+  </div>
+</div>
+<div class="item-showcase">
+  <!-- <div class="item-showcase-pattern"> -->
+  <div class="container">
+    <div class="row">
+      <div class="item-background">
+        <div class="row">
+          <div class="item-image">
+            <%= image_tag @item.image.variant(gravity: 'center') %>
+          </div>
+          <div class="item-detail">
+            <h1>
+              <%= @item.item_name %>
+            </h1>
+            <div class="item-description">
+              <p>Owner:
+                <%= link_to @item.user_profile.username, user_profile_path(@item.user_profile.id), class:"owner-link" %>
+              </p>
+              <p>
+                <%= @item.description %>
+              </p>
+              <p>
+                <%= itemAvaiableMessage(@item.status) %>
+              </p>
+              <p>
+                <% if current_user.id != @owner.id %>
+                <%= render 'borrow_requests/request_form' %>
+                <% end %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+</div>
+</div>
