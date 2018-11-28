@@ -68,7 +68,7 @@ class BorrowRequestsController < ApplicationController
     @return_date = @attr[:borrow_date].to_date
     @item.borrow_requests.each do |request|
       if !request.approval.nil?
-        if request.approval
+        if request.approval && !@borrow_date.nil? && !@return_date.nil?
           if request.borrow_date <= @borrow_date && request.return_date >= @borrow_date
             flash[:notice] = "please check borrow period"
             @attr[:return_date]="1995-01-01"
