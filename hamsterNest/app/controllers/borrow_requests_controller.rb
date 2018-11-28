@@ -48,7 +48,7 @@ class BorrowRequestsController < ApplicationController
     @item.borrow_requests.each do |request|
       #flash[:notice] = "someone else has borrowed this item"
 
-      if (@borrower_id == request.user_profile_id && request.return_date.to_date > Time.now.to_date)
+      if (@borrower_id == request.user_profile_id && request.actual_return_date > Date.today)
         flash[:notice] = "You have already borrowed this item please check your request list"
         redirect_to item_path(@item)
       end
@@ -90,9 +90,6 @@ class BorrowRequestsController < ApplicationController
 
       if @borrow_request.approval == true
         flash[:notice] = "You have approved this request"
-        if @borrow_request.borrow_date.to_date == Time.now.to_date
-          @borrow_request.item.update_attribute(:status, false)
-        end
         UserMailer.with(lender: current_user, borrower: @borrower, item: @item, borrow_request: self).borrow_request_approved_email.deliver
       elsif @borrow_request.approval == false
         flash[:notice] = "You have rejected this request"
@@ -104,12 +101,16 @@ class BorrowRequestsController < ApplicationController
     if !params[:return_status].nil?
       @borrow_request.update_attribute(:return_status, params[:return_status])
 
-      if @borrow_request.return_status == "1"
-        #flash[:notice] = "set return status as returned(1)"
-      elsif @borrow_request.return_status == "2"
-        #flash[:notice] = "set return status as received (2)"
-        @borrow_request.item.update_attribute(:status, true)
-        @borrow_request.update_attribute(:actual_return_date, Time.now.to_date)
+      if @borrow_request.return_status == 1 #borrower return
+        flash[:notice] = "set return status as borrower returned(1)"
+      elsif @borrow_request.return_status == 2 #lender received
+        flash[:notice] = "set return status as lender received (2)"
+        @borrow_request.item.status = true
+        @borrow_request.update_attribute(:actual_return_date, Date.today)
+      elsif @borrow_request.return_status == 3 #lender sended
+        @borrow_request.item.status=false
+      elsif @borrow_request.return_status == 4 #borrow received
+        @borrow_request.update_attribute(:actual_borrow_date, Date.today)
       end
     end
 
