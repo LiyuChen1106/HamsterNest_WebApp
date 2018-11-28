@@ -1,6 +1,32 @@
 <div class = "request_form" >
 
   <h1>Borrow request information</h1>
+  <p>
+    <strong>Item </strong>
+    <%= @item.item_name%>
+  </p>
+  <p>
+    <strong>Owner</strong>
+    <%=@owner.username%> 
+  </p>
+  <p>
+    <strong>Not Available Period</strong>
+  </p>
+  <table>
+    <tr>
+      <td><strong>From</strong></td> 
+      <td>| <strong>To</strong></td>
+    </tr>
+    <% @item.borrow_requests.each do |current_req|%>
+      <% if current_req.approval %>
+      <tr>
+        <td><%= current_req.borrow_date %></td> 
+        <td>| <%= current_req.return_date %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  <table>
+
 
   <%= form_with(model: [ @item, @item.borrow_requests.build ], local: true) do |form| %>
   <!-- check if any error -->
@@ -24,15 +50,6 @@
         other fields should be filled in manually                    
     -->
     <div class="field">
-    <p>
-      <%= form.label :item_name, "item_name" %><br>
-      <%=@item_name%>
-    </p>
-
-    <p>
-      <%= form.label :owner, "owner" %><br>
-      <%= form.label :user_name, @owner_name%>
-    </p>
 
     <!--no quantity right now
     <p>
@@ -46,8 +63,8 @@
       <td><%= form.label :return_date, "return_date" %></td>
     </tr>
     <tr>
-      <td><%= form.date_field :borrow_date, min: @start_date %></td>
-      <td><%= form.date_field :return_date, min: @start_date %></td>
+      <td><%= form.date_field :borrow_date, min: Date.today%></td>
+      <td><%= form.date_field :return_date, min: Date.today %></td>
     </tr>
   <table>
  
