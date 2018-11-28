@@ -33,6 +33,8 @@ class UserProfilesController < ApplicationController
   def update
     puts params[:id]
     puts "sdsfsfssf"
+    @rating=params[user_profile_url]
+    puts @rating
     puts current_user.id
     @id=params[:id]
     puts @id.class
@@ -62,7 +64,9 @@ class UserProfilesController < ApplicationController
       @l_people = @user_profile.lpeople
       @l_rating =@l_rating*@l_people
       @l_people = @l_people + 1
-      @rating=params[:rating]
+      @rating=params[:lend_rating]
+      puts @rating
+      puts 33333
      @l_rating = (@l_rating + @rating) / @l_people
       #:borrow_rating => @l_rating
       #:bpeople => @l_people
