@@ -10,7 +10,7 @@
     </div>
     <div class="category-tag">
       <strong>
-        <%= link_to(getCategoryName(@item.category_id), items_path(q: {category_id: @item.category_id})) %> > </strong>
+        <%= link_to(getCategoryName(@item.category_id), items_path(q: {category_id_eq: @item.category_id})) %> > </strong>
     </div>
     <% if current_user.id == @owner.id %>
     <div class="owner-action">
