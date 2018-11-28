@@ -13,9 +13,12 @@ class ItemsController < ApplicationController
       status_item.borrow_requests.each do |request|
         if request.approval == true
           #check if any accepted items lend out today
-          if request.borrow_date.to_date==Time.now.to_date
+          if request.return_status ==0 || request.return_status ==3 || request.return_status ==4
             request.item.update_attribute(:status, false)
+          else
+            request.item.update_attribute(:status, true)
           end
+
         end
       end
     end
