@@ -4,7 +4,7 @@
 @import "bootstrap";
 
 .list-inline-item {
-  color: #FFFFFF;
+  color: #000000;
 }
 
 .nav {
@@ -79,3 +79,146 @@ form {
 #advanced-search-span {
   font-size: 13px;
 }
+
+// show
+.item-top{
+  font-size: 18px;
+  color: black;
+}
+.item-go-back {
+  margin: 0 auto;
+  max-width: 10%;
+  float: left;
+}
+
+.go-back-link {
+  color: black !important;
+}
+
+.go-back-fa {
+  font-size: 25px !important;
+  float: left !important;
+  margin-right: 10px;
+}
+
+.category-tag {
+  margin-left: 20%;
+}
+
+.owner-action{
+  float:right;
+}
+
+.item-showcase {
+    margin: 0 auto;
+}
+
+
+.item-background {
+    margin-top: 40px;
+    padding-bottom: 40px;
+    width: 100%;
+    // background: #4682B4;
+    -moz-border-radius-topleft: 8px;
+    -moz-border-radius-topright: 8px;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    // opacity: 0.7;
+}
+
+.item-detail {
+    margin-left: 5%;
+}
+
+.item-detail h1 {
+    padding-right: 40px;
+    font-size: 30px;
+    font-weight: 400;
+    color: #000;
+    line-height: 58px;
+    text-shadow: 0 1px 7px rgba(0,0,0,.2);
+    margin-top: 0px;
+}
+
+.item-detail div.item-description {
+    margin-top: 10px;
+    padding-right: 40px;
+    color: #000;
+    line-height: 30px;
+    text-shadow: 0 1px 7px rgba(0,0,0,.2);
+}
+
+
+
+
+.item-detail div.item-description form input:-moz-placeholder { color: #555; }
+.item-detail div.item-description form input:-ms-input-placeholder { color: #555; }
+.item-detail div.item-description form input::-webkit-input-placeholder { color: #555; }
+
+.item-detail div.item-description form button {
+    margin-top: 10px;
+    padding: 12px 25px;
+    background: #518d8a;
+    border: 0;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #73a3a1;
+    -moz-box-shadow:
+        0 25px 35px 0 rgba(255,255,255,.15) inset,
+        0 1px 5px 0 rgba(0,0,0,.2);
+    -webkit-box-shadow:
+        0 25px 35px 0 rgba(255,255,255,.15) inset,
+        0 1px 5px 0 rgba(0,0,0,.2);
+    box-shadow:
+        0 25px 35px 0 rgba(255,255,255,.15) inset,
+        0 1px 5px 0 rgba(0,0,0,.2);
+    color: #000;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: #000;
+    -o-transition: all .2s;
+    -moz-transition: all .2s;
+    -webkit-transition: all .2s;
+    -ms-transition: all .2s;
+}
+
+.item-detail div.item-description form button:hover {
+    color: #000;
+    -moz-box-shadow:
+        0 15px 30px 0 rgba(255,255,255,.1) inset,
+        0 1px 5px 0 rgba(0,0,0,.2);
+    -webkit-box-shadow:
+        0 15px 30px 0 rgba(255,255,255,.1) inset,
+        0 1px 5px 0 rgba(0,0,0,.2);
+    box-shadow:
+        0 15px 30px 0 rgba(255,255,255,.1) inset,
+        0 1px 5px 0 rgba(0,0,0,.2);
+}
+
+.item-detail div.item-description form button:active {
+    -moz-box-shadow:
+        0 5px 8px 0 rgba(0,0,0,.1) inset,
+        0 1px 4px 0 rgba(0,0,0,.1);
+    -webkit-box-shadow:
+        0 5px 8px 0 rgba(0,0,0,.1) inset,
+        0 1px 4px 0 rgba(0,0,0,.1);
+    box-shadow:
+        0 5px 8px 0 rgba(0,0,0,.1) inset,
+        0 1px 4px 0 rgba(0,0,0,.1);
+    border: 0;
+}
+
+.item-image {
+    vertical-align:middle;
+    max-width: 45%;
+    margin-right: 20px;
+    margin-left: 50px;
+    max-height: 100%;
+}
+
+img { max-width: 100%; height: auto; }

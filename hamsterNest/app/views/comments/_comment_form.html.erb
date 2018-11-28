@@ -1,0 +1,46 @@
+<div class = "comment_form" >
+
+  <h1>Comment information</h1>
+  <p>
+    <strong>Item </strong>
+    <%= @item.item_name%>
+  </p>
+
+  <%= form_with(model: [ @item, @item.comments.build ], local: true) do |form| %>
+  <!-- check if any error -->
+  <% if @item.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@item.errors.count, "error") %> prohibited
+      this request from being sent:
+    </h2>
+    <ul>
+      <% @item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+    
+    <!-- borrow request : item_name, user_name(owner), quantity, lend_date
+                        return_date, request_message
+        item_name, user_name should be autofilled by system
+        other fields should be filled in manually                    
+    -->
+    <div class="field">
+
+ 
+    <p>
+      <%= form.label :comment_message, "message" %><br>
+      <%= form.text_area :comment_message%>
+    </p>
+    </div>
+
+    <div class="actions">
+      <p>
+        <%= form.submit "comment to the item"%>
+      </p>
+    </div>
+  
+  <% end %>
+</div>

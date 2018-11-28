@@ -48,7 +48,7 @@ class BorrowRequestsController < ApplicationController
     @item.borrow_requests.each do |request|
       #flash[:notice] = "someone else has borrowed this item"
 
-      if (@borrower_id == request.user_profile_id && request.actual_return_date > Date.today)
+      if (@borrower_id == request.user_profile_id && request.return_date > Date.today)
         flash[:notice] = "You have already borrowed this item please check your request list"
         redirect_to item_path(@item)
       end
@@ -61,11 +61,31 @@ class BorrowRequestsController < ApplicationController
 
   def create
     @item = Item.find(params[:item_id])
+    @owner = @item.user_profile
     @attr = request_params
     @attr[:user_profile_id] = current_user.id
+    @borrow_date = @attr[:return_date].to_date
+    @return_date = @attr[:borrow_date].to_date
+    @item.borrow_requests.each do |request|
+      if !request.approval.nil?
+        if request.approval && !@borrow_date.nil? && !@return_date.nil?
+          if request.borrow_date <= @borrow_date && request.return_date >= @borrow_date
+            flash[:notice] = "please check borrow period"
+            @attr[:return_date]="1995-01-01"
+          elsif request.borrow_date <= @return_date && request.return_date >= @return_date
+            flash[:notice] = "please check borrow period"
+            @attr[:borrow_date]="1995-01-01"
+          end
+        end
+      end
+    end
+    if @borrow_date.nil? || @borrow_date.nil?
+      @attr[:return_date]="1995-01-01"
+      @attr[:borrow_date]="1995-01-01"
+    end
     @borrow_request = @item.borrow_requests.create(@attr)
 
-    if @borrow_request.save
+    if @borrow_request.save 
       flash[:notice] = "Borrow request created."
 
       UserMailer.with(lender: @item.user_profile.user, borrower: current_user, item: @item, borrow_request: @borrow_request).borrow_request_confirmation_email.deliver_later

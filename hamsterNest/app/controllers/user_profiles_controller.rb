@@ -21,8 +21,6 @@ class UserProfilesController < ApplicationController
     #    @user_profile.auto_fill_username_and_account(current_user)
 
     if @user_profile.save
-      @user_profile.lend_rating = 1
-      @user_profile.update(:lend_rating => 1)
       flash[:notice] = "Profile added"
       redirect_to :root
     else
@@ -33,13 +31,7 @@ class UserProfilesController < ApplicationController
   end
 
   def update
-    puts params[:id]
-    puts "sdsfsfssf"
-    @rating=params[user_profile_url]
-    puts @rating
-    puts current_user.id
     @id = params[:id]
-    puts @id.class
     puts current_user.id.class
     if (@id.to_i == current_user.id)
       puts "shishikandiyici"
@@ -60,23 +52,14 @@ class UserProfilesController < ApplicationController
         render "edit"
       end
     else
-      puts "shishikandierci"
       @user_profile = UserProfile.find(params[:id])
       @l_rating = @user_profile.lend_rating
       @l_people = @user_profile.lpeople
       @l_rating = @l_rating * @l_people
       @l_people = @l_people + 1
-<<<<<<< HEAD
-      @rating = params[:rating]
+      @rating = params.require(:user_profile).permit(:lend_rating)
+      @rating = @rating[:lend_rating].to_i
       @l_rating = (@l_rating + @rating) / @l_people
-=======
-      @rating=params[:lend_rating]
-      puts @rating
-      puts 33333
-     @l_rating = (@l_rating + @rating) / @l_people
->>>>>>> 524577af0ec7b333c785dff3a0d2fcde40d28369
-      #:borrow_rating => @l_rating
-      #:bpeople => @l_people
       if @user_profile.update_attribute(:lend_rating, @l_rating) && @user_profile.update_attribute(:lpeople, @l_people)
         redirect_to :root
       else
@@ -100,19 +83,7 @@ class UserProfilesController < ApplicationController
 
   #rating other people
   def lend_rating
-    @lend_person = UserProfile.find(params[:id])
-    @l_rating = @lend_person.lend_rating
-    @l_people = @lend_person.lpeople
-    @l_people = @l_people + 1
-    puts @l_people
-    @l_rating = (@l_rating + params[:rating]) / @lpeople
-    #:borrow_rating => @l_rating
-    #:bpeople => @l_people
-    if @lend_person.update(:lend_rating => @l_rating, :lpeople => @lpeople)
-      redirect_to current_user
-    else
-      render "edit"
-    end
+    @user_profile = UserProfile.find(params[:id])
   end
 
   private
