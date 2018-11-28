@@ -14,11 +14,11 @@
 </p>
 <p>
   <strong>Lender:</strong>
-  <%= @owner.username%>
+  <%= link_to @owner.username, user_profile_path(@owner.id) %>
 </p>
 <p>
-  <strong>Borrower:</strong>
-  <%= @borrower.username%>
+  <strong>Borrower: </strong>
+  <%= link_to @borrower.username, user_profile_path(@borrower.id) %>
 </p>
 <p>
   <strong>Message:</strong>
@@ -26,22 +26,22 @@
 </p>
 
 <% if @I_am_borrower %>
-  <% if @borrow_request.return_status == 0 %>
-    <p><%= link_to 'Return Item',  item_borrow_request_path(:item_id=>@item.id, 
+  <% if @borrow_request.return_status == 4 %>
+    <% if @borrow_request.approval %> 
+      <p><%= link_to 'Return Item',  item_borrow_request_path(:item_id=>@item.id, 
                                     :id=>@borrow_request.id,:return_status => 1), :method=> :put%></p>
+    <% end %>
   <% elsif @borrow_request.return_status == 1 %>
-    <strong><p>
-    Waiting for 
-    <%= @owner.username %>
-    receipt confirm
-    </p></strong>
+    <strong><p>Waiting for <%= @owner.username %> receipt confirm</p></strong>
   <% elsif @borrow_request.return_status == 2 %>
     <strong><p>Item Returned</p></strong>
-  <% end %>
-  <% if !((@borrow_request.approval) && (@borrow_request.borrow_date.to_date<Time.now.to_date))%>
+  <% elsif @borrow_request.return_status == 0%>
     <%= link_to 'Cancel Request', item_borrow_request_path(@borrow_request),
     method: :delete,
     data: {confirm: 'Are you sure to cancel the request?'} %>
+  <% elsif @borrow_request.return_status == 3%>
+    <p><%= link_to 'Item Recieved',  item_borrow_request_path(:item_id=>@item.id, 
+                                  :id=>@borrow_request.id,:return_status => 4), :method=> :put%></p>
   <%end%>
 
 <% else %>
@@ -56,6 +56,13 @@
                                         :id=>@borrow_request.id,:return_status => 2), :method=> :put%></p>
       <% elsif @borrow_request.return_status == 2 %>
         <strong><p>Item Returned</p></strong>
+      <% elsif @borrow_request.return_status == 0 %>
+        <p><%= link_to 'Deliver Item',  item_borrow_request_path(:item_id=>@item.id, 
+                                        :id=>@borrow_request.id,:return_status => 3), :method=> :put%></p>
+      <% elsif @borrow_request.return_status == 3 %>
+        <strong><p>Waiting for <%= @owner.username %> receipt confirm</p></strong>
+      <% elsif @borrow_request.return_status == 4 %>
+        <strong><p> delivery confirmed</p></strong>
       <% end %>
   <% else %>
     <p> Rejected </p>

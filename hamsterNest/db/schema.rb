@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_25_221509) do
+ActiveRecord::Schema.define(version: 2018_11_27_220138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2018_11_25_221509) do
     t.boolean "read_status", default: false
     t.integer "return_status", default: 0
     t.date "actual_return_date"
+    t.date "actual_borrow_date"
     t.index ["item_id"], name: "index_borrow_requests_on_item_id"
     t.index ["user_profile_id"], name: "index_borrow_requests_on_user_profile_id"
   end
@@ -97,8 +98,8 @@ ActiveRecord::Schema.define(version: 2018_11_25_221509) do
     t.string "first_name"
     t.string "last_name"
     t.date "birthday"
-    t.integer "lend_rating"
-    t.integer "borrow_rating"
+    t.integer "lend_rating", default: 0
+    t.integer "borrow_rating", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.hstore "address"

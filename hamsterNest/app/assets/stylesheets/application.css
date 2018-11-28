@@ -158,6 +158,11 @@ input[type=text] {
   opacity:0.8 !important;
 }
 
+.alert-danger {
+  width:100%;
+  /* margin-left: 100px; */
+}
+
 .field_with_errors {
   @extend .control-group;
   @extend .error;

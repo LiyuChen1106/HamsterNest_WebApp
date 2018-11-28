@@ -3,10 +3,15 @@ class BorrowRequest < ApplicationRecord
   belongs_to :user_profile
 
   validates :request_message, length: {maximum: 40}
+  validate :dates_check
   validate :borrow_date_cannot_in_past
   validate :return_date_cannot_less_than_borrow_date
 
-
+  def dates_check
+    if borrow_date == "1995-01-01".to_date || return_date == "1995-01-01".to_date
+      errors.add(:borrow_date, "please check the borrowing peroid!")
+    end
+  end
   def borrow_date_cannot_in_past
     if borrow_date.present? && borrow_date<Date.today
       errors.add(:borrow_date, "can't be in the past")
