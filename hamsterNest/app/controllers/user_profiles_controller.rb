@@ -33,21 +33,46 @@ class UserProfilesController < ApplicationController
   end
 
   def update
-    @user_profile = UserProfile.find(params[:id])
-    @registerInProgress = @user_profile.birthday.nil?
-    @updateResult = @user_profile.update(profile_params)
+    puts params[:id]
+    puts "sdsfsfssf"
+    puts current_user.id
+    @id = params[:id]
+    puts @id.class
+    puts current_user.id.class
+    if (@id.to_i == current_user.id)
+      puts "shishikandiyici"
+      @user_profile = UserProfile.find(params[:id])
+      @registerInProgress = @user_profile.birthday.nil?
+      @updateResult = @user_profile.update(profile_params)
 
-    if @updateResult && !@registerInProgress
-      @user_profile.errors.clear
-      flash[:notice] = "Profile updated"
-      redirect_to @user_profile
-    elsif @updateResult && @registerInProgress
-      @user_profile.errors.clear
-      flash[:notice] = "Profile added"
-      redirect_to :root
+      if @updateResult && !@registerInProgress
+        @user_profile.errors.clear
+        flash[:notice] = "Profile updated"
+        redirect_to @user_profile
+      elsif @updateResult && @registerInProgress
+        @user_profile.errors.clear
+        flash[:notice] = "Profile added"
+        redirect_to :root
+      else
+        flash[:error] = @user_profile.errors.full_messages.map(&:inspect).join()
+        render "edit"
+      end
     else
-      flash[:error] = @user_profile.errors.full_messages.map(&:inspect).join()
-      render "edit"
+      puts "shishikandierci"
+      @user_profile = UserProfile.find(params[:id])
+      @l_rating = @user_profile.lend_rating
+      @l_people = @user_profile.lpeople
+      @l_rating = @l_rating * @l_people
+      @l_people = @l_people + 1
+      @rating = params[:rating]
+      @l_rating = (@l_rating + @rating) / @l_people
+      #:borrow_rating => @l_rating
+      #:bpeople => @l_people
+      if @user_profile.update_attribute(:lend_rating, @l_rating) && @user_profile.update_attribute(:lpeople, @l_people)
+        redirect_to :root
+      else
+        render "lend_to_others"
+      end
     end
   end
 

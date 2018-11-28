@@ -35,6 +35,7 @@
         <span class="glyphicon glyphicon-star-empty"></span>
       <% end %>
     <%else%>
+      <%=@user_profile.lend_rating.to_i%>
       <% @user_profile.lend_rating.to_i.times do |t| %>
         <span class="glyphicon glyphicon-star"></span>
       <% end %>
@@ -45,6 +46,11 @@
 
   </p>
   
+  <p>
+  <strong>Rating People:</strong>
+  <%= (@user_profile.bpeople+@user_profile.lpeople) %>
+  </p>
+
   <p>
     <% if @user_profile.avatar.attached? %>
       <%= image_tag @user_profile.avatar.variant(resize: "100x100") %>
