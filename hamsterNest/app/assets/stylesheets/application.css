@@ -164,8 +164,8 @@ input[type=text] {
 }
 
 .field_with_errors {
-  @extend .control-group;
-  @extend .error;
+  @extend .control-group !optional;
+  @extend .error !optional;
  }
 
 /*

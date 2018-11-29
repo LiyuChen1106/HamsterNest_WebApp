@@ -41,7 +41,7 @@
       </div>
       <%- elsif !user_signed_in? %>
       <li class="nav-item">
-        <%= link_to 'Register', new_user_registration_path, :class => "btn btn-link" %><br>
+          <%= link_to 'Register', new_user_registration_path, :id => "register", :class => "btn btn-link" %><br>
       </li>
       <li class="nav-item">
         <%= link_to 'Sign In', new_user_session_path, :class => "btn btn-light" %><br>
