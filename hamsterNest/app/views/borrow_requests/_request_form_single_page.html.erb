@@ -1,6 +1,41 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
 <div class = "request_form" >
 
   <h1>Borrow request information</h1>
+
+	  <div class="row">
+	    <div class="col-xs-10">
+        <div class="card-blocks">
+
+	        <div class="card-item panel">
+            <div class="card-head panel-heading">Not Available Periods<span class="pull-right"></spant></span></div>
+            <div class="card-body panel-body"> 
+              <table>
+                <tr>
+                  <td><strong>From</strong></td> 
+                  <td>| <strong>To</strong></td>
+                </tr>
+                <% @item.borrow_requests.each do |current_req|%>
+                  <% if current_req.approval %>
+                  <tr>
+                    <td><%= current_req.borrow_date %></td> 
+                    <td>| <%= current_req.return_date %></td>
+                  </tr>
+                  <% end %>
+                <% end %>
+              </table>
+              <p>Please check this carefully</p>
+            </div>
+          </div>
+
+	      </div>
+	    </div>
+	  </div>
+
   <p>
     <strong>Item </strong>
     <%= @item.item_name%>
@@ -9,24 +44,6 @@
     <strong>Owner</strong>
     <%=@owner.username%> 
   </p>
-  <p>
-    <strong>Not Available Period</strong>
-  </p>
-  <table>
-    <tr>
-      <td><strong>From</strong></td> 
-      <td>| <strong>To</strong></td>
-    </tr>
-    <% @item.borrow_requests.each do |current_req|%>
-      <% if current_req.approval %>
-      <tr>
-        <td><%= current_req.borrow_date %></td> 
-        <td>| <%= current_req.return_date %></td>
-      </tr>
-      <% end %>
-    <% end %>
-  <table>
-
 
   <%= form_with(model: [ @item, @item.borrow_requests.build ], local: true) do |form| %>
   <!-- check if any error -->

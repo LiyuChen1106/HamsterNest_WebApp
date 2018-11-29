@@ -199,3 +199,13 @@ h1 {
     float: left;
 }
 body { margin:0px; }
+
+.card-item {display:inline-block; width:100%; box-shadow: rgba(0,0,0,0.4) 1px 1px 3px 0px;border-radius: 3px; background: #fff; border: 0; margin-bottom:30px;}
+.card-item .panel-heading {font-size: 15px;color: #000;overflow: inherit;line-height: normal;}
+.card-blocks{columns:4; column-gap:30px; }
+.card-blocks:after{content:'';display:block;height:50px;}
+.card-head span{display:inline-block; padding:15px; background:#333;color:#fff; padding:0 5px; cursor:pointer;}
+.card-body{transition:all 0.4s; padding-top:0;padding-bottom:0;}
+.card-body:before,.card-body:after{content:'';display:block;height:15px;}
+.card-head span::before{content:"\e113";float: right; font-family: 'Glyphicons Halflings'; transition:all 0.4s;}
+.collapsed .card-head span::before  {transform:rotate(-180deg);}
