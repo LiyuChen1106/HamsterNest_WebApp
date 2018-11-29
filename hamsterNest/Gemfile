@@ -58,6 +58,7 @@ gem 'mini_magick'
 
 # fa icons
 gem "font-awesome-rails"
+gem 'font-awesome-sass', '~> 4.4.0'
 
 # storage for production
 gem 'aws-sdk-s3', require: false
@@ -98,6 +99,7 @@ group :test do
   # add cucumber for behaviral driven development testing
   gem 'cucumber-rails'
   gem 'database_cleaner'
+  gem 'rspec'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
