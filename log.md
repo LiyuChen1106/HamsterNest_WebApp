@@ -1,4 +1,14 @@
 # release logs
+Nov 30,2019 commit id:commit 659121059c5f425ac09598a1b86fbe5ae1f90423
+author : Jinyi Chen
+1. change the name of "Lend List" to "Lend list" in top banner
+
+Nov 30,2019 commit id:commit 659121059c5f425ac09598a1b86fbe5ae1f90423
+author : Jinyi Chen
+1. change the view of "item edit"
+2. add √ or x infront of item status.
+3. change the order of my lists
+
 Nov 24,2019 commit id:commit 0b2ff6a44aa34fde35525040f6c49899f446760f
 author : Jinyi Chen
 1. admin account
