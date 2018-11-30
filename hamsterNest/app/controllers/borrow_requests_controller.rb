@@ -94,7 +94,7 @@ class BorrowRequestsController < ApplicationController
     else
       flash[:alert] = @borrow_request.errors.full_messages
       #redirect_to item_path(@item)
-      render "new"
+      redirect_to item_path(:id=>@item.id)
     end
   end
 

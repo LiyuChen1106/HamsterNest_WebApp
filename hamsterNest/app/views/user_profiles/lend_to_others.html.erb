@@ -63,7 +63,7 @@
               <% if !(item.borrow_requests.nil?) %>
               <% item.borrow_requests.each do |borrow_request| %>
               <table>
-                <% if request.read_status==true %>
+                <% if borrow_request.read_status==true %>
                 <tr>
                   <td>
                     <%= borrow_request.item.item_name %>
@@ -102,7 +102,7 @@
               <% if !(item.borrow_requests.nil?) %>
               <% item.borrow_requests.each do |borrow_request| %>
               <table>
-                <% if request.approval %>
+                <% if borrow_request.approval %>
                 <tr>
                   <td>
                     <%= borrow_request.item.item_name %>
