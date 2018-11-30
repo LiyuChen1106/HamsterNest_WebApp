@@ -6,23 +6,6 @@ class ItemsController < ApplicationController
     @unlogin = params[:user_profile_id].nil?
     @notsearching = params[:q].nil?
     @search = Item.ransack(params[:q])
-    #TODO: where should we put it
-    #check and update status for all the items..
-    @all_items = Item.all
-    @all_items.each do |status_item|
-      status_item.borrow_requests.each do |request|
-        if request.approval == true
-          #check if any accepted items lend out today
-          if (request.return_status ==0 && !request.actual_borrow_date.nil?)|| request.return_status ==3 || request.return_status ==4
-            request.item.update_attribute(:status, false)
-          else
-            request.item.update_attribute(:status, true)
-          end
-
-        end
-      end
-    end
-    #TODO
 
     if !@notsearching
       @search_items = @search.result(distinct: true)
