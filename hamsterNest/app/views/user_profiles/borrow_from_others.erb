@@ -1,71 +1,122 @@
-<h2><%=@user_name%></h2>
-<h1>Items borrowed from others</h1>
+<head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
 
-<h2> Pending Requests </h2>
-<% @borrow_requests.each do |borrow_request| %>
-<table>
-    <% if borrow_request.approval.nil?%>
-        <tr>
-            <td>item_name</td>
-            <td>category</td>
-        </tr>
-        <tr>
-            <td><%= borrow_request.item.item_name %></td>
-            <td><%= getCategoryName(borrow_request.item.category_id) %></td>
-            <td><%= borrow_request.item.status %></td>
-            <td><%= link_to 'Show Request', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id) %> |</td> 
-            <td><%= link_to 'Show Item', user_profile_item_path(:user_profile_id=>current_user.id, :id=>borrow_request.item.id) %> | </td>
-            <td><%= link_to 'Cancel Request', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id),
-                method: :delete,
-                data: { confirm: 'Are you sure to cancel the request?'} %></td>
-        </tr>
-    <% end %>
-</table>
-<% end %>
+<div class="list-container">
+  <row>
+    <h1 class="list-header">Borrow requests</h1>
+  </row>
+  <row>
+    <div class="container">
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Pending</a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <% @borrow_requests.each do |borrow_request| %>
+              <tr>
+                <table>
+                  <% if borrow_request.approval.nil?%>
+                  <td>
+                    <%= borrow_request.item.item_name %>
+                  </td>
+                  <td>
+                    <%= getCategoryName(borrow_request.item.category_id) %>
+                  </td>
+                  <td>
+                    <%= link_to 'Show Request', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id) %>
+                  </td>
+                  <td>
+                    <%= link_to 'Show Item', user_profile_item_path(:user_profile_id=>current_user.id, :id=>borrow_request.item.id) %>
+                  </td>
+                  <td>
+                    <%= link_to 'Cancel Request', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id),
+                                  method: :delete,
+                                  data: { confirm: 'Are you sure to cancel the request?'} %>
+                  </td>
+                </table>
+              </tr>
+              <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse2">Accpeted</a>
+            </h4>
+          </div>
+          <div id="collapse2" class="panel-collapse collapse">
+            <div class="panel-body">
+              <% @borrow_requests.each do |borrow_request| %>
+              <table>
+                <% if borrow_request.approval == true%>
+                <tr>
+                  <td>
+                    <%= borrow_request.item.item_name %>
+                  </td>
+                  <td>
+                    <%= getCategoryName(borrow_request.item.category_id) %>
+                  </td>
+                  <td>
+                    <%= link_to 'Show Request', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id) %> |</td>
+                  <td>
+                    <%= link_to 'Show Item', user_profile_item_path(:user_profile_id=>current_user.id, :id=>borrow_request.item.id) %> | </td>
 
-<h2> Accpeted Requests </h2>
-<% @borrow_requests.each do |borrow_request| %>
-<table>
-    <% if borrow_request.approval == true%>
-        <tr>
-            <td>item_name</td>
-            <td>category</td>
-        </tr>
-        <tr>
-            <td><%= borrow_request.item.item_name %></td>
-            <td><%= getCategoryName(borrow_request.item.category_id) %></td>
-            <td><%= borrow_request.item.status %></td>
-            <td><%= link_to 'Show Request', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id) %> |</td> 
-            <td><%= link_to 'Show Item', user_profile_item_path(:user_profile_id=>current_user.id, :id=>borrow_request.item.id) %> | </td>
-            
-            <td><%= link_to 'Remove', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id),
-                method: :delete,
-                data: { confirm: 'Are you sure to cancel the request?'} %></td>
-        </tr>
-    <% end %>
-</table>
-<% end %>
-
-<h2> Rejected Requests </h2>
-<% @borrow_requests.each do |borrow_request| %>
-<table>
-    <% if borrow_request.approval == false%>
-        <tr>
-            <td>item_name</td>
-            <td>category</td>
-        </tr>
-        <tr>
-            <td><%= borrow_request.item.item_name %></td>
-            <td><%= getCategoryName(borrow_request.item.category_id) %></td>
-            <td><%= borrow_request.item.status %></td>
-            <td><%= link_to 'Show Request', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id) %> |</td> 
-            <td><%= link_to 'Show Item', user_profile_item_path(:user_profile_id=>current_user.id, :id=>borrow_request.item.id) %> | </td>
-            <td><%= link_to 'Remove', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id),
-                method: :delete,
-                data: { confirm: 'Are you sure to cancel the request?'} %></td>
-        </tr>
-    <% end %>
-</table>
-<% end %>
-
-<%= link_to 'Back to Home page', root_path %>
+                  <td>
+                    <%= link_to 'Remove', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id),
+                                  method: :delete,
+                                  data: { confirm: 'Are you sure to cancel the request?'} %>
+                  </td>
+                </tr>
+                <% end %>
+              </table>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse3">Rejected</a>
+            </h4>
+          </div>
+          <div id="collapse3" class="panel-collapse collapse">
+            <div class="panel-body">
+              <% @borrow_requests.each do |borrow_request| %>
+              <table>
+                <% if borrow_request.approval == false%>
+                <tr>
+                  <td>
+                    <%= borrow_request.item.item_name %>
+                  </td>
+                  <td>
+                    <%= getCategoryName(borrow_request.item.category_id) %>
+                  </td>
+                  <td>
+                    <%= link_to 'Show Request', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id) %> |</td>
+                  <td>
+                    <%= link_to 'Show Item', user_profile_item_path(:user_profile_id=>current_user.id, :id=>borrow_request.item.id) %> | </td>
+                  <td>
+                    <%= link_to 'Remove', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id),
+                                  method: :delete,
+                                  data: { confirm: 'Are you sure to cancel the request?'} %>
+                  </td>
+                </tr>
+                <% end %>
+              </table>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </row>
+</div>
