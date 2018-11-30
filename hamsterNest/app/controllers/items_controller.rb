@@ -40,7 +40,11 @@ class ItemsController < ApplicationController
       redirect_to user_profile_items_path(@user_profile)
       flash[:notice] = "Item created."
     else
-      flash[:alert] = @item.errors.full_messages
+      @s = ""
+      for m in @item.errors.full_messages
+        @s = @s + m + ".   "
+      end
+      flash[:alert] = @s
       render "new"
     end
   end
@@ -62,7 +66,11 @@ class ItemsController < ApplicationController
       redirect_to user_profile_item_path(:user_profile_id => @user_profile.id)
       flash[:notice] = "Item updated."
     else
-      flash[:alert] = @item.errors.full_messages
+      @s = ""
+      for m in @item.errors.full_messages
+        @s = @s + m + ".   "
+      end
+      flash[:alert] = @s
       render "edit"
     end
   end
@@ -75,24 +83,23 @@ class ItemsController < ApplicationController
   end
 
   def load_markers(search_items)
-   @load_markers = Gmaps4rails.build_markers(search_items.all) do |item, marker|
+    @load_markers = Gmaps4rails.build_markers(search_items.all) do |item, marker|
+      @item = item
+      @user_profile = @item.user_profile
 
-    @item = item
-    @user_profile = @item.user_profile
+      marker.lat @user_profile.latitude
+      marker.lng @user_profile.longitude
 
-    marker.lat @user_profile.latitude
-    marker.lng @user_profile.longitude
+      @status = @item.status
+      @category = @item.category_id
 
-    @status = @item.status
-    @category = @item.category_id
+      if @status == true
+        @status = "Available"
+      else
+        @status = "Currently unavailable"
+      end
 
-    if @status == true
-      @status = "Available"
-    else
-      @status = "Currently unavailable"
-    end
-
-    marker.infowindow render_to_string(:partial => "/gmap/template", :locals => {:item => @item, :status => @status})
+      marker.infowindow render_to_string(:partial => "/gmap/template", :locals => {:item => @item, :status => @status})
     end
   end
 
@@ -102,5 +109,4 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:item_name, :category_id, :quantity, :status,
                                  :search_text, :image, :description)
   end
-
 end

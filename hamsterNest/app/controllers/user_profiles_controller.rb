@@ -24,7 +24,11 @@ class UserProfilesController < ApplicationController
       flash[:notice] = "Profile added"
       redirect_to :root
     else
-      flash[:alert] = @user_profile.errors.full_messages
+      @s = ""
+      for m in @user_profile.errors.full_messages
+        @s = @s + m + ".   "
+      end
+      flash[:alert] = @s
 
       render "new"
     end
