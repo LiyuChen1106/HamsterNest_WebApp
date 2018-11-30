@@ -14,7 +14,7 @@
  *= require_tree .
  *= require_self
  */
-@import "font-awesome";
+
  .col-1 {width: 8.33%;}
  .col-2 {width: 16.66%;}
  .col-3 {width: 25%;}
@@ -158,15 +158,10 @@ input[type=text] {
   opacity:0.8 !important;
 }
 
-.alert-danger {
+/* .alert-danger {
   width:100%;
-  /* margin-left: 100px; */
-}
-
-.field_with_errors {
-  @extend .control-group !optional;
-  @extend .error !optional;
- }
+  /* margin-left: 100px;
+} */
 
 /*
  * Error style

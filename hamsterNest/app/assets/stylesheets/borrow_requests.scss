@@ -7,5 +7,14 @@
 
 .request-table {
   margin-top: 0px;
-  
+  margin-bottom: 40px;
+}
+
+td {
+  min-width: 150px;
+}
+
+.attribute-name {
+  min-width: 150px;
+  font-style: oblique;
 }
