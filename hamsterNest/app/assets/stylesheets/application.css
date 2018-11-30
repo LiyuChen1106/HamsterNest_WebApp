@@ -209,3 +209,15 @@ body { margin:0px; }
 .card-body:before,.card-body:after{content:'';display:block;height:15px;}
 .card-head span::before{content:"\e113";float: right; font-family: 'Glyphicons Halflings'; transition:all 0.4s;}
 .collapsed .card-head span::before  {transform:rotate(-180deg);}
+
+.notify-badge{
+  position: absolute;
+  right:-1px;
+  top:5px;
+  background:red;
+  text-align: center;
+  border-radius: 15px 15px 15px 15px;
+  color:white;
+  padding:5px 10px;
+  font-size:10px;
+}
