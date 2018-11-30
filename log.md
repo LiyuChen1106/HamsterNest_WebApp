@@ -1,4 +1,16 @@
 # release logs
+Nov 30,2019 commit id:commit 863fd000786195f1c0f94d1070bd88ebd94ad760
+author : Jinyi Chen
+1. flash[:alert]  delete '[]', add'.';
+2. item_name -> max:50;
+3. fix item status is empty bug;
+
+Nov 30,2019 commit id:commit c8055b700147981a1cce8bc6047b2ebe81a1f34a
+author : Jinyi Chen
+1. add min date for birthday;
+2. add min_rate, max_rate for rate;
+3. do not display "send my request" if status is unavailable
+
 Nov 30,2019 commit id:commit 659121059c5f425ac09598a1b86fbe5ae1f90423
 author : Jinyi Chen
 1. change the name of "Lend List" to "Lend list" in top banner
