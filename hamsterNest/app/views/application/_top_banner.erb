@@ -41,7 +41,7 @@
       </div>
       <%- elsif !user_signed_in? %>
       <li class="nav-item">
-        <%= link_to 'Register', new_user_registration_path, :class => "btn btn-link" %><br>
+          <%= link_to 'Register', new_user_registration_path, :id => "register", :class => "btn btn-link" %><br>
       </li>
       <li class="nav-item">
         <%= link_to 'Sign In', new_user_session_path, :class => "btn btn-light" %><br>
@@ -50,6 +50,25 @@
       <li class="nav-item dropdown">
         <%= link_to 'New item', new_user_profile_item_path(current_user.id), class: "btn btn-info"  %>
       </li>
+    <% if @new_message %>
+      <li class="nav-item dropdown">
+      <span class="notify-badge"><%=@message_num%></span>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Message!
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+        <% @new_requests.each do |req_id|%>
+          <% @new_req = BorrowRequest.find(req_id)%>
+          <% if @new_req.user_profile.id!= current_user.id%>
+          <%= link_to @new_req.item.item_name, item_borrow_request_path(:item_id=>@new_req.item.id, :id=>req_id, :read_status=>true), :method=> :put, :class => "dropdown-item"  %>
+          <%else%>
+          <%= link_to @new_req.item.item_name, item_borrow_request_path(:item_id=>@new_req.item.id, :id=>req_id), :class => "dropdown-item"  %>
+          <%end%>
+        <%end%>
+        </div>
+      </li>
+    <%end%>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           My Lists

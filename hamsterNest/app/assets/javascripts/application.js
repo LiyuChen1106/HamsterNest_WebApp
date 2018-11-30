@@ -82,3 +82,10 @@ $(document).ready(function() {
 //    map.setCenter([45, 45]);
   });
 });
+
+$(function(){
+  $('.card-head > span').click(function(){
+      $(this).parent().parent().toggleClass('collapsed');
+      $(this).parent().parent().find('.card-body').slideToggle();
+  });
+});
