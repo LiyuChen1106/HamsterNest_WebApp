@@ -75,6 +75,11 @@
                 <%= @item.description %>
               </p>
               <p>
+                <% if @item.status == true %>
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <% else %>
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <% end %>
                 <%= itemAvaiableMessage(@item.status) %>
               </p>
               <p>
