@@ -74,9 +74,9 @@
           My Lists
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <%= link_to "Lend List", lend_to_others_path, :class => "dropdown-item"  %>
           <%= link_to "My items", user_profile_items_path(:user_profile_id =>current_user.user_profile_id), :class => "dropdown-item" %>
           <%= link_to "Borrow list", borrow_from_others_path(), :class => "dropdown-item" %>
+          <%= link_to "Lend list", lend_to_others_path, :class => "dropdown-item"  %>
         </div>
       </li>
       <li class="nav-item dropdown">

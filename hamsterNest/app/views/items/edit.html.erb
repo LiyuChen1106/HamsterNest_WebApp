@@ -1,39 +1,42 @@
-
-<%= form_with(model: @item, local: true, class: "form-group") do |form| %>
-  <div class="form-group">
-    <%= form.label :item_name, "Item Name"%><br>
-    <%= form.text_field :item_name, :class => 'form-text text-muted form-control' %>
+<div class='row'>
+  <div class='col-2'>
   </div>
+  <div class="col-8">
+    <div class="text-form form-group">
 
-  <div class="form-group">
-    <%= form.label :description, "Item Description"%><br>
-    <%= form.text_area :description, :class => 'form-text text-muted form-control' %>
+      <%= form_with(model: @item, local: true, class: "form-group") do |form| %>
+        <div class="form-group">
+          <%= form.label :item_name, "Item Name"%><br>
+          <%= form.text_field :item_name, :class => 'form-text text-muted form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :description, "Item Description"%><br>
+          <%= form.text_area :description, :class => 'form-text text-muted form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :category_id, "Categories"%><br>
+          <%= form.collection_select :category_id, Category.order(:category_name), :id, :category_name,
+          include_blank: true, :class => 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          <%= form.label :image, "Item Image" %>
+          <%= form.file_field :image %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :status, "Item is currently available" %>
+          <%= form.check_box :status, {checked: true}, :class => 'form-control' %>
+        </div>
+
+        <p>
+          <%= form.submit "Create", class: "btn btn-primary" %>
+        </p>
+
+      <% end %>
+
+    </div>
   </div>
-
-  <div class="form-group">
-    <%= form.label :category_id, "Categories"%><br>
-    <%= form.collection_select :category_id, Category.order(:category_name), :id, :category_name,
-    include_blank: true, :class => 'form-control' %>
-  </div>
-
-  <div class="form-group">
-  <%= form.file_field :image %>
-
-  <% if @item.image.attached? %>
-    <%= image_tag @item.image.variant(resize: "100x100") %>
-  <% end %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :status, "Item is currently available" %>
-    <%= form.check_box :status %>
-  </div>
-
-  <p>
-    <%= form.submit %>
-  </p>
-
-<% end %>
-<div>
-<%= link_to 'Back', user_profile_items_path %>
 </div>

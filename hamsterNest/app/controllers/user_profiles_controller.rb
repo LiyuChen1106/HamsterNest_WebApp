@@ -16,7 +16,7 @@ class UserProfilesController < ApplicationController
   end
 
   def create
-    lend_rating=1
+    lend_rating = 1
     @user_profile = UserProfile.new(profile_params)
     #    @user_profile.auto_fill_username_and_account(current_user)
 
@@ -31,9 +31,9 @@ class UserProfilesController < ApplicationController
   end
 
   def update
-    @id=params[:id]
+    @id = params[:id]
     puts current_user.id.class
-    if(@id.to_i==current_user.id)
+    if (@id.to_i == current_user.id)
       puts "shishikandiyici"
       @user_profile = UserProfile.find(params[:id])
       @registerInProgress = @user_profile.birthday.nil?
@@ -55,18 +55,17 @@ class UserProfilesController < ApplicationController
       @user_profile = UserProfile.find(params[:id])
       @l_rating = @user_profile.lend_rating
       @l_people = @user_profile.lpeople
-      @l_rating =@l_rating*@l_people
+      @l_rating = @l_rating * @l_people
       @l_people = @l_people + 1
-      @rating=params.require(:user_profile).permit(:lend_rating)
-      @rating=@rating[:lend_rating].to_i
-     @l_rating = (@l_rating + @rating) / @l_people
-      if @user_profile.update_attribute(:lend_rating,@l_rating) && @user_profile.update_attribute(:lpeople,@l_people)
+      @rating = params.require(:user_profile).permit(:lend_rating)
+      @rating = @rating[:lend_rating].to_i
+      @l_rating = (@l_rating + @rating) / @l_people
+      if @user_profile.update_attribute(:lend_rating, @l_rating) && @user_profile.update_attribute(:lpeople, @l_people)
         redirect_to :root
       else
         render "lend_to_others"
       end
     end
-
   end
 
   #items that I lent to others
@@ -81,14 +80,16 @@ class UserProfilesController < ApplicationController
     @user_name = @user_profile.username
     @borrow_requests = @user_profile.borrow_requests
   end
+
   #rating other people
   def lend_rating
     @user_profile = UserProfile.find(params[:id])
   end
+
   private
 
   def profile_params
-    params.require(:user_profile).permit(:account_id, :username, :first_name, :last_name, :birthday,:avatar, address: [:street_address, :city, :province_id, :postal_code])
+    params.require(:user_profile).permit(:account_id, :username, :first_name, :last_name, :birthday, :avatar, address: [:street_address, :city, :province_id, :postal_code])
   end
 
   def rate_params
