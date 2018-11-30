@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     #check and update status for all the items..
     @all_items = Item.all
     @all_items.each do |status_item|
-      item_ava=true;
+      @item_ava=true;
       status_item.borrow_requests.each do |request|
         if request.approval == true
           #check if any accepted items lend out today
