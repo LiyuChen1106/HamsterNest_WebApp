@@ -35,32 +35,32 @@
             <%= image_tag @item.image.variant(gravity: 'center') %>
 
             <%- if !@item.borrow_requests.empty? && current_user.id != @owner.id%>
-            <div class="card-blocks">
-              <div class="card-item">
-                <div class="card-head panel-heading">Not Available Periods<span class="pull-right"></span></div>
-                <div class="card-body panel-body">
-                  <table>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Not Avaiable Time</a>
+                    </h4>
+                  </div>
+                  <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                    <table>
                     <tr>
                       <td><strong>From</strong></td>
                       <td>| <strong>To</strong></td>
                     </tr>
                     <% @item.borrow_requests.each do |current_req|%>
-                    <% if current_req.approval %>
-                    <tr>
-                      <td>
-                        <%= current_req.borrow_date %>
-                      </td>
-                      <td>|
-                        <%= current_req.return_date %>
-                      </td>
-                    </tr>
+                      <% if current_req.approval %>
+                      <tr>
+                        <td><%= current_req.borrow_date %></td>
+                        <td>| <%= current_req.return_date %></td>
+                      </tr>
+                      <% end %>
                     <% end %>
-                    <% end %>
-                  </table>
-                  <p>Please check this carefully</p>
+                    </table>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+
             <% end %>
           </div>
           <div class="item-detail">
