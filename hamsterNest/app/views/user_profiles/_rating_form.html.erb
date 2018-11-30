@@ -20,7 +20,7 @@
   
     <div class="field">
       <%= form.label :lend_rating, "Lend_rating(1-5)" %><br>
-      <%= form.number_field :lend_rating%>
+      <%= form.number_field :lend_rating, min:0, max:5%>
     </div>
   
 

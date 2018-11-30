@@ -82,11 +82,13 @@
                 <% end %>
                 <%= itemAvaiableMessage(@item.status) %>
               </p>
-              <p>
-                <% if current_user.id != @owner.id %>
-                <%= render 'borrow_requests/request_form' %>
-                <% end %>
-              </p>
+              <% if @item.status == true%>
+                <p>
+                  <% if current_user.id != @owner.id %>
+                  <%= render 'borrow_requests/request_form' %>
+                  <% end %>
+                </p>
+              <% end %>
             </div>
           </div>
         </div>

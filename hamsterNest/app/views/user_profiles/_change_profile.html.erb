@@ -27,7 +27,7 @@
 
       <div class="field form-group">
         <%= form.label :birthday, "Birthday" %><br>
-        <%= form.date_field :birthday, max: Date.today, as: :date, value: form.object.try(:strftime,"%m/%d/%Y"), class: 'form-control' %>
+        <%= form.date_field :birthday, max: Date.today, min: '1900-01-01',as: :date, value: '1990-01-01', class: 'form-control' %>
       </div>
 
       <div class="field form-group">
