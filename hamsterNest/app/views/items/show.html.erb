@@ -49,11 +49,13 @@
                       <td>| <strong>To</strong></td>
                     </tr>
                     <% @item.borrow_requests.each do |current_req|%>
-                      <% if current_req.approval %>
+                      <% if current_req.approval.nil?%>
+                      <% if current_req.approval && current_req.return_status!=2%>
                       <tr>
                         <td><%= current_req.borrow_date %></td>
                         <td>| <%= current_req.return_date %></td>
                       </tr>
+                      <% end %>
                       <% end %>
                     <% end %>
                     </table>
