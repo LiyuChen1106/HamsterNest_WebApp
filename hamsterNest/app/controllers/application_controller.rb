@@ -39,31 +39,31 @@ class ApplicationController < ActionController::Base
             @new_message = true
             @message_num = @message_num + 1
             @new_requests << req.id
-            @string1 = "You have new requset"
+            #@string1 = "You have new requset"
           elsif req.return_status == 0 && req.borrow_date <= Date.today
             @new_message = true
             @message_num = @message_num + 1
             @new_requests << req.id
-            @string2 = "have items need to be deliverd today"
+            #@string2 = "have items need to be deliverd today"
           elsif req.return_status == 1
             @new_message = true
             @message_num = @message_num + 1
             @new_requests << req.id
-            flash[:notce] = "You item returned"
+            #flash[:notce] = "You item returned"
           end
         end
       end
       @current_user_profile.borrow_requests.each do |req|
-        if req.approval && req.return_status == 3
+        if ((req.approval && req.return_status == 3) || (!req.borrower_read_status))
           @new_message = true
           @message_num = @message_num + 1
           @new_requests << req.id
-          flash[:notice] = "deliverd check received?"
+          #flash[:notice] = "deliverd check received?"
         elsif req.return_status == 4 && req.return_date <= Date.today
           @new_message = true
           @message_num = @message_num + 1
           @new_requests << req.id
-          flash[:notice] = "Return!!!"
+          #flash[:notice] = "Return!!!"
         end
       end
     end

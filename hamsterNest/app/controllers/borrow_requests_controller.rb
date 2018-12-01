@@ -141,6 +141,11 @@ class BorrowRequestsController < ApplicationController
       flash[:notice] = "update read_status"
     end
 
+    if !params[:borrower_read_status].nil?
+      @borrow_request.update(:borrower_read_status => params[:read_status])
+      flash[:notice] = "update borrow_read_status"
+    end
+
     # return to item page
     if @borrow_request.return_status == 1
       redirect_to lend_rating_path(:id => @borrow_request.item.user_profile.id)
