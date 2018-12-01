@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   # validations
   validates :description, length: {maximum: 200}
   validates :item_name, presence: true,
-                        length: {maximum: 20}
+                        length: {maximum: 50}
   #no quantity right now
   #validates :quantity, numericality: {only_integer: true, greater_than: 0}
 

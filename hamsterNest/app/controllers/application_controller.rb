@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   before_action :new_message
   before_action :item_status_check
 
-
   def item_status_check
     #check and update status for all the items..
     @all_items = Item.all
@@ -16,8 +15,8 @@ class ApplicationController < ActionController::Base
       status_item.borrow_requests.each do |request|
         if request.approval == true
           #check if any accepted items lend out today
-          if ((request.borrow_date>=Date.today)|| (request.return_status ==3) || (request.return_status ==4))
-          @item_ava=false
+          if ((request.borrow_date >= Date.today) || (request.return_status == 3) || (request.return_status == 4))
+            @item_ava = false
           end
         end
       end
@@ -27,9 +26,9 @@ class ApplicationController < ActionController::Base
 
   # checking if there are new message
   def new_message
-    @new_message=false
-    @message_num= 0
-    @new_requests=Array.new
+    @new_message = false
+    @message_num = 0
+    @new_requests = Array.new
     if !current_user.nil?
       @current_user_profile = UserProfile.find(current_user.id)
       @user_name = @current_user_profile.username
@@ -37,41 +36,38 @@ class ApplicationController < ActionController::Base
       @current_user_profile.items.each do |it|
         it.borrow_requests.each do |req|
           if !req.read_status
-            @new_message=true
-            @message_num=@message_num+1
-            @new_requests<<req.id
+            @new_message = true
+            @message_num = @message_num + 1
+            @new_requests << req.id
             @string1 = "You have new requset"
           elsif req.return_status == 0 && req.borrow_date <= Date.today
-            @new_message=true
-            @message_num=@message_num+1
-            @new_requests<<req.id
+            @new_message = true
+            @message_num = @message_num + 1
+            @new_requests << req.id
             @string2 = "have items need to be deliverd today"
           elsif req.return_status == 1
-            @new_message=true
-            @message_num=@message_num+1
-            @new_requests<<req.id
+            @new_message = true
+            @message_num = @message_num + 1
+            @new_requests << req.id
             flash[:notce] = "You item returned"
           end
         end
       end
       @current_user_profile.borrow_requests.each do |req|
         if req.approval && req.return_status == 3
-          @new_message=true
-          @message_num=@message_num+1
-          @new_requests<<req.id
+          @new_message = true
+          @message_num = @message_num + 1
+          @new_requests << req.id
           flash[:notice] = "deliverd check received?"
         elsif req.return_status == 4 && req.return_date <= Date.today
-          @new_message=true
-          @message_num=@message_num+1
-          @new_requests<<req.id
+          @new_message = true
+          @message_num = @message_num + 1
+          @new_requests << req.id
           flash[:notice] = "Return!!!"
         end
       end
-
     end
-    
   end
-
 
   def after_sign_in_path_for(resource)
     if current_user.sign_in_count == 1
