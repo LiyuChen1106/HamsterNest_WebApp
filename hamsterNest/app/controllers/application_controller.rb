@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     #check and update status for all the items..
     @all_items = Item.all
     @all_items.each do |status_item|
-      @item_ava=true;
+      @item_ava=true
       status_item.borrow_requests.each do |request|
         if request.approval == true
           #check if any accepted items lend out today
@@ -31,8 +31,7 @@ class ApplicationController < ActionController::Base
     @message_num= 0
     @new_requests=Array.new
     if !current_user.nil?
-      @current_user = User.find(current_user.id)
-      @current_user_profile = @current_user.user_profile
+      @current_user_profile = UserProfile.find(current_user.id)
       @user_name = @current_user_profile.username
       # checking if there are importance request message?
       @current_user_profile.items.each do |it|

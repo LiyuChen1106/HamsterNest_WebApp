@@ -15,7 +15,7 @@
     <% if current_user.id == @owner.id %>
     <div class="owner-action">
       <% if !(@borrow_requests.nil?)%>
-      <%= link_to 'RequestList', item_borrow_request_path(:item_id=>@item.id), class: "btn btn-info"%>
+      <%= link_to 'RequestList', item_borrow_requests_path(:item_id =>@item.id), class: "btn btn-info"%>
       <% end %>
       <%= link_to 'Edit', edit_user_profile_item_path(current_user.id), class: "btn btn-info" %>
       <%= link_to 'Remove', user_profile_item_path(current_user.id, :id=>@item.id),

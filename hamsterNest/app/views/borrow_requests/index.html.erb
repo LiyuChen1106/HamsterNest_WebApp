@@ -1,0 +1,88 @@
+<head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<div class="list-container">
+  <row>
+    <h1 class="list-header">Request List for <%= @item_name %></h1>
+  </row>
+  <row>
+    <div class="container">
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Ongoing Requests</a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+             
+              <% @item.borrow_requests.each do |borrow_request| %>
+              <tr>
+                <table>
+                <% if !borrow_request.approval.nil? %>
+                  <% if borrow_request.approval && borrow_request.return_status!=2 %>
+                  <td>
+                    <%= borrow_request.item.item_name %>
+                  </td>
+                  <td>
+                    <%= getCategoryName(borrow_request.item.category_id) %>
+                  </td>
+                  <td>
+                    <%= link_to 'Show Request', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id) %>
+                  </td>
+                  <td>
+                    <%= link_to 'Show Item', user_profile_item_path(:user_profile_id=>current_user.id, :id=>borrow_request.item.id) %>
+                  </td>
+                  <% end %>
+                <%end%>
+                </table>
+              </tr>
+            
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse2">History Requests</a>
+            </h4>
+          </div>
+          <div id="collapse2" class="panel-collapse collapse">
+            <div class="panel-body">
+              <% @item.borrow_requests.each do |borrow_request| %>
+            
+              <table>
+              <% if borrow_request.return_status==2%>
+                <tr>
+                  <td>
+                    <%= borrow_request.item.item_name %>
+                  </td>
+                  <td>
+                    <%= getCategoryName(borrow_request.item.category_id) %>
+                  </td>
+                  <td>
+                    <%= link_to 'Show Request', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id) %> |</td>
+                  <td>
+                    <%= link_to 'Show Item', user_profile_item_path(:user_profile_id=>current_user.id, :id=>borrow_request.item.id) %> | </td>
+
+                  <td>
+                    <%= link_to 'Remove', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id),
+                                  method: :delete,
+                                  data: { confirm: 'This request would not appear in history! Are you sure to delete it?' } %>
+                  </td>
+                </tr>
+                <%end%>
+              </table>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </row>
+</div>
