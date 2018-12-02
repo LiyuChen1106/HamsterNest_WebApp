@@ -38,13 +38,13 @@
   <% elsif @borrow_request.return_status == 0 && !@borrow_request.approval.nil?%>
     <% @borrow_request.update_attribute(:borrower_read_status, true) %>
     <% if !@borrow_request.approval %>
-      <% Request Declined %>
+      <strong><p>Request Declined </p></strong>
       
       <%= link_to 'Cancel Request', item_borrow_request_path(@borrow_request),
       method: :delete,
       data: {confirm: 'Are you sure to cancel the request?'} %>
     <% else %>
-    <% Request Accepted %>
+      <strong><p>Request Accepted </p> </strong>
     <%end%>
   <% elsif @borrow_request.return_status == 3%>
     <p><%= link_to 'Item Recieved',  item_borrow_request_path(:item_id=>@item.id, 
