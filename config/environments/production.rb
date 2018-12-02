@@ -110,4 +110,8 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security,
   # and use secure cookies.
   config.force_ssl = true
+  
+  # Precompile css background image
+  config.serve_static_assets = true
+  config.assets.compile = true
 end
