@@ -1,5 +1,5 @@
 module DeviseHelper
-  
+
   def devise_flash!
     return '' if flash.empty?
 
@@ -9,14 +9,14 @@ module DeviseHelper
       <button type="button" class="close" data-dismiss="alert">
         <span aria-hidden="true">&times;</span>
       </button>
-      
+
       #{messages}
     </div>
     HTML
 
     html.html_safe
   end
-  
+
   def devise_error_messages!
     return '' if resource.errors.empty?
 
@@ -26,7 +26,7 @@ module DeviseHelper
       <button type="button" class="close" data-dismiss="alert">
         <span aria-hidden="true">&times;</span>
       </button>
-      
+
       #{messages}
     </div>
     HTML

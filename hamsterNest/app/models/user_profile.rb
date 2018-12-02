@@ -17,6 +17,7 @@ class UserProfile < ApplicationRecord
   geocoded_by :address
   after_validation :geocode
 
+  before_create :set_default_avatar
   after_save :update_profile_id_in_users
 
   def update_profile_id_in_users
@@ -54,6 +55,12 @@ class UserProfile < ApplicationRecord
 
     if (self.address["postal_code"] =~ /\A[abceghjklmnprstvxyABCEGHJKLMNPRSTVXY]{1}\d{1}[a-zA-Z]{1}[ -]?\d{1}[a-zA-Z]{1}\d{1}\z/).nil?
       self.errors.add(:postal_code, "invalid!")
+    end
+  end
+
+  def set_default_avatar
+    if !self.avatar.attached?
+      self.avatar.attach(io: File.open(Rails.root.join("app", "assets", "images", "default_avatar.png")), filename: "default_avatar.png", content_type: "image/png")
     end
   end
 end
