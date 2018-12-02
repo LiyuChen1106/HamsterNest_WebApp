@@ -2318,3 +2318,234 @@ Processing by UserProfilesController#show as HTML
 Completed 200 OK in 975ms (Views: 871.6ms | ActiveRecord: 45.3ms)
 
 
+Started GET "/" for 127.0.0.1 at 2018-12-01 23:11:10 -0500
+  [1m[35m (3.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/liyuchen/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by WelcomeController#index as HTML
+  [1m[36mUser Load (4.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:32
+  [1m[36mUserProfile Load (69.3ms)[0m  [1m[34mSELECT  "user_profiles".* FROM "user_profiles" WHERE "user_profiles"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:33
+  [1m[36mItem Load (0.9ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_profile_id" = $1[0m  [["user_profile_id", 1]]
+  ↳ app/controllers/application_controller.rb:36
+  [1m[36mBorrowRequest Load (1.5ms)[0m  [1m[34mSELECT "borrow_requests".* FROM "borrow_requests" WHERE "borrow_requests"."item_id" = $1[0m  [["item_id", 1]]
+  ↳ app/controllers/application_controller.rb:37
+  [1m[36mBorrowRequest Load (0.5ms)[0m  [1m[34mSELECT "borrow_requests".* FROM "borrow_requests" WHERE "borrow_requests"."user_profile_id" = $1[0m  [["user_profile_id", 1]]
+  ↳ app/controllers/application_controller.rb:56
+  [1m[36mItem Load (0.5ms)[0m  [1m[34mSELECT "items".* FROM "items"[0m
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mCACHE BorrowRequest Load (0.0ms)[0m  [1m[34mSELECT "borrow_requests".* FROM "borrow_requests" WHERE "borrow_requests"."item_id" = $1[0m  [["item_id", 1]]
+  ↳ app/controllers/application_controller.rb:15
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:23
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:23
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/welcome_controller.rb:7
+  [1m[36mUserProfile Load (0.4ms)[0m  [1m[34mSELECT  "user_profiles".* FROM "user_profiles" WHERE "user_profiles"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/welcome_controller.rb:8
+  [1m[36mCACHE Item Load (0.0ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_profile_id" = $1[0m  [["user_profile_id", 1]]
+  ↳ app/controllers/welcome_controller.rb:11
+  [1m[36mCACHE BorrowRequest Load (0.0ms)[0m  [1m[34mSELECT "borrow_requests".* FROM "borrow_requests" WHERE "borrow_requests"."item_id" = $1[0m  [["item_id", 1]]
+  ↳ app/controllers/welcome_controller.rb:12
+  [1m[36mCACHE BorrowRequest Load (0.0ms)[0m  [1m[34mSELECT "borrow_requests".* FROM "borrow_requests" WHERE "borrow_requests"."user_profile_id" = $1[0m  [["user_profile_id", 1]]
+  ↳ app/controllers/welcome_controller.rb:22
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (2.5ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:6
+  [1m[36mCACHE UserProfile Load (0.0ms)[0m  [1m[34mSELECT  "user_profiles".* FROM "user_profiles" WHERE "user_profiles"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:6
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:6
+  [1m[36mCACHE UserProfile Load (0.0ms)[0m  [1m[34mSELECT  "user_profiles".* FROM "user_profiles" WHERE "user_profiles"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:6
+  Rendered items/_item_search_box.html.erb (13.4ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:6
+  [1m[36mCACHE UserProfile Load (0.0ms)[0m  [1m[34mSELECT  "user_profiles".* FROM "user_profiles" WHERE "user_profiles"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:6
+  Rendered application/_top_banner.erb (33.9ms)
+  Rendered application/_footer.html.erb (6.6ms)
+Completed 200 OK in 3138ms (Views: 2757.2ms | ActiveRecord: 125.7ms)
+
+
+Started DELETE "/account/logout" for 127.0.0.1 at 2018-12-01 23:11:19 -0500
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"i0KJ6sacCrtqxFxjLNOoxfDY9ghCqogVsOa0bFZd8BgyMFavB5B1q9DbvgcZpcjOEL51S7MjqFE3vdskHwo3EA=="}
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/liyuchen/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mUserProfile Load (0.9ms)[0m  [1m[34mSELECT  "user_profiles".* FROM "user_profiles" WHERE "user_profiles"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:33
+  [1m[36mItem Load (0.9ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."user_profile_id" = $1[0m  [["user_profile_id", 1]]
+  ↳ app/controllers/application_controller.rb:36
+  [1m[36mBorrowRequest Load (0.7ms)[0m  [1m[34mSELECT "borrow_requests".* FROM "borrow_requests" WHERE "borrow_requests"."item_id" = $1[0m  [["item_id", 1]]
+  ↳ app/controllers/application_controller.rb:37
+  [1m[36mBorrowRequest Load (9.0ms)[0m  [1m[34mSELECT "borrow_requests".* FROM "borrow_requests" WHERE "borrow_requests"."user_profile_id" = $1[0m  [["user_profile_id", 1]]
+  ↳ app/controllers/application_controller.rb:56
+  [1m[36mItem Load (5.1ms)[0m  [1m[34mSELECT "items".* FROM "items"[0m
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mCACHE BorrowRequest Load (0.0ms)[0m  [1m[34mSELECT "borrow_requests".* FROM "borrow_requests" WHERE "borrow_requests"."item_id" = $1[0m  [["item_id", 1]]
+  ↳ app/controllers/application_controller.rb:15
+  [1m[35m (1.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:23
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:23
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/liyuchen/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/liyuchen/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/
+Completed 302 Found in 72ms (ActiveRecord: 21.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-01 23:11:20 -0500
+Processing by WelcomeController#index as HTML
+  [1m[36mItem Load (0.5ms)[0m  [1m[34mSELECT "items".* FROM "items"[0m
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mBorrowRequest Load (0.5ms)[0m  [1m[34mSELECT "borrow_requests".* FROM "borrow_requests" WHERE "borrow_requests"."item_id" = $1[0m  [["item_id", 1]]
+  ↳ app/controllers/application_controller.rb:15
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:23
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:23
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (3.8ms)
+  Rendered application/_top_banner.erb (3.8ms)
+  Rendered application/_footer.html.erb (3.3ms)
+Completed 200 OK in 835ms (Views: 804.9ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/account/sign_up" for 127.0.0.1 at 2018-12-01 23:11:24 -0500
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[36mItem Load (4.5ms)[0m  [1m[34mSELECT "items".* FROM "items"[0m
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mBorrowRequest Load (14.1ms)[0m  [1m[34mSELECT "borrow_requests".* FROM "borrow_requests" WHERE "borrow_requests"."item_id" = $1[0m  [["item_id", 1]]
+  ↳ app/controllers/application_controller.rb:15
+  [1m[35m (11.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:23
+  [1m[35m (6.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:23
+  Rendering users/registrations/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (6.5ms)
+  Rendered users/registrations/new.html.erb within layouts/application (26.0ms)
+  Rendered application/_top_banner.erb (2.6ms)
+  Rendered application/_footer.html.erb (5.1ms)
+Completed 200 OK in 910ms (Views: 852.3ms | ActiveRecord: 40.2ms)
+
+
+Started POST "/account" for 127.0.0.1 at 2018-12-01 23:11:31 -0500
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1E9NqrIr8Y8MOlz5scSsc65vcZSntXYSPyZrgQeyxbtJECEjSFRO+ndQCF+qrcMIXCNrmN6REU9zQu/e1GMy6Q==", "user"=>{"email"=>"esther.chenliyu@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mItem Load (0.6ms)[0m  [1m[34mSELECT "items".* FROM "items"[0m
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mBorrowRequest Load (0.6ms)[0m  [1m[34mSELECT "borrow_requests".* FROM "borrow_requests" WHERE "borrow_requests"."item_id" = $1[0m  [["item_id", 1]]
+  ↳ app/controllers/application_controller.rb:15
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:23
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:23
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/liyuchen/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Exists (2.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "esther.chenliyu@gmail.com"], ["LIMIT", 1]]
+  ↳ /Users/liyuchen/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mCACHE User Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "esther.chenliyu@gmail.com"], ["LIMIT", 1]]
+  ↳ /Users/liyuchen/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ /Users/liyuchen/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  Rendering users/registrations/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (2.3ms)
+  Rendered users/registrations/new.html.erb within layouts/application (9.2ms)
+  Rendered application/_top_banner.erb (3.1ms)
+  Rendered application/_footer.html.erb (5.1ms)
+Completed 200 OK in 1117ms (Views: 741.7ms | ActiveRecord: 5.3ms)
+
+
+Started POST "/account" for 127.0.0.1 at 2018-12-01 23:11:42 -0500
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"AHTyVCCeM5Q7s1UcJMtXtojnX3UdXWkC8ladm16lrJQyC9oDDbQjcPQIR0qoF8Bc34AR09lHIu3QAY7yvMlD4g==", "user"=>{"email"=>"imini@126.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mItem Load (0.6ms)[0m  [1m[34mSELECT "items".* FROM "items"[0m
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mBorrowRequest Load (0.6ms)[0m  [1m[34mSELECT "borrow_requests".* FROM "borrow_requests" WHERE "borrow_requests"."item_id" = $1[0m  [["item_id", 1]]
+  ↳ app/controllers/application_controller.rb:15
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:23
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:23
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/liyuchen/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "imini@126.com"], ["LIMIT", 1]]
+  ↳ /Users/liyuchen/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mCACHE User Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "imini@126.com"], ["LIMIT", 1]]
+  ↳ /Users/liyuchen/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Create (3.1ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "confirmation_token", "confirmation_sent_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "imini@126.com"], ["encrypted_password", "$2a$11$ggv/l42s/VH621cHMvKyf.LfHyDxHEjrfKARP4JDqHSN0LCkAS0se"], ["confirmation_token", "VDNU14e4YVeh8nucDZXc"], ["confirmation_sent_at", "2018-12-02 04:11:42.875843"], ["created_at", "2018-12-02 04:11:42.875585"], ["updated_at", "2018-12-02 04:11:42.875585"]]
+  ↳ /Users/liyuchen/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+[36m  Disk Storage (11.0ms) [0m[32mUploaded file to key: uhnp3j2Kdk1S7ruWrK956Spr (checksum: s+loJh6qZY441R85pMVmyg==)[0m
+  [1m[36mActiveStorage::Blob Create (2.4ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["key", "uhnp3j2Kdk1S7ruWrK956Spr"], ["filename", "default_avatar.png"], ["content_type", "image/png"], ["metadata", "{\"identified\":true}"], ["byte_size", 1319199], ["checksum", "s+loJh6qZY441R85pMVmyg=="], ["created_at", "2018-12-02 04:11:42.979638"]]
+  ↳ app/models/user_profile.rb:63
+  [1m[36mUserProfile Create (1.5ms)[0m  [1m[32mINSERT INTO "user_profiles" ("user_id", "username", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 2], ["username", "imini155"], ["created_at", "2018-12-02 04:11:42.883322"], ["updated_at", "2018-12-02 04:11:42.883322"]]
+  ↳ app/models/user.rb:21
+  [1m[36mActiveStorage::Attachment Create (2.2ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "avatar"], ["record_type", "UserProfile"], ["record_id", 2], ["blob_id", 3], ["created_at", "2018-12-02 04:11:43.011424"]]
+  ↳ app/models/user.rb:21
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_profile.rb:24
+  [1m[36mUser Update (0.9ms)[0m  [1m[33mUPDATE "users" SET "user_profile_id" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["user_profile_id", 2], ["updated_at", "2018-12-02 04:11:43.021804"], ["id", 2]]
+  ↳ app/models/user_profile.rb:26
+  [1m[36mUserProfile Update (3.6ms)[0m  [1m[33mUPDATE "user_profiles" SET "updated_at" = $1 WHERE "user_profiles"."id" = $2[0m  [["updated_at", "2018-12-02 04:11:43.017920"], ["id", 2]]
+  ↳ /Users/liyuchen/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/liyuchen/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  Rendering users/mailer/confirmation_instructions.html.erb
+  Rendered users/mailer/confirmation_instructions.html.erb (1.4ms)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 203.7ms
+Sent mail to imini@126.com (316.2ms)
+Date: Sat, 01 Dec 2018 23:11:43 -0500
+From: welcome@hamsternest.com
+Reply-To: welcome@hamsternest.com
+To: imini@126.com
+Message-ID: <5c035b7f3e37a_8dc23fc45fd7579018453@Liyus-MacBook.local.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Welcome imini@126.com!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/account/verification?confirmation_token=VDNU14e4YVeh8nucDZXc">Confirm my account</a></p>
+
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 4969d525-c8af-4ffb-a222-045c3be54573) to Async(default) with arguments: #<GlobalID:0x00007f88c3a8a9c8 @uri=#<URI::GID gid://hamster-nest/ActiveStorage::Blob/3>>
+Redirected to http://localhost:3000/
+Completed 302 Found in 1032ms (ActiveRecord: 45.8ms)
+
+
+  [1m[36mActiveStorage::Blob Load (1.2ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ /Users/liyuchen/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+[ActiveJob] [ActiveStorage::AnalyzeJob] [4969d525-c8af-4ffb-a222-045c3be54573] Performing ActiveStorage::AnalyzeJob (Job ID: 4969d525-c8af-4ffb-a222-045c3be54573) from Async(default) with arguments: #<GlobalID:0x00007f88c3a72238 @uri=#<URI::GID gid://hamster-nest/ActiveStorage::Blob/3>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [4969d525-c8af-4ffb-a222-045c3be54573] [36m  Disk Storage (4.9ms) [0m[34mDownloaded file from key: uhnp3j2Kdk1S7ruWrK956Spr[0m
+Started GET "/" for 127.0.0.1 at 2018-12-01 23:11:43 -0500
+Processing by WelcomeController#index as HTML
+  [1m[36mItem Load (0.7ms)[0m  [1m[34mSELECT "items".* FROM "items"[0m
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mBorrowRequest Load (6.2ms)[0m  [1m[34mSELECT "borrow_requests".* FROM "borrow_requests" WHERE "borrow_requests"."item_id" = $1[0m  [["item_id", 1]]
+  ↳ app/controllers/application_controller.rb:15
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:23
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:23
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (14.7ms)
+[ActiveJob] [ActiveStorage::AnalyzeJob] [4969d525-c8af-4ffb-a222-045c3be54573]   [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [4969d525-c8af-4ffb-a222-045c3be54573]   ↳ /Users/liyuchen/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+[ActiveJob] [ActiveStorage::AnalyzeJob] [4969d525-c8af-4ffb-a222-045c3be54573]   [1m[36mActiveStorage::Blob Update (1.0ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"width\":1164,\"height\":1106,\"analyzed\":true}"], ["id", 3]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [4969d525-c8af-4ffb-a222-045c3be54573]   ↳ /Users/liyuchen/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+[ActiveJob] [ActiveStorage::AnalyzeJob] [4969d525-c8af-4ffb-a222-045c3be54573]   [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [4969d525-c8af-4ffb-a222-045c3be54573]   ↳ /Users/liyuchen/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+[ActiveJob] [ActiveStorage::AnalyzeJob] [4969d525-c8af-4ffb-a222-045c3be54573] Performed ActiveStorage::AnalyzeJob (Job ID: 4969d525-c8af-4ffb-a222-045c3be54573) from Async(default) in 449.16ms
+  Rendered application/_top_banner.erb (2.8ms)
+  Rendered application/_footer.html.erb (3.3ms)
+Completed 200 OK in 1051ms (Views: 1023.9ms | ActiveRecord: 8.0ms)
+
+
