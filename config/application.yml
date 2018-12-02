@@ -1,0 +1,15 @@
+defaults: &defaults
+  email: dev@hamsternest.com
+  secret: foo123
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+  email: test@hamsternest.com
+
+production:
+  <<: *defaults
+  email: hamster@nest.com
+  secret: 321oof
