@@ -10,3 +10,39 @@
 .list-header {
   margin-bottom: 50px;
 }
+
+.show_user_profile {
+    margin-top: 40px;
+    padding-bottom: 60px;
+    width: 100%;
+}
+
+.basic-info {
+    margin-left: 5%;
+}
+
+.more-info {
+  margin-left: 5%;
+}
+
+.basic-info {
+   text-shadow: 0 1px 7px rgba(0,0,0,.2);
+}
+
+.more-info h1 {
+    padding-right: 40px;
+    font-size: 30px;
+    font-weight: 400;
+    color: #000;
+    line-height: 58px;
+    text-shadow: 0 1px 7px rgba(0,0,0,.2);
+    margin-top: 0px;
+}
+
+.more-info div.rating-information {
+    margin-top: 10px;
+    padding-right: 40px;
+    color: #000;
+    line-height: 30px;
+    text-shadow: 0 1px 7px rgba(0,0,0,.2);
+}

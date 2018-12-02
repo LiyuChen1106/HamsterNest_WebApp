@@ -1,71 +1,96 @@
+<div class="row">
+  <div class="col-1">
+  </div>
+  <div class="col-10 item-top">
+    <div class="item-go-back">
+      <%= link_to :back do %>
+      <%= fa_icon 'arrow-left', class:"go-back-fa"%>
+      <%= content_tag :span, "Back", class:"go-back-link"%>
+      <% end %>
+    </div>
+
+    <% if current_user.user_profile_id == @user_profile.id %>
+    <div class="owner-action">
+      <%= link_to 'Edit My Profile', edit_user_profile_path(@user_profile), class: "btn btn-info" %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
 <div class="show_user_profile">
-  <h1>Profile</h1>
-  <p>
-    <strong>Username:</strong>
-    <%= @user_profile.username %>
-  </p>
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <div class="user-avatar">
+          <%= image_tag @user_profile.avatar.variant(resize: "300x300") %>
+          <div class="basic-info">
+            <p></p>
+            <p>
+              <strong>Username:</strong>
+              <%= @user_profile.username %>
+            </p>
 
-  <% @isMyProfile = (current_user.user_profile == @user_profile) %>
-  <% @isNameComplete = (@user_profile.first_name != "" || @user_profile.last_name != "") %>
-  <p>
-    <% if @isMyProfile || (!@isMyProfile && @isNameComplete) %>
-      <strong>Full name:</strong>
-      <%= "#{@user_profile.first_name} #{@user_profile.last_name}"%>
-    <% end %>
-  </p>
-  
-  <p>
-    <% if !@isMyProfile %>
-      <strong>Email</strong>
-      <%= mail_to @user_profile.user.email%>
-    <% end %>
-  </p>
+            <% @isMyProfile = (current_user.user_profile == @user_profile) %>
+            <% @isNameComplete = (@user_profile.first_name != "" || @user_profile.last_name != "") %>
+            <p>
+              <% if @isMyProfile || (!@isMyProfile && @isNameComplete) %>
+              <strong>Full name:</strong>
+              <%= "#{@user_profile.first_name} #{@user_profile.last_name}"%>
+              <% end %>
+            </p>
+            <p>
+              <strong>Birth:</strong>
+              <%= @user_profile.birthday %>
+            </p>
+          </div>
 
-  <!--
-  <p>
-    <strong>Birth:</strong>
-    <%= @user_profile.birthday %>
-  </p>
-  -->
-
-  <p>
-    <strong>Lend Rating:</strong>
-    <% if @user_profile.lend_rating==nil%>
-      <% 5.times do %>
-        <span class="glyphicon glyphicon-star-empty"></span>
-      <% end %>
-    <%else%>
-      <%=@user_profile.lend_rating.to_i%>
-      <% @user_profile.lend_rating.to_i.times do |t| %>
-        <span class="glyphicon glyphicon-star"></span>
-      <% end %>
-      <%(5 - @user_profile.lend_rating).to_i.times do %>
-        <span class="glyphicon glyphicon-star-empty"></span>
-      <% end %>
-    <% end %>
-
-  </p>
-  
-  <p>
-  <strong>Rating People:</strong>
-  <%= (@user_profile.bpeople+@user_profile.lpeople) %>
-  </p>
-
-  <p>
-    <% if @user_profile.avatar.attached? %>
-      <%= image_tag @user_profile.avatar.variant(resize: "100x100") %>
-    <% end %>
-  </p>
-
-  <p>
-    <strong>Address:</strong><br>
-    <%= @user_profile.address['street_address'] %><br>
-    <%= @user_profile.address['city'] %>, <%= getProvinceName(@user_profile.address['province_id']) %><br>
-    <%= @user_profile.address['postal_code'] %><br>
-  </p>
-
-  <% if @isMyProfile %>
-    <%= link_to 'Edit', edit_user_profile_path(@user_profile), :class => "btn btn-primary"%><br>
-  <% end %>
-  <!--%= link_to 'Back to Home page', root_path %-->
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="more-info">
+          <div class="contact-information">
+            <h1>Contacts</h1>
+            <p>
+              <strong>Email</strong>
+              <% if !@isMyProfile %>
+              <%= mail_to @user_profile.user.email%>
+              <% else %>
+              <%= @user_profile.user.email%>
+              <% end %>
+            </p>
+            <p>
+              <strong>Address:</strong><br>
+              <%= @user_profile.address['street_address'] %><br>
+              <%= @user_profile.address['city'] %>,
+              <%= getProvinceName(@user_profile.address['province_id']) %><br>
+              <%= @user_profile.address['postal_code'] %><br>
+            </p>
+          </div>
+          <div class="rating-information">
+            <h1>Rating</h1>
+            <p>
+              <strong>Lend Rating:</strong>
+              <% if @user_profile.lend_rating==nil%>
+              <% 5.times do %>
+              <span class="glyphicon glyphicon-star-empty"></span>
+              <% end %>
+              <%else%>
+              <%=@user_profile.lend_rating.to_i%>
+              <% @user_profile.lend_rating.to_i.times do |t| %>
+              <span class="glyphicon glyphicon-star"></span>
+              <% end %>
+              <%(5 - @user_profile.lend_rating).to_i.times do %>
+              <span class="glyphicon glyphicon-star-empty"></span>
+              <% end %>
+              <% end %>
+            </p>
+            <p>
+              <strong>Number of rating received:</strong>
+              <%= (@user_profile.bpeople+@user_profile.lpeople) %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
