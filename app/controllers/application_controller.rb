@@ -58,12 +58,13 @@ class ApplicationController < ActionController::Base
           @new_message = true
           @message_num = @message_num + 1
           @new_requests << req.id
-          #flash[:notice] = "deliverd check received?"
+
+          flash[:notice] = "deliverd check received?"
         elsif req.return_status == 4 && req.return_date <= Date.today
           @new_message = true
           @message_num = @message_num + 1
           @new_requests << req.id
-          #flash[:notice] = "Return!!!"
+          flash[:notice] = "Return!!!"
         end
       end
     end
