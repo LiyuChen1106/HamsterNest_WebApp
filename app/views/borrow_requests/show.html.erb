@@ -29,7 +29,7 @@
   <% if @borrow_request.return_status == 4 %>
     <% if @borrow_request.approval %> 
       <p><%= link_to 'Return Item',  item_borrow_request_path(:item_id=>@item.id, 
-                                    :id=>@borrow_request.id,:return_status => 1, :borrower_read_status => true), :method=> :put%></p>
+                                    :id=>@borrow_request.id,:return_status => 1, :borrower_read_status => true, :read_status =>false), :method=> :put%></p>
     <% end %>
   <% elsif @borrow_request.return_status == 1 %>
     <strong><p>Waiting for <%= @owner.username %> receipt confirm</p></strong>
@@ -37,7 +37,7 @@
     <strong><p>Item Returned</p></strong>
   <% elsif @borrow_request.return_status == 0 && !@borrow_request.approval.nil?%>
     <% @borrow_request.update_attribute(:borrower_read_status, true) %>
-    <% if @borrow_request.approval %>
+    <% if !@borrow_request.approval %>
       <%= link_to 'Cancel Request', item_borrow_request_path(@borrow_request),
       method: :delete,
       data: {confirm: 'Are you sure to cancel the request?'} %>

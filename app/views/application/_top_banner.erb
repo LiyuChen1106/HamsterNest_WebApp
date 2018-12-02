@@ -63,7 +63,7 @@
           <% if @new_req.user_profile.id!= current_user.id%>
           <%= link_to @new_req.item.item_name, item_borrow_request_path(:item_id=>@new_req.item.id, :id=>req_id, :read_status=>true), :method=> :put, :class => "dropdown-item"  %>
           <%else%>
-          <%= link_to @new_req.item.item_name, item_borrow_request_path(:item_id=>@new_req.item.id, :id=>req_id), :class => "dropdown-item"  %>
+          <%= link_to @new_req.item.item_name, item_borrow_request_path(:item_id=>@new_req.item.id, :id=>req_id, :borrower_read_status=>true), :method=> :put, :class => "dropdown-item"  %>
           <%end%>
         <%end%>
         </div>
