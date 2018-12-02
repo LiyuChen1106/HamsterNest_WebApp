@@ -4,7 +4,12 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hello, <%= @lender.user_profile.first_name %></h1>
+    <% if @lender.user_profile.first_name != "" %>
+      <h1>Hello, <%= @lender.user_profile.first_name %></h1>
+    <% else %>
+      <h1>Hello, <%= @lender.user_profile.username %></h1>
+    <% end %>
+    
     <p>
       <%= @borrower.user_profile.username %> is willing to borrow an item from you. Please click on the link to confirm the request. <br>
     </p>
