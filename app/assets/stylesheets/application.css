@@ -202,12 +202,20 @@ body { margin:0px; }
 
 .notify-badge{
   position: absolute;
-  right:-1px;
-  top:5px;
+  right:1px;
+  top:11px;
   background:red;
   text-align: center;
   border-radius: 15px 15px 15px 15px;
   color:white;
   padding:5px 10px;
   font-size:10px;
+}
+.noti-link {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    vertical-align: middle;
+    border: none;
+    cursor: pointer;
 }
