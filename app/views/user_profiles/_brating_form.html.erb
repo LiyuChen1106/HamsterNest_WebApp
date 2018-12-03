@@ -1,9 +1,7 @@
 <div class = "profile_form" >
 
-  <h1>rating information</h1>
-  
   <%= form_with model: @user_profile, local: true do |form| %>
-  
+
     <% if @user_profile.errors.any? %>
       <div id="error_explanation">
         <h2>
@@ -17,12 +15,12 @@
         </ul>
       </div>
     <% end %>
-  
-    <div class="field">
-      <%= form.label :borrow_rating, "borrow_rating(1-5)" %><br>
-      <%= form.number_field :borrow_rating, min:1, max:5%>
+
+    <div class="field form-group">
+      <%= form.label :borrow_rating, "Rate your borrow experience (1-5)" %><br>
+      <%= form.number_field :borrow_rating, min:1, max:5, :class => 'form-control'%>
     </div>
-  
+
 
 
     <div class="actions">
@@ -30,7 +28,6 @@
         <%= form.submit "Complete rating"%>
       </p>
     </div>
-  
+
   <% end %>
 </div>
-
