@@ -112,7 +112,7 @@
               <% if @borrow_request.approval%>
               Pending Delivery of the item.
               <%else%>
-              Pending Approval from the owner.
+              Rejected by the owner.
               <%end%>
               <% elsif @borrow_request.return_status == 3%>
                 Pending confirmation of receiption.
