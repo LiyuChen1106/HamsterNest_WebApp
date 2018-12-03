@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {background-color:#f5f5f5;}
+    </style>
+  </head>
+  
+  <body>
+
+    <% if @lender.first_name != "" %>
+      <h1>Hello, <%= @lender.first_name %></h1>
+    <% else %>
+      <h1>Hello, <%= @lender.username %></h1>
+    <% end %>
+
+    <p>The following <%= @item_infos.count %> item(s) have been delivered back to you. Please update the status if you have recieved them.<p>
+
+    <table>
+      <tr>
+        <th>Item name</th>
+        <th>Return date</th>
+      </tr>
+      <% @item_infos.each do |info| %>
+        <tr>
+        <td><%= link_to info[:itemname], info[:url] %></td>
+        <td><%= info[:returndate] %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <p>Please don't reply to this email.</p>
+  </body>
+</html>
+
