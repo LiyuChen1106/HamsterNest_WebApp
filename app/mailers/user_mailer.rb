@@ -5,13 +5,24 @@ class UserMailer < ApplicationMailer
   def return_reminder_the_day_before_email
     @return_list = params[:return_list]
     
-    @return_list.each do |unit|
-      @borrower = unit.user_profile
-      @email = unit.user_profile.user.email
-      @borrow_requests = unit.requests
-      @due_date = @borrow_requests.first.return_date
-      @url = item_url(:id => @item.id)
-      mail(to: @user.email, subject: 'Reminder: items to be returned')
+    @return_list.each do |borrower_profile, requests|
+      @email = borrower_profile.user.email
+      @borrower = borrower_profile
+      @item_infos = []
+      requests.each do |request|
+        @item = request.item
+        @itemname = @item.item_name
+        @return_date = request.return_date
+        @url = item_url(:id => @item.id)
+        @item_info = {:itemname => @itemname, :url => @url, :returndate => @return_date}
+        
+        @item_infos.push(@item_info)
+      end
+      puts @item_infos
+#      @borrow_requests = unit.requests
+#      @due_date = @borrow_requests.first.return_date
+#      @url = item_url(:id => @item.id)
+      mail(to: @email, subject: 'Reminder: item(s) to be returned')
     end
   end
   
@@ -24,7 +35,7 @@ class UserMailer < ApplicationMailer
       @borrow_requests = unit.requests
       @due_date = @borrow_requests.first.return_date
       @url = item_url(:id => @item.id)
-      mail(to: @user.email, subject: 'Reminder: items to be returned')
+      mail(to: @user.email, subject: 'Confirmation: these item(s) has been returned')
     end
   end
   

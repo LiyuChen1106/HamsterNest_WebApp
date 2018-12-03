@@ -1,8 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {background-color:#f5f5f5;}
+    </style>
   </head>
+  
   <body>
 
     <% if @borrower.first_name != "" %>
@@ -11,18 +25,22 @@
       <h1>Hello, <%= @borrower.username %></h1>
     <% end %>
 
-    <p>You have <%= @items.count %> item(s) to be returned.<p>
+    <p>You have <%= @item_infos.count %> item(s) to be returned.<p>
 
     <table>
-      <% @items.each do |item| %>
+      <tr>
+        <th>Item name</th>
+        <th>Return date</th>
+      </tr>
+      <% @item_infos.each do |info| %>
         <tr>
-        <td><%= item.item_name %></td>
-        <td><%= link_to 'View item', item_path(item) %></td>
+        <td><%= link_to info[:itemname], info[:url] %></td>
+        <td><%= info[:returndate] %></td>
         </tr>
       <% end %>
     </table>
 
     <p>Please don't reply to this email.</p>
-    
   </body>
 </html>
+
