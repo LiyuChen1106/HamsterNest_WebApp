@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   get "lend_to_others", to: "user_profiles#lend_to_others"
   get "lend_rating", to: "user_profiles#lend_rating"
+  get "borrow_rating", to: "user_profiles#borrow_rating"
 
   resources :user_profiles do
     resources :items
