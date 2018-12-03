@@ -19,11 +19,12 @@
     </tr>
     <tr>
       <td>
-        <%= form.date_field :borrow_date, min: Date.today, :class => 'form-control' %>
+        <%= form.date_field :borrow_date, min: Date.today, value: Date.today, :class => 'form-control' %>
       </td>
       <td>
-        <%= form.date_field :return_date, min: Date.today, :class => 'form-control' %>
+        <%= form.date_field :return_date, min: Date.today, value: Date.today+1, :class => 'form-control' %>
       </td>
+
     </tr>
   </table>
   <p>

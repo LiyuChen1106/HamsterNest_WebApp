@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 2018_12_01_022114) do
     t.integer "category_id"
     t.string "item_name"
     t.integer "user_profile_id"
-    t.boolean "status"
+    t.boolean "status", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "left_quantity"

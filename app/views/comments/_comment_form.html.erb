@@ -1,6 +1,5 @@
 <div class = "comment_form" >
 
-
   <%= form_with(model: [ @item, @item.comments.build ], local: true) do |form| %>
   <!-- check if any error -->
   <% if @item.errors.any? %>
@@ -47,4 +46,5 @@
     </div>
 
   <% end %>
+  </div>
 </div>

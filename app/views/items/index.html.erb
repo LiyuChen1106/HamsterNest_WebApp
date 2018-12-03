@@ -67,6 +67,7 @@
     </div>
   </div>
 
+  <!--% if @search_items.empty? && @search_words!='' %-->
   <% if @unlogin && @search_items.empty? && !@search_words.nil? %>
   <a href="https://www.amazon.ca/s/field-keywords=<%=@search_words%>"> Try to look for <strong>
       <%=@search_words%></strong> on Amazon</a>
