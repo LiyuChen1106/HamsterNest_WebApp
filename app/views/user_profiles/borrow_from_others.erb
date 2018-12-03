@@ -58,7 +58,7 @@
             <div class="panel-body">
               <% @borrow_requests.each do |borrow_request| %>
               <table>
-                <% if borrow_request.approval == true%>
+                <% if borrow_request.approval == true && borrow_request.return_status != 2 %>
                 <tr>
                   <td>
                     <%= borrow_request.item.item_name %>
@@ -100,6 +100,47 @@
                   </td>
                   <td>
                     <%= getCategoryName(borrow_request.item.category_id) %>
+                  </td>
+                  <td>
+                    <%= link_to 'Show Request', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id) %> |</td>
+                  <td>
+                    <%= link_to 'Show Item', user_profile_item_path(:user_profile_id=>current_user.id, :id=>borrow_request.item.id) %> | </td>
+                  <td>
+                    <%= link_to 'Remove', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id),
+                                  method: :delete,
+                                  data: { confirm: 'Are you sure to cancel the request?'} %>
+                  </td>
+                </tr>
+                <% end %>
+              </table>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse4">History</a>
+            </h4>
+          </div>
+          <div id="collapse4" class="panel-collapse collapse">
+            <div class="panel-body">
+              <% @borrow_requests.each do |borrow_request| %>
+              <table>
+                <% if borrow_request.return_status == 2%>
+                <tr>
+                  <td>
+                    <%= borrow_request.item.item_name %>
+                  </td>
+                  <td>
+                    <%= getCategoryName(borrow_request.item.category_id) %>
+                  </td>
+                  <td>
+                    Lender: 
+                    <%= borrow_request.item.user_profile.username %>
+                  </td>
+                  <td>
+                    <%= borrow_request.actual_borrow_date%> to <%=borrow_request.actual_return_date%>
                   </td>
                   <td>
                     <%= link_to 'Show Request', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id) %> |</td>
