@@ -13,7 +13,7 @@ class UserMailer < ApplicationMailer
         @item = request.item
         @itemname = @item.item_name
         @return_date = request.return_date
-        @url = item_url(:id => @item.id)
+        @url = item_borrow_request_url(:item_id => @item.id, :id => request.id)
         @item_info = {:itemname => @itemname, :url => @url, :returndate => @return_date}
         
         @item_infos.push(@item_info)
