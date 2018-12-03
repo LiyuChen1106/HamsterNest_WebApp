@@ -2,6 +2,7 @@
 *DS_Store
 config/application.yml
 *tmp*
+tmp/cache*
 storage
 *.orig
-
+log*
