@@ -10,12 +10,7 @@ class CommentsController < ApplicationController
     @owner = @item.user_profile
     @user_id = current_user.id
     #also need to check history
-    @item.comments.each do |com|
-      if @user_id == com.user_profile_id
-        flash[:notice] = "You have commented this item"
-        redirect_to root_path
-      end
-    end
+
   end
 
   def edit
