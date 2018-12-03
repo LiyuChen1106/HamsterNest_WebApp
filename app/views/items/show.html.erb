@@ -98,8 +98,12 @@
     </div>
   </div>
 <!-- comment area -->
+<div class="row">
+  <div class="col-1">
+  </div>
+  <div class="col-10">
 <% if !@item.comments.empty?%>
-  <div class="panel panel-default">
+  <div class="panel panel-default comment-pannel">
     <div class="panel-heading">
       <h4 class="panel-title">
          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTWO">Comment:</a>
@@ -109,15 +113,17 @@
       <div class="panel-body">
       <table>
 
-        <% @item.comments.each do |current_req|%> 
+        <% @item.comments.each do |current_req|%>
         <tr>
           <td><%= current_req.comment_message %></td>
           <td>| <%= current_req.comment_date %></td>
         </tr>
         <% end %>
-    
+
     </table>
     </div>
   </div>
 </div>
 <%end%>
+</div>
+</div>

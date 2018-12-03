@@ -16,6 +16,11 @@ class BorrowRatingController < ApplicationController
     if @borrow_person.update(rate_params)
       redirect_to current_user
     else
+      @s = ""
+      for m in @borrow_person.errors.full_messages
+        @s = @s + m + ".   "
+      end
+      flash[:alert] = @s
       render "edit"
     end
   end
