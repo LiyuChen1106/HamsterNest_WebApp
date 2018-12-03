@@ -112,10 +112,10 @@ class BorrowRequestsController < ApplicationController
 
       if @borrow_request.approval == true
         flash[:notice] = "You have approved this request"
-        UserMailer.with(lender: current_user, borrower: @borrower, item: @item, borrow_request: self).borrow_request_approved_email.deliver
+        UserMailer.with(lender: current_user, borrower: @borrower, item: @item, borrow_request: @borrow_request).borrow_request_approved_email.deliver
       elsif @borrow_request.approval == false
         flash[:notice] = "You have rejected this request"
-        UserMailer.with(lender: current_user, borrower: @borrower, item: @item, borrow_request: self).borrow_request_rejected_email.deliver
+        UserMailer.with(lender: current_user, borrower: @borrower, item: @item, borrow_request: @borrow_request).borrow_request_rejected_email.deliver
       end
     end
 
@@ -132,11 +132,11 @@ class BorrowRequestsController < ApplicationController
         @borrow_request.item.status = true
         @borrow_request.update_attribute(:actual_return_date, Date.today)
         #send email
-        UserMailer.with(lender: current_user, borrower: @borrower, item: @item, borrow_request: self).item_return_confirmation_email.deliver
+        UserMailer.with(lender: current_user, borrower: @borrower, item: @item, borrow_request: @borrow_request).item_return_confirmation_email.deliver
       elsif @borrow_request.return_status == 3 #lender sended
         @borrow_request.item.status = false
         #send email
-        UserMailer.with(lender: current_user, borrower: @borrower, item: @item, borrow_request: self).item_delivery_email.deliver
+        UserMailer.with(lender: current_user, borrower: @borrower, item: @item, borrow_request: @borrow_request).item_delivery_email.deliver
       elsif @borrow_request.return_status == 4 #borrow received
         @borrow_request.update_attribute(:actual_borrow_date, Date.today)
         #send email
