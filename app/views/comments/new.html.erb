@@ -1,4 +1,10 @@
 <h1> new comment </h1>
-<%= render 'comment_form' %>
+<div class="owner-action btn btn-info">
+    <%= link_to 'Skip', "/items" %>
+</div>
 
-<%= link_to 'Cancel', "/items" %>
+<div class="row">
+<%= render 'comment_form' %>
+</div>
+
+
