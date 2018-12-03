@@ -147,9 +147,16 @@ class BorrowRequestsController < ApplicationController
     end
 
     # return to item page
-    if @borrow_request.return_status == 1 && @borrow_request.user_profile_id == current_user.id && !params[:return_status].nil?
+    if  @borrow_request.user_profile_id == current_user.id && !params[:return_status].nil?
       if params[:return_status]== "1"
         redirect_to lend_rating_path(:id => @borrow_request.item.user_profile.id)
+
+      else
+        redirect_to item_borrow_request_path(:item_id => @item.id, :id => @borrow_request.id)
+      end
+    elsif @borrow_request.user_profile_id != current_user.id && !params[:return_status].nil?
+      if params[:return_status]=="2"
+        redirect_to borrow_rating_path(:id=>@borrow_request.user_profile_id)
       else
         redirect_to item_borrow_request_path(:item_id => @item.id, :id => @borrow_request.id)
       end

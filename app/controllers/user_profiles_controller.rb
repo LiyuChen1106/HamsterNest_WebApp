@@ -36,9 +36,8 @@ class UserProfilesController < ApplicationController
 
   def update
     @id = params[:id]
-    puts current_user.id.class
+
     if (@id.to_i == current_user.id)
-      puts "shishikandiyici"
       @user_profile = UserProfile.find(params[:id])
       @registerInProgress = @user_profile.birthday.nil?
       @updateResult = @user_profile.update(profile_params)
@@ -56,18 +55,38 @@ class UserProfilesController < ApplicationController
         render "edit"
       end
     else
-      @user_profile = UserProfile.find(params[:id])
-      @l_rating = @user_profile.lend_rating
-      @l_people = @user_profile.lpeople
-      @l_rating = @l_rating * @l_people
-      @l_people = @l_people + 1
-      @rating = params.require(:user_profile).permit(:lend_rating)
-      @rating = @rating[:lend_rating].to_i
-      @l_rating = (@l_rating + @rating) / @l_people
-      if @user_profile.update_attribute(:lend_rating, @l_rating) && @user_profile.update_attribute(:lpeople, @l_people)
-        redirect_to :root
+      @lrating = params.require(:user_profile)
+      @lrating = @lrating[:lend_rating].to_i
+      if (@lrating!=0)
+        puts "22222222"
+        @user_profile = UserProfile.find(params[:id])
+        @l_rating = @user_profile.lend_rating
+        @l_people = @user_profile.lpeople
+        @l_rating = @l_rating * @l_people
+        @l_people = @l_people + 1
+        @rating = params.require(:user_profile)
+        @rating = @rating[:lend_rating].to_i
+        @l_rating = (@l_rating + @rating) / @l_people
+        if @user_profile.update_attribute(:lend_rating, @l_rating) && @user_profile.update_attribute(:lpeople, @l_people)
+          redirect_to :root
+        else
+          render "lend_rating"
+        end
       else
-        render "lend_to_others"
+        puts "333333333"
+        @user_profile = UserProfile.find(params[:id])
+        @b_rating = @user_profile.borrow_rating
+        @b_people = @user_profile.bpeople
+        @b_rating = @b_rating * @b_people
+        @b_people = @b_people + 1
+        @rating = params.require(:user_profile)
+        @rating = @rating[:borrow_rating].to_i
+        @b_rating = (@b_rating + @rating) / @b_people
+        if @user_profile.update_attribute(:borrow_rating, @b_rating) && @user_profile.update_attribute(:bpeople, @b_people)
+          redirect_to :root
+        else
+          render "borrow_rating"
+        end
       end
     end
   end
@@ -90,6 +109,9 @@ class UserProfilesController < ApplicationController
     @user_profile = UserProfile.find(params[:id])
   end
 
+  def borrow_rating
+    @user_profile = UserProfile.find(params[:id])
+  end
   private
 
   def profile_params
