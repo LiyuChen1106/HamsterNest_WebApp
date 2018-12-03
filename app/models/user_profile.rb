@@ -13,7 +13,8 @@ class UserProfile < ApplicationRecord
   # validate postal code must exist
   validates :username, presence: {message: "must exist"}
   validate :address_exists?
-  validate :rating?
+  validate :lrating?
+  validate :brating?
   geocoded_by :address
   after_validation :geocode
 
@@ -27,7 +28,7 @@ class UserProfile < ApplicationRecord
     end
   end
 
-  def rating?
+  def lrating?
     if self[:lend_rating]==nil
       return
     end
@@ -36,6 +37,19 @@ class UserProfile < ApplicationRecord
       self.errors.add(:lend_rating,"can not be greater than 5")
     end
     if self[:lend_rating] < 0
+      self.errors.add(:lend_rating,"can not be smaller than 0")
+    end
+  end
+
+  def brating?
+    if self[:borrow_rating]==nil
+      return
+    end
+
+    if self[:borrow_rating] > 5
+      self.errors.add(:lend_rating,"can not be greater than 5")
+    end
+    if self[:borrow_rating] < 0
       self.errors.add(:lend_rating,"can not be smaller than 0")
     end
   end
