@@ -1,0 +1,10 @@
+<% if @lender.user_profile.first_name != "" %>
+Hello, <%= @lender.user_profile.first_name %>
+<% else %>
+Hello, <%= @lender.user_profile.username %>
+<% end %>
+
+The item <%= link_to @item.item_name, @url %> has been recieved by <%= @borrower.user_profile.username %>.
+
+
+Please do not reply to this email.

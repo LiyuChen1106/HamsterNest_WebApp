@@ -97,3 +97,27 @@
       </div>
     </div>
   </div>
+<!-- comment area -->
+<% if !@item.comments.empty?%>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTWO">Comment:</a>
+      </h4>
+    </div>
+    <div id="collapseTWO" class="panel-collapse collapse">
+      <div class="panel-body">
+      <table>
+
+        <% @item.comments.each do |current_req|%> 
+        <tr>
+          <td><%= current_req.comment_message %></td>
+          <td>| <%= current_req.comment_date %></td>
+        </tr>
+        <% end %>
+    
+    </table>
+    </div>
+  </div>
+</div>
+<%end%>

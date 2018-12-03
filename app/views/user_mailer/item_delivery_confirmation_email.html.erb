@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <% if @lender.user_profile.first_name != "" %>
+      <h1>Hello, <%= @lender.user_profile.first_name %></h1>
+    <% else %>
+      <h1>Hello, <%= @lender.user_profile.username %></h1>
+    <% end %>
+    
+    <p>
+      The item <%= link_to @item.item_name, @url %> has been recieved by <%= @borrower.user_profile.username %>. <br>
+    </p>
+    
+    <p>Please do not reply to this email.</p>
+  </body>
+</html>

@@ -1,9 +1,6 @@
 // Place all the styles related to the Borrow_requests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.request_form {
-
-}
 
 .request-table {
   margin-top: 0px;
@@ -19,6 +16,15 @@ td {
   font-style: oblique;
 }
 
-.show_request{
-  margin-left: 100px;
+.request-info {
+   text-shadow: 0 1px 7px rgba(0,0,0,.2);
+   margin-top: 10px;
+   margin-left: 20px;
+   color: #000;
+   line-height: 30px;
+   margin-bottom: 40px;
+}
+
+.request-action{
+  float:right;
 }

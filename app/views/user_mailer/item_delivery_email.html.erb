@@ -9,10 +9,10 @@
     <% else %>
       <h1>Hello, <%= @borrower.user_profile.username %></h1>
     <% end %>
+    
     <p>
-      <%= @lender.user_profile.username %> has approved your borrow request. Please contact the owner through email <%= @lender.email %> for item(s) delivery details. <br>
+      The item <%= link_to @item.item_name, @url %> is on its way. Please update the status on the item once you recieve it. <br>
     </p>
-    <%= link_to 'View the item', @url %>
     
     <p>Please do not reply to this email.</p>
   </body>

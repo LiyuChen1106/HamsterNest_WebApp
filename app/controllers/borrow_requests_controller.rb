@@ -85,9 +85,9 @@ class BorrowRequestsController < ApplicationController
     @borrow_request = @item.borrow_requests.create(@attr)
 
     if @borrow_request.save
-      flash[:notice] = "Borrow request created."
+      flash[:notice] = "An email has been sent to the owner. Please wait for confirmation."
 
-      UserMailer.with(lender: @item.user_profile.user, borrower: current_user, item: @item, borrow_request: @borrow_request).borrow_request_confirmation_email.deliver_later
+      UserMailer.with(lender: @item.user_profile.user, borrower: current_user, item: @item, borrow_request: @borrow_request).borrow_request_confirmation_email.deliver
 
       redirect_to root_path
     else
@@ -125,14 +125,22 @@ class BorrowRequestsController < ApplicationController
 
       if @borrow_request.return_status == 1 #borrower return
         flash[:notice] = "set return status as borrower returned(1)"
+        #send email
+        UserMailer.with(lender: @item.user_profile.user, borrower: current_user, item: @item, borrow_request: @borrow_request).item_return_email.deliver
       elsif @borrow_request.return_status == 2 #lender received
         flash[:notice] = "set return status as lender received (2)"
         @borrow_request.item.status = true
         @borrow_request.update_attribute(:actual_return_date, Date.today)
+        #send email
+        UserMailer.with(lender: current_user, borrower: @borrower, item: @item, borrow_request: self).item_return_confirmation_email.deliver
       elsif @borrow_request.return_status == 3 #lender sended
         @borrow_request.item.status = false
+        #send email
+        UserMailer.with(lender: current_user, borrower: @borrower, item: @item, borrow_request: self).item_delivery_email.deliver
       elsif @borrow_request.return_status == 4 #borrow received
         @borrow_request.update_attribute(:actual_borrow_date, Date.today)
+        #send email
+        UserMailer.with(lender: @item.user_profile.user, borrower: current_user, item: @item, borrow_request: @borrow_request).item_delivery_confirmation_email.deliver
       end
     end
 
@@ -149,7 +157,7 @@ class BorrowRequestsController < ApplicationController
     # return to item page
     if  @borrow_request.user_profile_id == current_user.id && !params[:return_status].nil?
       if params[:return_status]== "1"
-        redirect_to lend_rating_path(:id => @borrow_request.item.user_profile.id)
+        redirect_to new_item_comment_path(:item_id=>@item.id, :tryid => @borrow_request.item.user_profile.id)
 
       else
         redirect_to item_borrow_request_path(:item_id => @item.id, :id => @borrow_request.id)
