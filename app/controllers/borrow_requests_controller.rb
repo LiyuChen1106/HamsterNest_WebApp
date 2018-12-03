@@ -85,9 +85,9 @@ class BorrowRequestsController < ApplicationController
     @borrow_request = @item.borrow_requests.create(@attr)
 
     if @borrow_request.save
-      flash[:notice] = "Borrow request created."
+      flash[:notice] = "An email has been sent to the owner. Please wait for confirmation."
 
-      UserMailer.with(lender: @item.user_profile.user, borrower: current_user, item: @item, borrow_request: @borrow_request).borrow_request_confirmation_email.deliver_later
+      UserMailer.with(lender: @item.user_profile.user, borrower: current_user, item: @item, borrow_request: @borrow_request).borrow_request_confirmation_email.deliver
 
       redirect_to root_path
     else
