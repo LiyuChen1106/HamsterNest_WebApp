@@ -1,12 +1,37 @@
-<p>
-  <strong>Item: </strong>
-  <%= link_to @item.item_name, item_path(@item.id) %>
-</p>
-<p>
-  <strong>Status: </strong>
-  <%= @status %>
-</p>
-<p>
-  <strong>Category: </strong>
-  <%= @item.category %>
-</p>
+<html>
+<head>
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 6px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+</style>
+</head>
+<body>
+
+<table>
+  <% @items.each do |item| %>
+  <tr>
+    <td>
+      <dl>
+        <dt><strong><%= link_to item.item_name, item_path(item.id) %></strong></dt>
+        <% if item.status == true%>
+          <dd>- Status: Available</dd>
+        <% else %>
+          <dd>- Status: Currently unavailable</dd>
+        <% end %>
+        <dd>- Category: <%= getCategoryName(item.category_id) %></dd>
+      </dl>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+</body>
+</html>
