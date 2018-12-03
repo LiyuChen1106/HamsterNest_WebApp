@@ -1,10 +1,5 @@
 <div class = "comment_form" >
 
-  <h1>Comment information</h1>
-  <p>
-    <strong>Item </strong>
-    <%= @item.item_name%>
-  </p>
 
   <%= form_with(model: [ @item, @item.comments.build ], local: true) do |form| %>
   <!-- check if any error -->
@@ -29,8 +24,8 @@
     -->
 
     <div class="field form-group">
-    <%= form.label :lend_rating, "Lend_rating(1-5)" %><br>
-    <%= form.number_field :lend_rating, min:0, max:5, :class => 'form-control'%>
+    <%= form.label :lend_rating, "Rate your lend experience (1-5)" %><br>
+    <%= form.number_field :lend_rating, min:0, max:5, default:5, :class => 'form-control'%>
     </div>
 
     <div class="field form-group">

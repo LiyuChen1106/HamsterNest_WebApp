@@ -19,8 +19,8 @@ class CommentsController < ApplicationController
   end
 
   def create
-
-    @user_profile = item.user_profile
+    @item = Item.find(params[:item_id])
+    @user_profile = @item.user_profile
     @l_rating = @user_profile.lend_rating
     @l_people = @user_profile.lpeople
     @l_rating = @l_rating * @l_people
@@ -29,7 +29,6 @@ class CommentsController < ApplicationController
     @rating = @rating[:lend_rating].to_i
     @l_rating = (@l_rating + @rating) / @l_people
 
-    @item = I.tem.find(params[:item_id])
     @attr = comment_params
     @attr[:user_profile_id] = current_user.id
     @attr[:comment_date]=Time.now
