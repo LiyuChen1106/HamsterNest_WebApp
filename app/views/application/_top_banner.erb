@@ -26,6 +26,7 @@
   <div class="float-right" id="navbarResponsive">
     <ul class="navbar-nav">
       <%- if registerInProgress %>
+      <!-- this is the first time the user log in -->
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
@@ -40,6 +41,7 @@
         </ul>
       </div>
       <%- elsif !user_signed_in? %>
+      <!-- this is when the user is not signed in -->
       <li class="nav-item">
           <%= link_to 'Register', new_user_registration_path, :id => "register", :class => "btn btn-link" %><br>
       </li>
@@ -47,28 +49,31 @@
         <%= link_to 'Sign In', new_user_session_path, :class => "btn btn-light" %><br>
       </li>
       <%- else %>
+      <!-- this is when the user is already signed in -->
+      <% if @new_message %>
+        <li class="nav-item dropdown">
+        <span class="notify-badge"><%=@message_num%></span>
+        <a href="#" class="nav-link noti-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Item Updates</a>
+        <ul class="dropdown-menu notify-drop">
+          <div class="drop-content">
+
+          <% @new_requests.each do |req_id|%>
+          <li>
+            <% @new_req = BorrowRequest.find(req_id)%>
+            <% if @new_req.user_profile.id!= current_user.id%>
+            <%= link_to @new_req.item.item_name, item_borrow_request_path(:item_id=>@new_req.item.id, :id=>req_id, :read_status=>true), :method=> :put, :class => "dropdown-item"  %>
+            <%else%>
+            <%= link_to @new_req.item.item_name, item_borrow_request_path(:item_id=>@new_req.item.id, :id=>req_id, :borrower_read_status=>true), :method=> :put, :class => "dropdown-item"  %>
+            <%end%>
+            </li>
+          <%end%>
+          </div>
+          </ul>
+      <%end%>
+
       <li class="nav-item dropdown">
         <%= link_to 'New item', new_user_profile_item_path(current_user.id), class: "btn btn-info"  %>
       </li>
-    <% if @new_message %>
-      <li class="nav-item dropdown">
-      <span class="notify-badge"><%=@message_num%></span>
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Message!
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
-        <% @new_requests.each do |req_id|%>
-          <% @new_req = BorrowRequest.find(req_id)%>
-          <% if @new_req.user_profile.id!= current_user.id%>
-          <%= link_to @new_req.item.item_name, item_borrow_request_path(:item_id=>@new_req.item.id, :id=>req_id, :read_status=>true), :method=> :put, :class => "dropdown-item"  %>
-          <%else%>
-          <%= link_to @new_req.item.item_name, item_borrow_request_path(:item_id=>@new_req.item.id, :id=>req_id), :class => "dropdown-item"  %>
-          <%end%>
-        <%end%>
-        </div>
-      </li>
-    <%end%>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           My Lists

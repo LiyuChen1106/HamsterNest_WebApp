@@ -1,0 +1,36 @@
+<div class = "profile_form" >
+
+  <h1>rating information</h1>
+  
+  <%= form_with model: @user_profile, local: true do |form| %>
+  
+    <% if @user_profile.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@user_profile.errors.count, "error") %> prohibited
+          this rating from being saved:
+        </h2>
+        <ul>
+          <% @user_profile.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="field">
+      <%= form.label :borrow_rating, "borrow_rating(1-5)" %><br>
+      <%= form.number_field :borrow_rating, min:1, max:5%>
+    </div>
+  
+
+
+    <div class="actions">
+      <p>
+        <%= form.submit "Complete rating"%>
+      </p>
+    </div>
+  
+  <% end %>
+</div>
+

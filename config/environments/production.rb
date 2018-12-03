@@ -91,4 +91,27 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  
+  # Mailer
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => 'hamster-nest.herokuapp.com' }
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+    :address              =>  'smtp.sendgrid.net',
+    :port                 =>  '587',
+    :authentication       =>  :plain,
+    :user_name            =>  ENV['SENDGRID_USERNAME'],
+    :password             =>  ENV['SENDGRID_PASSWORD'],
+    :domain               =>  'herokuapp.com',
+    :enable_starttls_auto  =>  true
+  }
+  
+  # Force all access to the app over SSL, use Strict-Transport-Security,
+  # and use secure cookies.
+  config.force_ssl = true
+  
+  # Precompile css background image
+  config.serve_static_assets = true
+  config.assets.compile = true
 end

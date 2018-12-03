@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
       status_item.borrow_requests.each do |request|
         if request.approval == true
           #check if any accepted items lend out today
-          if ((request.borrow_date >= Date.today) || (request.return_status == 3) || (request.return_status == 4))
+          if (((request.borrow_date >= Date.today) && (request.return_status!=2)) || (request.return_status == 3) || (request.return_status == 4))
             @item_ava = false
           end
         end
@@ -58,12 +58,13 @@ class ApplicationController < ActionController::Base
           @new_message = true
           @message_num = @message_num + 1
           @new_requests << req.id
-          #flash[:notice] = "deliverd check received?"
+
+          flash[:notice] = "deliverd check received?"
         elsif req.return_status == 4 && req.return_date <= Date.today
           @new_message = true
           @message_num = @message_num + 1
           @new_requests << req.id
-          #flash[:notice] = "Return!!!"
+          flash[:notice] = "Return!!!"
         end
       end
     end

@@ -1,0 +1,11 @@
+<% if @borrower.user_profile.first_name != "" %>
+  Hello, <%= @borrower.user_profile.first_name %>
+<% else %>
+Hello, <%= @borrower.user_profile.username %>
+<% end %>
+
+<%= @lender.user_profile.username %> has approved your borrow request. Please contact the owner through email <%= @lender.email %> for picking up item(s).
+
+<%= link_to 'View the item', @url %>
+
+Please do not reply to this email.

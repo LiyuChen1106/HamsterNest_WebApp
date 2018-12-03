@@ -67,7 +67,7 @@ class BorrowRequestsController < ApplicationController
     @return_date = @attr[:borrow_date].to_date
     @item.borrow_requests.each do |request|
       if !request.approval.nil?
-        if request.approval && !@borrow_date.nil? && !@return_date.nil?
+        if request.approval && !@borrow_date.nil? && !@return_date.nil? && request.return_status!=2
           if request.borrow_date <= @borrow_date && request.return_date >= @borrow_date
             flash[:notice] = "please check borrow period"
             @attr[:return_date] = "1995-01-01"
@@ -137,18 +137,29 @@ class BorrowRequestsController < ApplicationController
     end
 
     if !params[:read_status].nil? && params[:read_status] == "true"
-      @borrow_request.update(:read_status => params[:read_status])
+      @borrow_request.update_attribute(:read_status, params[:read_status])
       flash[:notice] = "update read_status"
     end
 
     if !params[:borrower_read_status].nil?
-      @borrow_request.update(:borrower_read_status => params[:read_status])
+      @borrow_request.update_attribute(:borrower_read_status, params[:borrower_read_status])
       flash[:notice] = "update borrow_read_status"
     end
 
     # return to item page
-    if @borrow_request.return_status == 1
-      redirect_to lend_rating_path(:id => @borrow_request.item.user_profile.id)
+    if  @borrow_request.user_profile_id == current_user.id && !params[:return_status].nil?
+      if params[:return_status]== "1"
+        redirect_to lend_rating_path(:id => @borrow_request.item.user_profile.id)
+
+      else
+        redirect_to item_borrow_request_path(:item_id => @item.id, :id => @borrow_request.id)
+      end
+    elsif @borrow_request.user_profile_id != current_user.id && !params[:return_status].nil?
+      if params[:return_status]=="2"
+        redirect_to borrow_rating_path(:id=>@borrow_request.user_profile_id)
+      else
+        redirect_to item_borrow_request_path(:item_id => @item.id, :id => @borrow_request.id)
+      end
     else
       redirect_to item_borrow_request_path(:item_id => @item.id, :id => @borrow_request.id)
     end

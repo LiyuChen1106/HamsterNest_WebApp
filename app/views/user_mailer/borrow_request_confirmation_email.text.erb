@@ -1,4 +1,9 @@
+<% if @lender.user_profile.first_name != "" %>
 Hello, <%= @lender.user_profile.first_name %>
+<% else %>
+Hello, <%= @lender.user_profile.username %>
+<% end %>
+
 
 
 <%= @borrower.user_profile.username %> is willing to borrow an item from you. Please click on the link to confirm the request.
