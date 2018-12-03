@@ -35,7 +35,11 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <%= link_to "Add profile", edit_user_profile_path(current_user.id),:class => "dropdown-item" %>
+              <% if !current_user.nil? %>
+              <% if !@comment_user.comments.empty? %>
               <%= link_to "Comment History", comment_history_path(current_user.id),:class => "dropdown-item" %>
+              <% end %>
+              <% end %>
               <%= link_to "Log Out", destroy_user_session_path, method: :delete, :class => "dropdown-item" %>
             </div>
           </li>
@@ -80,7 +84,11 @@
           My Lists
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <% if !current_user.nil? %>
+        <% if !@comment_user.items.empty? %>
           <%= link_to "My items", user_profile_items_path(:user_profile_id =>current_user.user_profile_id), :class => "dropdown-item" %>
+          <% end %>
+          <% end %>        
           <%= link_to "Borrow list", borrow_from_others_path(), :class => "dropdown-item" %>
           <%= link_to "Lend list", lend_to_others_path, :class => "dropdown-item"  %>
         </div>
@@ -91,7 +99,11 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <%= link_to "View my profile", user_profile_path(current_user.user_profile_id), :class => "dropdown-item" %>
+          <% if !current_user.nil? %>
+          <% if !@comment_user.comments.empty? %>
           <%= link_to "Comment History", comment_history_path(current_user.id),:class => "dropdown-item" %>
+          <% end %>
+          <% end %>
           <%= link_to "Log Out", destroy_user_session_path, method: :delete, :class => "dropdown-item" %>
         </div>
       </li>
