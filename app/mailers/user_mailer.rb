@@ -26,13 +26,21 @@ class UserMailer < ApplicationMailer
   def return_confirmation_reminder_the_day_before_email
     @return_list = params[:return_list]
     
-    @return_list.each do |unit|
-      @borrower = unit.user_profile
-      @email = unit.user_profile.user.email
-      @borrow_requests = unit.requests
-      @due_date = @borrow_requests.first.return_date
-      @url = item_url(:id => @item.id)
-      mail(to: @user.email, subject: 'Confirmation: these item(s) has been returned')
+    @return_list.each do |lender_profile, requests|
+      @email = lender_profile.user.email
+      @lender = lender_profile
+      @item_infos = []
+      requests.each do |request|
+        @item = request.item
+        @itemname = @item.item_name
+        @return_date = request.return_date
+        @url = item_borrow_request_url(:item_id => @item.id, :id => request.id)
+        @item_info = {:itemname => @itemname, :url => @url, :returndate => @return_date}
+        
+        @item_infos.push(@item_info)
+      end
+      puts @item_infos
+      mail(to: @email, subject: 'Reminder: check if item(s) have been returned')
     end
   end
   
@@ -51,7 +59,7 @@ class UserMailer < ApplicationMailer
     @borrower = params[:borrower]
     @item = params[:item]
     @borrow_request = params[:borrow_request]
-    @url = item_borrow_request_url(:item_id => @item.id, :id => request.id)
+    @url = item_borrow_request_url(:item_id => @item.id, :id => @borrow_request.id)
     
     mail(to: @borrower.email, subject: 'Borrow request approved!')
   end
@@ -72,7 +80,7 @@ class UserMailer < ApplicationMailer
     @borrower = params[:borrower]
     @item = params[:item]
     @borrow_request = params[:borrow_request]
-    @url = item_borrow_request_url(:item_id => @item.id, :id => request.id)
+    @url = item_borrow_request_url(:item_id => @item.id, :id => @borrow_request.id)
     
     mail(to: @borrower.email, subject: 'Item is on the way')
   end
@@ -82,7 +90,7 @@ class UserMailer < ApplicationMailer
     @borrower = params[:borrower]
     @item = params[:item]
     @borrow_request = params[:borrow_request]
-    @url = item_borrow_request_url(:item_id => @item.id, :id => request.id)
+    @url = item_borrow_request_url(:item_id => @item.id, :id => @borrow_request.id)
     
     mail(to: @lender.email, subject: 'Item recieved by the borrower')
   end
@@ -92,7 +100,7 @@ class UserMailer < ApplicationMailer
     @borrower = params[:borrower]
     @item = params[:item]
     @borrow_request = params[:borrow_request]
-    @url = item_borrow_request_url(:item_id => @item.id, :id => request.id)
+    @url = item_borrow_request_url(:item_id => @item.id, :id => @borrow_request.id)
     
     mail(to: @lender.email, subject: 'Item is on the way back')
   end
@@ -102,7 +110,7 @@ class UserMailer < ApplicationMailer
     @borrower = params[:borrower]
     @item = params[:item]
     @borrow_request = params[:borrow_request]
-    @url = item_borrow_request_url(:item_id => @item.id, :id => request.id)
+    @url = item_url(:id => @item.id)
     
     mail(to: @borrower.email, subject: 'Item recieved by the owner')
   end
