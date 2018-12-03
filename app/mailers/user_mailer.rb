@@ -19,9 +19,6 @@ class UserMailer < ApplicationMailer
         @item_infos.push(@item_info)
       end
       puts @item_infos
-#      @borrow_requests = unit.requests
-#      @due_date = @borrow_requests.first.return_date
-#      @url = item_url(:id => @item.id)
       mail(to: @email, subject: 'Reminder: item(s) to be returned')
     end
   end
