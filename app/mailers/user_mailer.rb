@@ -45,7 +45,7 @@ class UserMailer < ApplicationMailer
     @borrow_request = params[:borrow_request]
     @url = item_url(:id => @item.id)
     
-    mail(to: @borrower.email, subject: 'Approved borrow request')
+    mail(to: @borrower.email, subject: 'Borrow request approved!')
   end
   
   def borrow_request_rejected_email
@@ -56,7 +56,7 @@ class UserMailer < ApplicationMailer
     @item_name = @item.item_name
     @url = item_url(:id => @item.id)
     
-    mail(to: @borrower.email, subject: 'Rejected borrow request')
+    mail(to: @borrower.email, subject: 'Borrow request rejected')
   end
   
   def item_delivery_email
@@ -76,7 +76,7 @@ class UserMailer < ApplicationMailer
     @borrow_request = params[:borrow_request]
     @url = item_url(:id => @item.id)
     
-    mail(to: @lender.email, subject: 'Item has been recieved')
+    mail(to: @lender.email, subject: 'Item recieved by the borrower')
   end
   
   def item_return_email
@@ -86,7 +86,7 @@ class UserMailer < ApplicationMailer
     @borrow_request = params[:borrow_request]
     @url = item_url(:id => @item.id)
     
-    mail(to: @lender.email, subject: 'Item is on the way')
+    mail(to: @lender.email, subject: 'Item is on the way back')
   end
   
   def item_return_confirmation_email
@@ -96,6 +96,6 @@ class UserMailer < ApplicationMailer
     @borrow_request = params[:borrow_request]
     @url = item_url(:id => @item.id)
     
-    mail(to: @borrower.email, subject: 'Item has been recieved')
+    mail(to: @borrower.email, subject: 'Item recieved by the owner')
   end
 end
