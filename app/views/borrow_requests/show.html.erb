@@ -22,12 +22,12 @@
       <% end %>
       <% elsif @borrow_request.return_status == 0 && !@borrow_request.approval.nil?%>
       <% @borrow_request.update_attribute(:borrower_read_status, true) %>
-      <% if !@borrow_request.approval %>
-      <%= link_to 'Cancel Request', item_borrow_request_path(@borrow_request),
+        <% if !@borrow_request.approval %>
+        <%= link_to 'Cancel Request', item_borrow_request_path(@borrow_request),
             method: :delete,
             data: {confirm: 'Are you sure to cancel the request?'},
             class: "btn btn-info" %>
-      <%end%>
+        <%end%>
       <% elsif @borrow_request.return_status == 3%>
         <%= link_to 'Item Recieved',  item_borrow_request_path(:item_id=>@item.id,
                                         :id=>@borrow_request.id,:return_status => 4,
@@ -42,7 +42,7 @@
       <!-- if borrower clicks return button, lender view will display a button to confirm delivery-->
       <% if @borrow_request.return_status == 1 %>
 
-      <%= link_to 'Confirm Delivery',  item_borrow_request_path(:item_id=>@item.id,
+      <%= link_to 'Item Returned',  item_borrow_request_path(:item_id=>@item.id,
                                               :id=>@borrow_request.id,:return_status => 2),
                                               :method=> :put, class: "btn btn-info"%>
 
@@ -98,6 +98,13 @@
                 <strong>Status:</strong>
 
               <% if @I_am_borrower %>
+              <% if !@borrow_request.approval.nil? %>
+              <% if !@borrow_request.approval %>
+                Request declined.
+              <% elsif @borrow_request.return_status != 2 %>
+                Request Approved.
+              <% end %>
+              <% end %>
               <% if @borrow_request.return_status == 4 %>
               <% if @borrow_request.approval %>
                 Item borrowed.
@@ -106,11 +113,15 @@
               Waiting for <%= @owner.username %> to confirm returning of the item.
               <% elsif @borrow_request.return_status == 2 %>
               Item Returned.
-
+              <% elsif @borrow_request.return_status == 0 && @borrow_request.approval.nil?%>
+              <% @borrow_request.update_attribute(:borrower_read_status, true) %>
+              Pending Approval from the owner.
               <% elsif @borrow_request.return_status == 0 && !@borrow_request.approval.nil?%>
               <% @borrow_request.update_attribute(:borrower_read_status, true) %>
-              <% if @borrow_request.approval.nil? %>
-              Pending Approval from the owner.
+              <% if @borrow_request.approval%>
+              Pending Delivery of the item.
+              <%else%>
+              Rejected by the owner.
               <%end%>
               <% elsif @borrow_request.return_status == 3%>
                 Pending confirmation of receiption.
@@ -121,7 +132,7 @@
               <% if @borrow_request.approval.nil?%>
               Pending Approval.
               <% elsif @borrow_request.approval == true %>
-               Appected.
+               Accepted.
               <!-- if borrower clicks return button, lender view will display a button to confirm delivery-->
               <% if @borrow_request.return_status == 1 %>
                 Pending confirmation of return.
@@ -129,6 +140,10 @@
               Item Returned.
               <% elsif @borrow_request.return_status == 0 %>
                 Pending delivery.
+                <% if Date.today == @borrow_request.borrow_date %>
+                 Need to be done today!!
+                <% end %>
+          
               <% elsif @borrow_request.return_status == 3 %>
                 Waiting for
                   <%= @borrower.username %> to confirm reception.
