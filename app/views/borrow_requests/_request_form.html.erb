@@ -19,10 +19,10 @@
     </tr>
     <tr>
       <td>
-        <%= form.date_field :borrow_date, min: Date.today %>
+        <%= form.date_field :borrow_date, min: Date.today, value: Date.today %>
       </td>
       <td>
-        <%= form.date_field :return_date, min: Date.today %>
+        <%= form.date_field :return_date, min: Date.today, value: Date.today+1 %>
       </td>
     </tr>
   </table>
