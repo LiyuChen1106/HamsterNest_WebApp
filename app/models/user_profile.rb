@@ -4,18 +4,15 @@ class UserProfile < ApplicationRecord
   has_many :borrow_requests, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_one_attached :avatar
-  # Validation for avatar
-  # Validate content type
-  # validates_attachment_content_type :avatar, content_type: /\Aimage/
-  # # Validate filename
-  # validates_attachment_file_name :avatar, matches: [/png\Z/, /jpe?g\Z/]
+
+  # validate avatar
+  validate :correct_avatar_type
 
   # validate postal code must exist
   validates :username, presence: {message: "must exist"}
   validate :address_exists?
   validate :lrating?
   validate :brating?
-  validate :correct_avatar_type
   geocoded_by :address
   after_validation :geocode
 
