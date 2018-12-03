@@ -32,7 +32,7 @@
 
       <div class="field form-group">
         <%= form.label :avatar, "Profile Picture" %><br>
-        <%= form.file_field :avatar %>
+        <%= form.file_field :avatar, direct_upload: true, accept:"image/png,image/jpg,image/jpeg" %>
 
         <% if @user_profile.avatar.attached? %>
         <%= image_tag @user_profile.avatar.variant(resize: "100x100") %>

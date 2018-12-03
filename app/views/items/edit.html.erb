@@ -20,10 +20,10 @@
           <%= form.collection_select :category_id, Category.order(:category_name), :id, :category_name,
           include_blank: true, :class => 'form-control' %>
         </div>
-        
+
         <div class="form-group">
           <%= form.label :image, "Item Image" %>
-          <%= form.file_field :image %>
+          <%= form.file_field :image, direct_upload: true, accept:"image/png,image/jpg,image/jpeg" %>
         </div>
 
         <div class="form-group">

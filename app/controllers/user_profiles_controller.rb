@@ -104,6 +104,11 @@ class UserProfilesController < ApplicationController
     @borrow_requests = @user_profile.borrow_requests
   end
 
+  def comment_history
+    @user_profile = UserProfile.find(current_user.id)
+
+  end
+
   #rating other people
   def lend_rating
     @user_profile = UserProfile.find(params[:id])
