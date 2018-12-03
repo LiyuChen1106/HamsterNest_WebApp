@@ -18,6 +18,27 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @item = Item.find(params[:item_id])
+    @comment=Comment.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:item_id])
+    @comment = @item.comments.find(params[:id])
+    @attr = comment_params
+    @comment_message=@attr[:comment_message]
+
+    if @comment.update_attribute(:comment_message, @comment_message)
+      flash[:notice] = "success change the comment."
+      redirect_to root_path
+    else
+      flash[:notice] = "Error occured! "
+      flash[:alert] = @comment.errors.full_messages
+      render "edit"
+    end
+  end
+
   def create
     @item = Item.find(params[:item_id])
     @user_profile = @item.user_profile
@@ -44,6 +65,12 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    flash[:notice] = "Comment deleted."
+    redirect_to root_path
+  end
   private
 
   def comment_params
