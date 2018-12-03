@@ -83,23 +83,33 @@ class ItemsController < ApplicationController
   end
 
   def load_markers(search_items)
-    @load_markers = Gmaps4rails.build_markers(search_items.all) do |item, marker|
-      @item = item
-      @user_profile = @item.user_profile
-
-      marker.lat @user_profile.latitude
-      marker.lng @user_profile.longitude
-
-      @status = @item.status
-      @category = @item.category_id
-
-      if @status == true
-        @status = "Available"
+    
+    @item_infos = Hash.new
+    search_items.each do |item|
+      @profile = item.user_profile
+      latlon = {:lat => @profile.latitude, :lon => @profile.longitude}
+      
+      if !@item_infos[latlon].nil?
+        @item_infos[latlon].push(item)
       else
-        @status = "Currently unavailable"
+        @item_infos[latlon] = [item]
       end
+    end
+    
+    @infos_array = []
+    @item_infos.each do |latlon, items|
+      @infos_array.push({:latlon => latlon, :items => items})
+    end
+    
+    @load_markers = 
+    Gmaps4rails.build_markers(@infos_array) do |info, marker|
+      @items = info[:items]
+      @latlon = info[:latlon]
 
-      marker.infowindow render_to_string(:partial => "/gmap/template", :locals => {:item => @item, :status => @status})
+      marker.lat @latlon[:lat]
+      marker.lng @latlon[:lon]
+
+      marker.infowindow render_to_string(:partial => "/items/infowindow_template", :locals => {:items => @items})
     end
   end
 

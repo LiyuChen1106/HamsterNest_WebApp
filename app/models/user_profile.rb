@@ -4,11 +4,9 @@ class UserProfile < ApplicationRecord
   has_many :borrow_requests, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_one_attached :avatar
-  # Validation for avatar
-  # Validate content type
-  # validates_attachment_content_type :avatar, content_type: /\Aimage/
-  # # Validate filename
-  # validates_attachment_file_name :avatar, matches: [/png\Z/, /jpe?g\Z/]
+
+  # validate avatar
+  validate :correct_avatar_type
 
   # validate postal code must exist
   validates :username, presence: {message: "must exist"}
@@ -71,6 +69,12 @@ class UserProfile < ApplicationRecord
       self.errors.add(:postal_code, "invalid!")
     end
   end
+
+  def correct_avatar_type
+      if self.avatar.attached? && !self.avatar.content_type.start_with?('image/');
+        self.errors.add(:self, 'Must be an image')
+      end
+    end
 
   def set_default_avatar
     if !self.avatar.attached?

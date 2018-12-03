@@ -98,8 +98,12 @@
     </div>
   </div>
 <!-- comment area -->
+<div class="row">
+  <div class="col-1">
+  </div>
+  <div class="col-10">
 <% if !@item.comments.empty?%>
-  <div class="panel panel-default">
+  <div class="panel panel-default comment-pannel">
     <div class="panel-heading">
       <h4 class="panel-title">
          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTWO">Comment:</a>
@@ -109,15 +113,26 @@
       <div class="panel-body">
       <table>
 
-        <% @item.comments.each do |current_req|%> 
+        <% @item.comments.each do |current_req|%>
         <tr>
-          <td><%= current_req.comment_message %></td>
-          <td>| <%= current_req.comment_date %></td>
+          <td><%=link_to current_req.user_profile.username, user_profile_path(current_req.user_profile_id)%></td>
+          <td><%= current_req.comment_message%>
+          | <%=current_req.comment_date %></td>
+          <% if(current_req.user_profile_id==current_user.id)%>
+            <td>| <%=link_to "Edit", edit_item_comment_path(current_req.item_id,current_req.id),
+            data: { confirm: 'Are you sure?'}, class: "btn btn-info" %></td>
+            <td>|<%=link_to "Delete", item_comment_path(current_req.item_id,current_req.id),
+            method: :delete,
+            data: { confirm: 'Are you sure?'}, class: "btn btn-info" %></td>
+          <%end%>
+
         </tr>
         <% end %>
-    
+
     </table>
     </div>
   </div>
 </div>
 <%end%>
+</div>
+</div>

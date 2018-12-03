@@ -1,38 +1,24 @@
 <div class = "profile_form" >
 
   <h1>Profile information</h1>
-  
+
   <%= form_with model: @user_profile, local: true do |form| %>
-  
-    <% if @user_profile.errors.any? %>
-      <div id="error_explanation">
-        <h2>
-          <%= pluralize(@user_profile.errors.count, "error") %> prohibited
-          this user from being saved:
-        </h2>
-        <ul>
-          <% @user_profile.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-  
+
     <div class="field">
       <%= form.label :first_name, "First name" %><br>
       <%= form.text_field :first_name, autofocus: true%>
     </div>
-  
+
     <div class="field">
       <%= form.label :last_name, "Last name" %><br>
       <%= form.text_field :last_name, autofocus: true%>
     </div>
-  
+
     <div class="field">
       <%= form.label :birthday, "Birthday" %><br>
       <%= form.date_select :birthday, :start_year=>1900, :end_year=>Time.now.year%>
     </div>
-  
+
     <!-- #### ADDRESS FIELD STARTS HERE #### -->
     <div class="fields">
       <%=form.fields_for :address do |a| %>
@@ -64,7 +50,6 @@
         <%= form.submit "Complete my profile"%>
       </p>
     </div>
-  
+
   <% end %>
 </div>
-

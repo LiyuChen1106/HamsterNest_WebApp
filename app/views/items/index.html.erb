@@ -13,15 +13,17 @@
     </div>
     <div class='col-8'>
       <ul class="nav">
+        <% unless @search_items.empty? %>
         <li class="nav-item">
-          <%= sort_link(@search, :item_name, 'Item Name', default_order: :desc, class:"nav-link") %>
+          <%= sort_link(@search, :item_name, 'Item Name', class:"nav-link") %>
         </li>
         <li class="nav-item">
-          <%= sort_link(@search, :category_id, 'Category', default_order: :desc, class:"nav-link") %>
+          <%= sort_link(@search, :category_id, 'Category', class:"nav-link") %>
         </li>
         <li class="nav-item">
-          <%= sort_link(@search, :status, 'Available', default_order: :desc, class:"nav-link") %>
+          <%= sort_link(@search, :status, 'Available', class:"nav-link") %>
         </li>
+        <%end%>
       </ul>
     </div>
     <% if @unlogin && !@search_items.empty? %>
@@ -33,7 +35,7 @@
     </div>
     <%end%>
   </div>
- 
+
   <div class="row">
     <div class='col-1'>
     </div>
@@ -45,7 +47,7 @@
             <tr>
               <div class="Portfolio">
                 <%= link_to item_path(item) do %>
-                <%= image_tag item.image.variant(resize: "400x400") %>
+                <%= image_tag item.image.variant(resize: "180x180!"), class:"index-image" %> 
                 <div class="desc">
                   <ul>
                     <li>
