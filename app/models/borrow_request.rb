@@ -25,6 +25,15 @@ class BorrowRequest < ApplicationRecord
   end
   
   def return_items_reminder
+    @requests = BorrowRequest.where('return_date between ? and ?', Date.today, Date.today + 1.day)
+    @return_list = Hash.new
+    
+    @requests.each do |request|
+      borrower = request.user_profile.username
+      @return_list[borrower] << request
+      
+      puts @return_list
+    end
   end
 #  after_update :send_approval_email
 #  

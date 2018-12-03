@@ -2,7 +2,7 @@ class UserMailer < ApplicationMailer
   
   default from: 'notification@hamsternest.com'
  
-  def return_notification_email
+  def return_reminder_the_day_before_email
     @return_list = params[:return_list]
     
     @return_list.each do |unit|
@@ -15,7 +15,7 @@ class UserMailer < ApplicationMailer
     end
   end
   
-  def return_confirmation_notification_email
+  def return_confirmation_reminder_the_day_before_email
     @return_list = params[:return_list]
     
     @return_list.each do |unit|
