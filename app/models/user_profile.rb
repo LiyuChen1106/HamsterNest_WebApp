@@ -15,6 +15,7 @@ class UserProfile < ApplicationRecord
   validate :address_exists?
   validate :lrating?
   validate :brating?
+  validate :correct_avatar_type
   geocoded_by :address
   after_validation :geocode
 
@@ -71,6 +72,12 @@ class UserProfile < ApplicationRecord
       self.errors.add(:postal_code, "invalid!")
     end
   end
+
+  def correct_avatar_type
+      if self.avatar.attached? && !self.avatar.content_type.start_with?('image/');
+        self.errors.add(:self, 'Must be an image')
+      end
+    end
 
   def set_default_avatar
     if !self.avatar.attached?
