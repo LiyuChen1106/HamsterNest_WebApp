@@ -29,11 +29,9 @@ task :email_return_reminder => :environment do
   end
   
   puts @return_list
-  
-  if !@reutn_list.nil?
-    UserMailer.with(return_list: @return_list).return_reminder_the_day_before_email.deliver
-  end
+  UserMailer.with(return_list: @return_list).return_reminder_the_day_before_email.deliver
+  puts "Emails sent!"
   
 #  UserMailer.with(return_list: @return_confirmation_list).return_confirmation_reminder_the_day_before_email.deliver
-  puts "Emails sent!"
+  
 end
