@@ -19,8 +19,8 @@
           </div>
           <div id="collapseOne" class="panel-collapse collapse in">
             <div class="panel-body">
+            <div style="overflow-x:auto;">
               <% @borrow_requests.each do |borrow_request| %>
-                <div style="overflow-x:auto;">
                 <table>
                   <% if borrow_request.approval.nil?%>
                   <tr>
@@ -51,8 +51,9 @@
                   </tr>
                   <% end %>
                 </table>
-                </div>
+                
               <% end %>
+              </div>
             </div>
           </div>
         </div>
@@ -64,8 +65,8 @@
           </div>
           <div id="collapse2" class="panel-collapse collapse">
             <div class="panel-body">
+            <div style="overflow-x:auto;">
               <% @borrow_requests.each do |borrow_request| %>
-              <div style="overflow-x:auto;">
               <table>
                 <% if borrow_request.approval == true && borrow_request.return_status != 2 %>
                 <tr>
@@ -95,8 +96,9 @@
                 </tr>
                 <% end %>
               </table>
-              </div>
+              
               <% end %>
+              </div>
             </div>
           </div>
         </div>
@@ -108,8 +110,8 @@
           </div>
           <div id="collapse3" class="panel-collapse collapse">
             <div class="panel-body">
+            <div style="overflow-x:auto;">
               <% @borrow_requests.each do |borrow_request| %>
-              <div style="overflow-x:auto;">
               <table>
                 <% if borrow_request.approval == false%>
                 <tr>
@@ -137,9 +139,9 @@
                   </td>
                 </tr>
                 <% end %>
-              </table>
-              </div>
+              </table>              
               <% end %>
+              </div>
             </div>
           </div>
         </div>
@@ -151,8 +153,8 @@
           </div>
           <div id="collapse4" class="panel-collapse collapse">
             <div class="panel-body">
+            <div style="overflow-x:auto;">
               <% @borrow_requests.each do |borrow_request| %>
-              <div style="overflow-x:auto;">
               <table style= "width:100%">
                 <% if borrow_request.return_status == 2%>
                 <tr>
@@ -181,8 +183,8 @@
                 </tr>
                 <% end %>
               </table>
-              </div>
               <% end %>
+              </div>
             </div>
           </div>
         </div>
