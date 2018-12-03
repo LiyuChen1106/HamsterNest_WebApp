@@ -4,7 +4,7 @@
 Hello, <%= @borrower.user_profile.username %>
 <% end %>
 
-<%= @lender.user_profile.username %> has approved your borrow request. Please contact the owner through email <%= @lender.email %> for picking up item(s).
+<%= @lender.user_profile.username %> has approved your borrow request. Please contact the owner through email <%= @lender.email %> for item(s) delivery details.
 
 <%= link_to 'View the item', @url %>
 
