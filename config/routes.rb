@@ -41,6 +41,11 @@ Rails.application.routes.draw do
   resources :items do
     resources :borrow_requests
   end
+  
+  resources :items do
+    resources :comments
+  end
+
   #  devise_for :users, skip: [:sessions]
   #  devise_scope :user do
   #    get 'signin', to: 'devise/sessions#new', as: :new_user_session

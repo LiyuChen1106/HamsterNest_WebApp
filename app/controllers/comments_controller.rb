@@ -1,9 +1,10 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user!
   #def show
   #want to show at user_profile or itme
   #end
   def new
+    @tryid = params[:tryid]
     @item_id = params[:item_id]
     @item = Item.find(@item_id)
     @owner = @item.user_profile
@@ -19,12 +20,22 @@ class CommentsController < ApplicationController
 
   def create
     @item = Item.find(params[:item_id])
+    @user_profile = @item.user_profile
+    @l_rating = @user_profile.lend_rating
+    @l_people = @user_profile.lpeople
+    @l_rating = @l_rating * @l_people
+    @l_people = @l_people + 1
+    @rating = params.require(:comment)
+    @rating = @rating[:lend_rating].to_i
+    @l_rating = (@l_rating + @rating) / @l_people
+
     @attr = comment_params
     @attr[:user_profile_id] = current_user.id
+    @attr[:comment_date]=Time.now
     @comment = @item.comments.create(@attr)
 
-    if @comment.save
-      flash[:notice] = "comment created."
+    if @comment.save && @user_profile.update_attribute(:lend_rating, @l_rating) && @user_profile.update_attribute(:lpeople, @l_people)
+      flash[:notice] = "success comment and rating."
       redirect_to root_path
     else
       flash[:notice] = "Error occured! "
@@ -36,6 +47,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:user_profile).permit(:comment_message)
+    params.require(:comment).permit(:comment_message)
   end
 end

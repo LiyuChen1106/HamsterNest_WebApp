@@ -32,8 +32,8 @@
                     <%= getCategoryName(borrow_request.item.category_id) %>
                   </td>
                   <td>
-                    Lender: 
-                    <%= borrow_request.item.user_profile.username %>
+                    Borrower: 
+                    <%= borrow_request.user_profile.username %>
                   </td>
                   <td>
                     <%= borrow_request.borrow_date%> to <%=borrow_request.return_date%>
@@ -81,8 +81,8 @@
                     <%= getCategoryName(borrow_request.item.category_id) %>
                   </td>
                   <td>
-                    Lender: 
-                    <%= borrow_request.item.user_profile.username %>
+                    Borrower: 
+                    <%= borrow_request.user_profile.username %>
                   </td>
                   <td>
                     <%= borrow_request.borrow_date%> to <%=borrow_request.return_date%>
@@ -129,8 +129,8 @@
                   <%= getCategoryName(borrow_request.item.category_id) %>
                 </td>
                 <td>
-                  Lender: 
-                  <%= borrow_request.item.user_profile.username %>
+                  Borrower: 
+                  <%= borrow_request.user_profile.username %>
                 </td>
                 <td>
                   <%= borrow_request.borrow_date%> to <%=borrow_request.return_date%>
@@ -178,6 +178,13 @@
               </td>
               <td>
                 <%= getCategoryName(borrow_request.item.category_id) %>
+              </td>
+              <td>
+                Borrower: 
+                <%= borrow_request.user_profile.username %>
+              </td>
+              <td>
+                <%= borrow_request.borrow_date%> to <%=borrow_request.return_date%>
               </td>
               <td>
                 <%= link_to 'Show Request', item_borrow_request_path(:item_id=>borrow_request.item.id, :id=>borrow_request.id) %> |</td>

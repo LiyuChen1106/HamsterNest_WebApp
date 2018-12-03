@@ -1,88 +1,162 @@
-<h2>Request Details</h2>
- 
-<p>
-  <strong>Item name:</strong>
-  <%= @item.item_name %>
-</p>
-<p>
-  <strong>Item quantity:</strong>
-  <%= @item.quantity %>
-</p>
-<p>
-  <strong>Borrow period:</strong>
-  <%=@borrow_request.borrow_date%> to <%= @borrow_request.return_date%> 
-</p>
-<p>
-  <strong>Lender:</strong>
-  <%= link_to @owner.username, user_profile_path(@owner.id) %>
-</p>
-<p>
-  <strong>Borrower: </strong>
-  <%= link_to @borrower.username, user_profile_path(@borrower.id) %>
-</p>
-<p>
-  <strong>Message:</strong>
-  <%= @borrow_request.request_message%>
-</p>
+<div class="row">
+  <div class="col-1">
+  </div>
+  <div class="col-10 request-top">
+    <div class="item-go-back">
+      <%= link_to :back do %>
+      <%= fa_icon 'arrow-left', class:"go-back-fa"%>
+      <%= content_tag :span, "Back", class:"go-back-link"%>
+      <% end %>
+    </div>
 
-<% if @I_am_borrower %>
-  <% if @borrow_request.return_status == 4 %>
-    <% if @borrow_request.approval %> 
-      <p><%= link_to 'Return Item',  item_borrow_request_path(:item_id=>@item.id, 
-                                    :id=>@borrow_request.id, :return_status => 1, :borrower_read_status => true, :read_status =>false), :method => :put%></p>
-    <% end %>
-  <% elsif @borrow_request.return_status == 1 %>
-    <strong><p>Waiting for <%= @owner.username %> receipt confirm</p></strong>
-  <% elsif @borrow_request.return_status == 2 %>
-    <strong><p>Item Returned</p></strong>
-  <% elsif @borrow_request.return_status == 0 && !@borrow_request.approval.nil?%>
-    <% @borrow_request.update_attribute(:borrower_read_status, true) %>
-    <% if !@borrow_request.approval %>
-      <strong><p>Request Declined </p></strong>
-      
-      <%= link_to 'Cancel Request', item_borrow_request_path(@borrow_request),
-      method: :delete,
-      data: {confirm: 'Are you sure to cancel the request?'} %>
-    <% else %>
-      <strong><p>Request Accepted </p> </strong>
-    <%end%>
-  <% elsif @borrow_request.return_status == 3%>
-    <p><%= link_to 'Item Recieved',  item_borrow_request_path(:item_id=>@item.id, 
-                                  :id=>@borrow_request.id,:return_status => 4, :borrower_read_status => true), :method=> :put%></p>
-  <%end%>
+    <div class="request-action">
+      <%= link_to 'Show Item', item_path(@item), class: "btn btn-info" %>
+      <% if @I_am_borrower %>
+      <% if @borrow_request.return_status == 4 %>
+      <% if @borrow_request.approval %>
+        <%= link_to 'Return Item',  item_borrow_request_path(:item_id=>@item.id,
+                                          :id=>@borrow_request.id,:return_status => 1,
+                                          :borrower_read_status => true, :read_status =>false),
+                                          :method=> :put, class: "btn btn-info"%>
 
-<% else %>
-  <% if @borrow_request.approval.nil? %>
-    <%= link_to 'Accpet', item_borrow_request_path(:approval => true, :borrower_read_status => false), :method=> :put%> | 
-    <%= link_to 'Reject', item_borrow_request_path(:approval => false, :borrower_read_status => false), :method=> :put%> 
-  <% elsif @borrow_request.approval == true %>
-    <p> Appected </p>
+      <% end %>
+      <% elsif @borrow_request.return_status == 0 && !@borrow_request.approval.nil?%>
+      <% @borrow_request.update_attribute(:borrower_read_status, true) %>
+        <% if !@borrow_request.approval %>
+        <%= link_to 'Cancel Request', item_borrow_request_path(@borrow_request),
+            method: :delete,
+            data: {confirm: 'Are you sure to cancel the request?'},
+            class: "btn btn-info" %>
+        <%end%>
+      <% elsif @borrow_request.return_status == 3%>
+        <%= link_to 'Item Recieved',  item_borrow_request_path(:item_id=>@item.id,
+                                        :id=>@borrow_request.id,:return_status => 4,
+                                        :borrower_read_status => true), :method=> :put,
+                                        class: "btn btn-info"%>
+      <%end%>
+      <% else %>
+      <% if @borrow_request.approval.nil? %>
+      <%= link_to 'Accpet', item_borrow_request_path(:approval => true, :borrower_read_status => false), :method=> :put, class: "btn btn-info"%>
+      <%= link_to 'Reject', item_borrow_request_path(:approval => false, :borrower_read_status => false), :method=> :put, class: "btn btn-info"%>
+      <% elsif @borrow_request.approval == true %>
       <!-- if borrower clicks return button, lender view will display a button to confirm delivery-->
       <% if @borrow_request.return_status == 1 %>
-        <p><%= link_to 'Confirm Delivery',  item_borrow_request_path(:item_id=>@item.id, 
-                                        :id=>@borrow_request.id,:return_status => 2), :method=> :put%></p>
-      <% elsif @borrow_request.return_status == 2 %>
-        <strong><p>Item Returned</p></strong>
+
+      <%= link_to 'Item Returned',  item_borrow_request_path(:item_id=>@item.id,
+                                              :id=>@borrow_request.id,:return_status => 2),
+                                              :method=> :put, class: "btn btn-info"%>
+
       <% elsif @borrow_request.return_status == 0 %>
-        <p><%= link_to 'Deliver Item',  item_borrow_request_path(:item_id=>@item.id, 
-                                        :id=>@borrow_request.id,:return_status => 3, :borrower_read_status => false), :method=> :put%></p>
-      <% elsif @borrow_request.return_status == 3 %>
-        <strong><p>Waiting for <%= @owner.username %> receipt confirm</p></strong>
-      <% elsif @borrow_request.return_status == 4 %>
-        <strong><p> delivery confirmed</p></strong>
+      <%= link_to 'Deliver Item',  item_borrow_request_path(:item_id=>@item.id,
+                                              :id=>@borrow_request.id,:return_status => 3,
+                                              :borrower_read_status => false), :method=> :put,
+                                              class: "btn btn-info"%>
+
       <% end %>
-  <% else %>
-    <p> Rejected </p>
-  <% end %>
-  
-<br>
-<% end %>
-<br>
-<!--%= link_to 'Edit', edit_item_borrow_request_path(@borrow_request) %--><br>
-<!--%= link_to 'Back', user_profile_item_path(:user_profile_id=>current_user.id, :item_id=>@item.id) %-->
-<% if @I_am_borrower %>
-  <%= link_to 'Back to Borrow List', borrow_from_others_path %><br>
-<% else %>
-  <%= link_to 'Back to Lend List', lend_to_others_path %><br>
-<% end %>
-<%= link_to 'Back to Home Page', root_path %><br>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="request-info">
+  <div class="container">
+    <div class="row">
+      <div class="item-background">
+        <div class="row">
+          <div class="item-image">
+            <%= image_tag @item.image.variant(gravity: 'center') %>
+          </div>
+          <div class="request-detail">
+            <h2>
+              Request Details for <%= @item.item_name %>
+            </h2>
+            <div class="request-description">
+              <p>
+                <strong>Item quantity:</strong>
+                <%= @item.quantity %>
+              </p>
+              <p>
+                <strong>Borrow period:</strong>
+                <%=@borrow_request.borrow_date%> to
+                <%= @borrow_request.return_date%>
+              </p>
+              <p>
+                <strong>Lender:</strong>
+                <%= link_to @owner.username, user_profile_path(@owner.id) %>
+              </p>
+              <p>
+                <strong>Borrower: </strong>
+                <%= link_to @borrower.username, user_profile_path(@borrower.id) %>
+              </p>
+              <p>
+                <strong>Message:</strong>
+                <%= @borrow_request.request_message%>
+              </p>
+              <p>
+                <strong>Status:</strong>
+
+              <% if @I_am_borrower %>
+              <% if !@borrow_request.approval.nil? %>
+              <% if !@borrow_request.approval %>
+                Request declined.
+              <% elsif @borrow_request.return_status != 2 %>
+                Request Approved.
+              <% end %>
+              <% end %>
+              <% if @borrow_request.return_status == 4 %>
+              <% if @borrow_request.approval %>
+                Item borrowed.
+              <% end %>
+              <% elsif @borrow_request.return_status == 1 %>
+              Waiting for <%= @owner.username %> to confirm returning of the item.
+              <% elsif @borrow_request.return_status == 2 %>
+              Item Returned.
+              <% elsif @borrow_request.return_status == 0 && @borrow_request.approval.nil?%>
+              <% @borrow_request.update_attribute(:borrower_read_status, true) %>
+              Pending Approval from the owner.
+              <% elsif @borrow_request.return_status == 0 && !@borrow_request.approval.nil?%>
+              <% @borrow_request.update_attribute(:borrower_read_status, true) %>
+              <% if @borrow_request.approval%>
+              Pending Delivery of the item.
+              <%else%>
+              Rejected by the owner.
+              <%end%>
+              <% elsif @borrow_request.return_status == 3%>
+                Pending confirmation of receiption.
+              <%end%>
+
+              <% else %>
+              <!-- owner -->
+              <% if @borrow_request.approval.nil?%>
+              Pending Approval.
+              <% elsif @borrow_request.approval == true %>
+               Accepted.
+              <!-- if borrower clicks return button, lender view will display a button to confirm delivery-->
+              <% if @borrow_request.return_status == 1 %>
+                Pending confirmation of return.
+              <% elsif @borrow_request.return_status == 2 %>
+              Item Returned.
+              <% elsif @borrow_request.return_status == 0 %>
+                Pending delivery.
+                <% if Date.today == @borrow_request.borrow_date %>
+                 Need to be done today!!
+                <% end %>
+          
+              <% elsif @borrow_request.return_status == 3 %>
+                Waiting for
+                  <%= @borrower.username %> to confirm reception.
+              <% elsif @borrow_request.return_status == 4 %>
+              Delivery confirmed. Pending return.
+              <% end %>
+              <% else %>
+              Rejected
+              <% end %>
+              </p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

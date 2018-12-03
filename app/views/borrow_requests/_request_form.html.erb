@@ -19,22 +19,20 @@
     </tr>
     <tr>
       <td>
-        <%= form.date_field :borrow_date, min: Date.today %>
+        <%= form.date_field :borrow_date, min: Date.today, :class => 'form-control' %>
       </td>
       <td>
-        <%= form.date_field :return_date, min: Date.today %>
+        <%= form.date_field :return_date, min: Date.today, :class => 'form-control' %>
       </td>
     </tr>
   </table>
-
   <p>
     <%= form.label :request_message, "message" %><br>
-    <%= form.text_area :request_message%>
+    <%= form.text_area :request_message, :class => 'form-text text-muted form-control'%>
   </p>
-
   <div class="actions">
     <p>
-      <%= form.submit "Send my request"%>
+      <%= form.submit "Send my request", :class => 'btn btn-primary form-control'%>
     </p>
   </div>
 

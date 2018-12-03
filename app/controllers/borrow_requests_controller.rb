@@ -124,11 +124,11 @@ class BorrowRequestsController < ApplicationController
       @borrow_request.update_attribute(:return_status, params[:return_status])
 
       if @borrow_request.return_status == 1 #borrower return
-        flash[:notice] = "set return status as borrower returned(1)"
+        #flash[:notice] = "set return status as borrower returned(1)"
         #send email
         UserMailer.with(lender: @item.user_profile.user, borrower: current_user, item: @item, borrow_request: @borrow_request).item_return_email.deliver
       elsif @borrow_request.return_status == 2 #lender received
-        flash[:notice] = "set return status as lender received (2)"
+        #flash[:notice] = "set return status as lender received (2)"
         @borrow_request.item.status = true
         @borrow_request.update_attribute(:actual_return_date, Date.today)
         #send email
@@ -146,18 +146,18 @@ class BorrowRequestsController < ApplicationController
 
     if !params[:read_status].nil? && params[:read_status] == "true"
       @borrow_request.update_attribute(:read_status, params[:read_status])
-      flash[:notice] = "update read_status"
+      #flash[:notice] = "update read_status"
     end
 
     if !params[:borrower_read_status].nil?
       @borrow_request.update_attribute(:borrower_read_status, params[:borrower_read_status])
-      flash[:notice] = "update borrow_read_status"
+      #flash[:notice] = "update borrow_read_status"
     end
 
     # return to item page
     if  @borrow_request.user_profile_id == current_user.id && !params[:return_status].nil?
       if params[:return_status]== "1"
-        redirect_to lend_rating_path(:id => @borrow_request.item.user_profile.id)
+        redirect_to new_item_comment_path(:item_id=>@item.id, :tryid => @borrow_request.item.user_profile_id)
 
       else
         redirect_to item_borrow_request_path(:item_id => @item.id, :id => @borrow_request.id)
