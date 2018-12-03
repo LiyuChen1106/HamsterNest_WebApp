@@ -27,15 +27,24 @@
         item_name, user_name should be autofilled by system
         other fields should be filled in manually                    
     -->
-    <div class="field">
 
- 
+    <div class="field">
+    <%= form.label :lend_rating, "Lend_rating(1-5)" %><br>
+    <%= form.number_field :lend_rating, min:0, max:5%>
+    </div>
+
+    <div class="field">
     <p>
       <%= form.label :comment_message, "message" %><br>
       <%= form.text_area :comment_message%>
     </p>
     </div>
 
+    <div class="field">
+    <p>
+    <%= form.hidden_field :tryid, value: @tryid %>
+    </p>
+    </div>
     <div class="actions">
       <p>
         <%= form.submit "comment to the item"%>

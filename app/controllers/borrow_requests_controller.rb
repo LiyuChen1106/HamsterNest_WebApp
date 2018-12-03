@@ -149,7 +149,7 @@ class BorrowRequestsController < ApplicationController
     # return to item page
     if  @borrow_request.user_profile_id == current_user.id && !params[:return_status].nil?
       if params[:return_status]== "1"
-        redirect_to lend_rating_path(:id => @borrow_request.item.user_profile.id)
+        redirect_to new_item_comment_path(:item_id=>@item.id, :tryid => @borrow_request.item.user_profile.id)
 
       else
         redirect_to item_borrow_request_path(:item_id => @item.id, :id => @borrow_request.id)
