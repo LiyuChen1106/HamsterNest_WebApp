@@ -125,14 +125,22 @@ class BorrowRequestsController < ApplicationController
 
       if @borrow_request.return_status == 1 #borrower return
         flash[:notice] = "set return status as borrower returned(1)"
+        #send email
+        UserMailer.with(lender: @item.user_profile.user, borrower: current_user, item: @item, borrow_request: @borrow_request).item_return_email.deliver
       elsif @borrow_request.return_status == 2 #lender received
         flash[:notice] = "set return status as lender received (2)"
         @borrow_request.item.status = true
         @borrow_request.update_attribute(:actual_return_date, Date.today)
+        #send email
+        UserMailer.with(lender: current_user, borrower: @borrower, item: @item, borrow_request: self).item_return_confirmation_email.deliver
       elsif @borrow_request.return_status == 3 #lender sended
         @borrow_request.item.status = false
+        #send email
+        UserMailer.with(lender: current_user, borrower: @borrower, item: @item, borrow_request: self).item_delivery_email.deliver
       elsif @borrow_request.return_status == 4 #borrow received
         @borrow_request.update_attribute(:actual_borrow_date, Date.today)
+        #send email
+        UserMailer.with(lender: @item.user_profile.user, borrower: current_user, item: @item, borrow_request: @borrow_request).item_delivery_confirmation_email.deliver
       end
     end
 

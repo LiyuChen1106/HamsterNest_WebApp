@@ -23,6 +23,9 @@ class BorrowRequest < ApplicationRecord
       errors.add(:return_date, "can't be in less than borrow date")
     end
   end
+  
+  def return_items_reminder
+  end
 #  after_update :send_approval_email
 #  
 #  def send_approval_email
