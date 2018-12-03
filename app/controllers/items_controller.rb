@@ -18,6 +18,8 @@ class ItemsController < ApplicationController
       @search_items = Item.all
       @search_words = ""
     end
+    
+    puts @search_items
 
     @markers = load_markers(@search_items)
     @current_latlon = {:lat => current_user.user_profile.latitude, :lng => current_user.user_profile.longitude}
