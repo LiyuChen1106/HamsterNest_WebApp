@@ -110,7 +110,7 @@ class UserMailer < ApplicationMailer
     @borrower = params[:borrower]
     @item = params[:item]
     @borrow_request = params[:borrow_request]
-    @url = item_borrow_request_url(:item_id => @item.id, :id => @borrow_request.id)
+    @url = item_url(:id => @item.id)
     
     mail(to: @borrower.email, subject: 'Item recieved by the owner')
   end
