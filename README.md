@@ -3,30 +3,30 @@ This is a web-based application that helps people who want to borrow something a
 Hamster is good at storing things and its nest is a mysterable space with unknown storage capacity!!
 
 Team:
-- Yuxi Cai
-- Jinyi Chen
-- Liyu Chen
-- To Khoi
-- Kailun Li
-- Kaishan Zhang
+- **Yuxi Cai**
+- **Jinyi Chen**
+- **Liyu Chen**
+- **To Khoi**
+- **Kailun Li**
+- **Kaishan Zhang**
 
 
-Things you may want to cover:
+# About this project:
 
-* Ruby version
+* Heroku deployment: https://hamster-nest.herokuapp.com
 
-* System dependencies
+* Ruby 2.5.1
+* Rails 5.2.1
+* Gems
+  * Devise
+  * Ransack
+  * Bootstrap
+  * Gmaps4rails
+  * Geocoder
 
-* Configuration
+* Heroku Add-ons
+  * Heroku Schedulers
+  * SendGrid
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Database
+  * Postgres
