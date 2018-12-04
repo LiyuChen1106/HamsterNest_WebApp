@@ -10,7 +10,7 @@
     </div>
     <div class="category-tag">
       <strong>
-        <%= link_to(getCategoryName(@item.category_id), items_path(q: {category_id_eq: @item.category_id})) %> > </strong>
+        <%= link_to(getCategoryName(@item.category_id), search_items_path(q: {category_id_eq: @item.category_id}), :method =>:post) %> > </strong>
     </div>
     <% if current_user.id == @owner.id %>
     <div class="owner-action">
@@ -43,13 +43,14 @@
                   </div>
                   <div id="collapseOne" class="panel-collapse collapse">
                     <div class="panel-body">
+                    <div style="overflow-x:auto;">
                     <table>
                     <tr>
                       <td><strong>From</strong></td>
                       <td>| <strong>To</strong></td>
                     </tr>
                     <% @item.borrow_requests.each do |current_req|%>
-                      <% if current_req.approval.nil?%>
+                      <% if !current_req.approval.nil?%>
                       <% if current_req.approval && current_req.return_status!=2%>
                       <tr>
                         <td><%= current_req.borrow_date %></td>
@@ -59,6 +60,7 @@
                       <% end %>
                     <% end %>
                     </table>
+                    </div>
                     </div>
                   </div>
                 </div>
@@ -98,6 +100,7 @@
     </div>
   </div>
 <!-- comment area -->
+
 <div class="row">
   <div class="col-1">
   </div>
@@ -111,6 +114,7 @@
     </div>
     <div id="collapseTWO" class="panel-collapse collapse">
       <div class="panel-body">
+      <div style="overflow-x:auto;">
       <table>
 
         <% @item.comments.each do |current_req|%>
@@ -119,17 +123,16 @@
           <td><%= current_req.comment_message%>
           | <%=current_req.comment_date %></td>
           <% if(current_req.user_profile_id==current_user.id)%>
-            <td>| <%=link_to "Edit", edit_item_comment_path(current_req.item_id,current_req.id),
+            <td><%=link_to "Edit", edit_item_comment_path(current_req.item_id,current_req.id),
             data: { confirm: 'Are you sure?'}, class: "btn btn-info" %></td>
-            <td>|<%=link_to "Delete", item_comment_path(current_req.item_id,current_req.id),
+            <td><%=link_to "Delete", item_comment_path(current_req.item_id,current_req.id),
             method: :delete,
             data: { confirm: 'Are you sure?'}, class: "btn btn-info" %></td>
           <%end%>
-
         </tr>
         <% end %>
-
     </table>
+    </div>
     </div>
   </div>
 </div>

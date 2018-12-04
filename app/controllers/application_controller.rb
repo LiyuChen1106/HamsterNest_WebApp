@@ -9,6 +9,9 @@ class ApplicationController < ActionController::Base
 
   def item_status_check
     #check and update status for all the items..
+    if !current_user.nil?
+      @comment_user=UserProfile.find(current_user.id)
+    end
     @all_items = Item.all
     @all_items.each do |status_item|
       @item_ava=true

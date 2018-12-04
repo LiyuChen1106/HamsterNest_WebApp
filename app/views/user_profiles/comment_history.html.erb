@@ -1,36 +1,48 @@
-<div class="row">
-  <div class="col-1">
-  </div>
-  <div class="col-10">
-<% if !@user_profile.comments.empty?%>
-  <div class="panel panel-default comment-pannel">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTWO">Comment History:</a>
-      </h4>
+<head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+
+<div class="list-container">
+  <row>
+    <h1 class="list-header">Comment History</h1>
+  </row>
+  <row>
+    <div class="container">
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Pending</a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+            <div style="overflow-x:auto;">
+            <table>
+
+            <% @user_profile.comments.each do |current_req|%>
+            <tr>
+              <td><%=link_to current_req.item.item_name, item_path(current_req.item_id)%></td>
+              <td><%= current_req.comment_message %>
+                | <%= current_req.comment_date %></td>
+              <td> <%=link_to "Edit", edit_item_comment_path(current_req.item_id,current_req.id),
+              data: { confirm: 'Are you sure?'}, class: "btn btn-info" %></td>
+              <td> <%=link_to "Delete", item_comment_path(current_req.item_id,current_req.id),
+                       method: :delete,
+                       data: { confirm: 'Are you sure?'}, class: "btn btn-info" %></td>
+    
+            </tr>
+            <% end %>
+    
+        </table> 
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+      </row>
     </div>
-    <div id="collapseTWO" class="panel-collapse collapse">
-      <div class="panel-body">
-      <table>
-
-        <% @user_profile.comments.each do |current_req|%>
-        <tr>
-          <td><%=link_to current_req.item.item_name, item_path(current_req.item_id)%></td>
-          <td><%= current_req.comment_message %>
-            | <%= current_req.comment_date %></td>
-          <td>| <%=link_to "Edit", edit_item_comment_path(current_req.item_id,current_req.id),
-          data: { confirm: 'Are you sure?'}, class: "btn btn-info" %></td>
-          <td>| <%=link_to "Delete", item_comment_path(current_req.item_id,current_req.id),
-                   method: :delete,
-                   data: { confirm: 'Are you sure?'}, class: "btn btn-info" %></td>
-
-        </tr>
-        <% end %>
-
-    </table>
-    </div>
-  </div>
-</div>
-<%end%>
-</div>
-</div>

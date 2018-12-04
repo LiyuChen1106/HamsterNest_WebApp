@@ -33,7 +33,7 @@
                   </td>
                   <td>
                     Borrower: 
-                    <%= borrow_request.user_profile.username %>
+                    <%= link_to borrow_request.user_profile.username, user_profile_path(borrow_request.user_profile.id)%>
                   </td>
                   <td>
                     <%= borrow_request.borrow_date%> to <%=borrow_request.return_date%>
@@ -82,7 +82,7 @@
                   </td>
                   <td>
                     Borrower: 
-                    <%= borrow_request.user_profile.username %>
+                    <%= link_to borrow_request.user_profile.username, user_profile_path(borrow_request.user_profile.id)%>
                   </td>
                   <td>
                     <%= borrow_request.borrow_date%> to <%=borrow_request.return_date%>
@@ -130,7 +130,7 @@
                 </td>
                 <td>
                   Borrower: 
-                  <%= borrow_request.user_profile.username %>
+                  <%= link_to borrow_request.user_profile.username, user_profile_path(borrow_request.user_profile.id)%>
                 </td>
                 <td>
                   <%= borrow_request.borrow_date%> to <%=borrow_request.return_date%>
@@ -181,7 +181,7 @@
               </td>
               <td>
                 Borrower: 
-                <%= borrow_request.user_profile.username %>
+                <%= link_to borrow_request.user_profile.username, user_profile_path(borrow_request.user_profile.id)%>
               </td>
               <td>
                 <%= borrow_request.borrow_date%> to <%=borrow_request.return_date%>

@@ -19,13 +19,13 @@
           </div>
           <div id="collapseOne" class="panel-collapse collapse in">
             <div class="panel-body">
-
+            <div style="overflow-x:auto;">
               <% @item.borrow_requests.each do |borrow_request| %>
               <tr>
                 <table>
                 <% if !borrow_request.approval.nil? %>
                   <% if borrow_request.approval && borrow_request.return_status!=2 %>
-                  <td>
+                  <td> Borrower: 
                     <%= link_to borrow_request.user_profile.username, user_profile_path(borrow_request.user_profile.id)%>
                   </td>
                   <td>
@@ -45,6 +45,7 @@
 
               <% end %>
             </div>
+            </div>
           </div>
         </div>
         <div class="panel panel-default">
@@ -55,12 +56,14 @@
           </div>
           <div id="collapse2" class="panel-collapse collapse">
             <div class="panel-body">
+            <div style="overflow-x:auto;">
               <% @item.borrow_requests.each do |borrow_request| %>
 
               <table>
               <% if borrow_request.return_status==2%>
                 <tr>
                   <td>
+                  Borrower: 
                     <%= link_to borrow_request.user_profile.username, user_profile_path(borrow_request.user_profile.id)%>
                   </td>
                   <td>
@@ -81,6 +84,7 @@
                 <%end%>
               </table>
               <% end %>
+            </div>
             </div>
           </div>
         </div>
