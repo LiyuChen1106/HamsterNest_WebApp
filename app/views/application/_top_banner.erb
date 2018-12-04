@@ -95,7 +95,7 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          My Account
+          <%=@current_user_name%>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <%= link_to "View my profile", user_profile_path(current_user.user_profile_id), :class => "dropdown-item" %>

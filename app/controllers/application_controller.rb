@@ -6,19 +6,27 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :new_message
   before_action :item_status_check
+  before_action :getUserName
+
+  def getUserName
+    if !current_user.nil?
+      @current_user_profile = UserProfile.find(current_user.id)
+      @current_user_name = @current_user_profile.username
+    end
+  end
 
   def item_status_check
     #check and update status for all the items..
     if !current_user.nil?
-      @comment_user=UserProfile.find(current_user.id)
+      @comment_user = UserProfile.find(current_user.id)
     end
     @all_items = Item.all
     @all_items.each do |status_item|
-      @item_ava=true
+      @item_ava = true
       status_item.borrow_requests.each do |request|
         if request.approval == true
           #check if any accepted items lend out today
-          if (((request.borrow_date >= Date.today) && (request.return_status!=2)) || (request.return_status == 3) || (request.return_status == 4))
+          if (((request.borrow_date >= Date.today) && (request.return_status != 2)) || (request.return_status == 3) || (request.return_status == 4))
             @item_ava = false
           end
         end
