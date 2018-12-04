@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # Home page
   get "welcome", to: "welcome#index"
 
+  get "welcome/sitemap"
   get "welcome/about"
   get "welcome/contact_us"
   get "welcome/terms_of_service"
