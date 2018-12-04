@@ -10,14 +10,14 @@
     </div>
 
     <div class="request-action">
-      <%= link_to 'Show Item', item_path(@item), class: "btn btn-info" %>
+      
       <% if @I_am_borrower %>
       <% if @borrow_request.return_status == 4 %>
       <% if @borrow_request.approval %>
         <%= link_to 'Return Item',  item_borrow_request_path(:item_id=>@item.id,
                                           :id=>@borrow_request.id,:return_status => 1,
                                           :borrower_read_status => true, :read_status =>false),
-                                          :method=> :put, class: "btn btn-info"%>
+                                          :method=> :put, class: "btn btn-warning"%>
 
       <% end %>
       <% elsif @borrow_request.return_status == 0 && !@borrow_request.approval.nil?%>
@@ -32,29 +32,30 @@
         <%= link_to 'Item Recieved',  item_borrow_request_path(:item_id=>@item.id,
                                         :id=>@borrow_request.id,:return_status => 4,
                                         :borrower_read_status => true), :method=> :put,
-                                        class: "btn btn-info"%>
+                                        class: "btn btn-warning"%>
       <%end%>
       <% else %>
       <% if @borrow_request.approval.nil? %>
-      <%= link_to 'Accpet', item_borrow_request_path(:approval => true, :borrower_read_status => false), :method=> :put, class: "btn btn-info"%>
-      <%= link_to 'Reject', item_borrow_request_path(:approval => false, :borrower_read_status => false), :method=> :put, class: "btn btn-info"%>
+      <%= link_to 'Accpet', item_borrow_request_path(:approval => true, :borrower_read_status => false), :method=> :put, class: "btn btn-warning"%>
+      <%= link_to 'Reject', item_borrow_request_path(:approval => false, :borrower_read_status => false), :method=> :put, class: "btn btn-warning"%>
       <% elsif @borrow_request.approval == true %>
       <!-- if borrower clicks return button, lender view will display a button to confirm delivery-->
       <% if @borrow_request.return_status == 1 %>
 
       <%= link_to 'Item Returned',  item_borrow_request_path(:item_id=>@item.id,
                                               :id=>@borrow_request.id,:return_status => 2),
-                                              :method=> :put, class: "btn btn-info"%>
+                                              :method=> :put, class: "btn btn-warning"%>
 
       <% elsif @borrow_request.return_status == 0 %>
       <%= link_to 'Deliver Item',  item_borrow_request_path(:item_id=>@item.id,
                                               :id=>@borrow_request.id,:return_status => 3,
                                               :borrower_read_status => false), :method=> :put,
-                                              class: "btn btn-info"%>
+                                              class: "btn btn-warning"%>
 
       <% end %>
       <% end %>
       <% end %>
+      <%= link_to 'Show Item', item_path(@item), class: "btn btn-info" %>
     </div>
   </div>
 </div>
