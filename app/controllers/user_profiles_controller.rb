@@ -51,7 +51,7 @@ class UserProfilesController < ApplicationController
         flash[:notice] = "Profile added"
         redirect_to :root
       else
-        flash[:error] = @user_profile.errors.full_messages.map(&:inspect).join()
+        flash[:alert] = @user_profile.errors.full_messages.map(&:inspect).join()
         render "edit"
       end
     else
