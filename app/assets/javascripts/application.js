@@ -59,7 +59,7 @@ $(document).ready(function() {
 //      ]);
       handler.bounds.extendWith(markers); 
       handler.fitMapToBounds();
-      handler.map.centerOn(latlon);
+//      handler.map.centerOn(latlon);
       handler.getMap().setZoom(13);
     });  
 
