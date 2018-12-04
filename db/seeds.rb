@@ -5,6 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Dir[File.join(Rails.root, 'db', 'sample_seeds', '*.rb')].sort.each do |seed|
-  load seed
-end
+
+#every seed in the folder
+#Dir[File.join(Rails.root, 'db', 'sample_seeds', '*.rb')].sort.each do |seed|
+#  load seed
+#end
+
+#set admin
+admin = User.find(3)
+admin.update_attribute(:superadmin_role, true)
