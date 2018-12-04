@@ -15,13 +15,10 @@
       <ul class="nav">
         <% unless @search_items.empty? %>
         <li class="nav-item">
-          <%= sort_link(@search, :item_name, 'Item Name', class:"nav-link") %>
+          <%= sort_link(@search, :item_name, 'Sort by Item Name', class:"nav-link") %>
         </li>
         <li class="nav-item">
-          <%= sort_link(@search, :category_id, 'Category', class:"nav-link") %>
-        </li>
-        <li class="nav-item">
-          <%= sort_link(@search, :status, 'Available', class:"nav-link") %>
+          <%= sort_link(@search, :category_id, 'Sort by Category', class:"nav-link") %>
         </li>
         <%end%>
       </ul>
@@ -47,7 +44,7 @@
             <tr>
               <div class="Portfolio">
                 <%= link_to item_path(item) do %>
-                <%= image_tag item.image.variant(resize: "180x180!"), class:"index-image" %> 
+                <%= image_tag item.image.variant(resize: "180x180!"), class:"index-image" %>
                 <div class="desc">
                   <ul>
                     <li>
@@ -55,6 +52,13 @@
                     </li>
                     <li>
                       <%=getCategoryName(item.category_id)%>
+                    </li>
+                    <li>
+                      <% if item.status == true %>
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                      <% else %>
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                      <% end %>
                     </li>
                   </ul>
                 </div>
