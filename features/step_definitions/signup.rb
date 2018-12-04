@@ -6,10 +6,20 @@ Then (/^I fill in without error$/) do
     fill_in('Email', :with => 'k@a.com')
     fill_in('Password', :with => '123456')
     fill_in('Password confirmation', :with => '123456')
-    expect {click_on('Sign up')}.to raise_error
+    click_on('Sign up')
 end
 
-Then (/^I see successful message$/) do
+Then (/^I confirm$/) do
+    $user = User.find_by_email('k@a.com')
+    confirmation_token = $user.confirmation_token
+    visit '/account/verification?confirmation_token=' + confirmation_token
+end
+
+Then (/^I sign in$/) do
+    visit '/account/login'  
+    fill_in('user_email', :with => 'k@a.com')
+    fill_in('user_password', :with => '123456')
+    click_button('Log in')
 end
 
 Then (/^I fill in wrong email$/) do
