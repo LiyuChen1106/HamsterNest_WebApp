@@ -5,9 +5,6 @@ class UserProfile < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one_attached :avatar
 
-  # validate avatar
-  validate :correct_avatar_type
-
   # validate postal code must exist
   validates :username, presence: {message: "must exist"}
   validate :address_exists?
@@ -70,11 +67,6 @@ class UserProfile < ApplicationRecord
     end
   end
 
-  def correct_avatar_type
-      if self.avatar.attached? && !self.avatar.content_type.start_with?('image/');
-        self.errors.add(:self, 'Must be an image')
-      end
-    end
 
   def set_default_avatar
     if !self.avatar.attached?
