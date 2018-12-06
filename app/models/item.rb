@@ -10,6 +10,7 @@ class Item < ApplicationRecord
   validates :description, length: {maximum: 200}
   validates :item_name, presence: true,
                         length: {maximum: 50}
+  validate :correct_image_type
   #no quantity right now
   #validates :quantity, numericality: {only_integer: true, greater_than: 0}
 
@@ -23,6 +24,11 @@ class Item < ApplicationRecord
   #  self.left_quantity = self.quantity
   #end
 
+  def correct_image_type
+      if self.image.attached? && !self.image.content_type.start_with?('image/')
+        self.errors.add(:self, 'Must be an image')
+      end
+    end
 
   def set_default_image
     if !self.image.attached?

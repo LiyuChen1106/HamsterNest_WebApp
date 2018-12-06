@@ -5,7 +5,8 @@ Feature: Sign up
     Scenario: I successfully signs up
         Given I am on Signup page
         Then I fill in without error
-        Then I see successful message
+        Then I confirm
+        Then I sign in
 
     Scenario: I fill in wrong email
         Given I am on Signup page
